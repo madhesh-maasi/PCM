@@ -1,0 +1,397 @@
+@import "~office-ui-fabric-react/dist/sass/References.scss";
+
+.homePageDesign {
+  .container {
+    max-width: 700px;
+    margin: 0px auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .row {
+    @include ms-Grid-row;
+    @include ms-fontColor-white;
+    background-color: $ms-color-themeDark;
+    padding: 20px;
+  }
+
+  .column {
+    @include ms-Grid-col;
+    @include ms-lg10;
+    @include ms-xl8;
+    @include ms-xlPush2;
+    @include ms-lgPush1;
+  }
+
+  .title {
+    @include ms-font-xl;
+    @include ms-fontColor-white;
+  }
+
+  .subTitle {
+    @include ms-font-l;
+    @include ms-fontColor-white;
+  }
+
+  .description {
+    @include ms-font-l;
+    @include ms-fontColor-white;
+  }
+
+  .button {
+    // Our button
+    text-decoration: none;
+    height: 32px;
+
+    // Primary Button
+    min-width: 80px;
+    background-color: "red";
+    border-color: $ms-color-themePrimary;
+    color: $ms-color-white;
+
+    // Basic Button
+    outline: transparent;
+    position: relative;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+      BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: $ms-font-size-m;
+    font-weight: $ms-font-weight-regular;
+    border-width: 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 16px;
+
+    .label {
+      font-weight: $ms-font-weight-semibold;
+      font-size: $ms-font-size-m;
+      height: 32px;
+      line-height: 32px;
+      margin: 0 4px;
+      vertical-align: top;
+      display: inline-block;
+    }
+  }
+}
+
+//StyleSheet
+.homeLinkCard{
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.header {
+  display: flex;
+  justify-content: center;
+}
+.headerPara {
+  margin-top: 2rem;
+  width: 1024px;
+  text-align: center;
+  font-size: 26px;
+  padding-bottom: 70px;
+  color: #707070;
+    font-weight: 500;
+}
+.bodyContent {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+}
+.playBook,
+.decisionTree {
+  margin: 0px 40px;
+  width: 492px;
+  height: 400px;
+  padding: 20px 0px;
+  text-align: center;
+}
+.playBook {
+  .topCornerArrowCover {
+    height: 0px;
+  }
+  .topCornerArrow {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    left: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .bottomCornerArrowCover {
+    height: 0;
+  }
+  .bottomCornerArrow {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    top: -50px;
+    left: 405px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+.decisionTree {
+  .topCornerArrowCover {
+    height: 0px;
+  }
+  .topCornerArrow {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    left: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .bottomCornerArrowCover {
+    height: 0;
+  }
+  .bottomCornerArrow {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    top: 64px;
+    left: 405px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+.bodyContentIcon {
+  color: white;
+  font-size: 20px;
+  margin: 50px auto 15px;
+}
+.playBook {
+  .bodyContentIcon {
+    width: 54px;
+    height: 49px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.decisionTree {
+  .bodyContentIcon {
+    width: 54px;
+    height: 49px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.bodyContentHeading,
+.bodyContentHeading a {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
+  margin-top: 0px;
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+.bodyCardContent {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: left;
+  padding: 14px 40px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+}
+.bodyContentLeft {
+  flex-basis: 90%;
+  font-size: 14px;
+}
+.bodyContentRight {
+  flex-basis: 10%;
+  cursor: pointer;
+}
+.line {
+  width: 80px;
+  height: 3px;
+  margin: 6px 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.playBook {
+  .bodyCardContent {
+    color: red;
+    .bodyContentRight {
+      width: 28px;
+      height: 28px;
+      margin: 50px auto;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+.decisionTree {
+  .bodyCardContent {
+    color: blue;
+    .bodyContentRight {
+      width: 28px;
+      height: 28px;
+      margin: 22px auto;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+.playBookButtonSection {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 300px;
+  margin-top: 1.5rem;
+}
+.playBookButton {
+  text-align: center;
+  background-color: white;
+  color: red;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.rightArrowIcon {
+  width: 50px;
+  height: 12px;
+  margin-top: 14px;
+  margin-right: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.leftArrowIcon {
+  width: 50px;
+  height: 12px;
+  margin-top: 14px;
+  margin-left: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.decisionTreeA {
+  text-decoration: none;
+}
+.cardSection {
+
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  padding:120px;
+}
+.cards > div {
+  width: 188px;
+  height: 244px;
+  padding: 32px 0 0;
+  color: white;
+  text-align: center;
+}
+.cardSectionHeading {
+  margin: auto 34px;
+  font-size: 18px;
+}
+.homeLinkCard{
+  margin:0 0.8rem;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  p{
+    cursor: pointer;
+  }
+}
+.card1 {
+  background-color: #753bbd;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.card2 {
+  background-color: #00007d;
+  margin-left: 22px;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.card3 {
+  background-color: #cc0099;
+  margin-left: 22px;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.card4 {
+  background-color: #888b8d;
+  margin-left: 22px;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.card5 {
+  background-color: #c1c1c1;
+  margin-left: 22px;
+  .cardSectionIcon {
+    width: 60px;
+    height: 60px;
+    margin: 32px auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.footer {
+  background-color: #ca001b;
+  display: flex;
+  justify-content: center;
+  .footerContent {
+    width: 248px;
+    height: 45px;
+    margin: 43px auto 36px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.cardSection {
+  border: navajowhite;
+}
+.buttonContainer {
+  border: none;
+}

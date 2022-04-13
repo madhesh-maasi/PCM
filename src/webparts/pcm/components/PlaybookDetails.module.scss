@@ -1,0 +1,456 @@
+@import "~office-ui-fabric-react/dist/sass/References.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  .Nav {
+    .navCrumbArrow{
+      margin:0.5rem;
+      color: #C7C7C7;
+    }
+    margin-bottom: 42px;
+    margin-top: 27px;
+    display: flex;
+    align-items: center;
+    .homeIcon{
+      width: 21px;
+      height: 21px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    .navContent{
+      font-size: 16px;
+      margin: 0 0.5rem;
+      color: #C7C7C7;
+      cursor: pointer;
+    }
+  
+  }
+  .Scope {
+    .bodyContent {
+      border-left: 10px solid #000099;
+      .bodyContentHeader {
+        color: #000099;
+        .line {
+          border-bottom: 4px solid #000099;
+        }
+      }
+    }
+    .playBookScopePhases {
+      background-color: #000099;
+    }
+    .verticalTitle {
+      background-color: #000099;
+    }
+    .phases {
+      .phaseTop {
+        .phaseOne {
+          .phaseOneHeading {
+            color: #000099;
+            .line {
+              background-color: #000099;
+            }
+          }
+        }
+        .phaseTwo {
+          .phaseTwoHeading {
+            color: #000099;
+            .line {
+              background-color: #000099;
+            }
+          }
+        }
+      }
+      .phaseBottom {
+        .phaseThree {
+          table {
+            th {
+              background-color: #000099;
+            }
+          }
+        }
+      }
+    }
+  }
+  .Define {
+    .bodyContent {
+      border-left: 10px solid #cc0099;
+      .bodyContentHeader {
+        color: #cc0099;
+        .line {
+          border-bottom: 4px solid #cc0099;
+        }
+      }
+    }
+    .playBookScopePhases {
+      background-color: #cc0099;
+    }
+    .verticalTitle {
+      background-color: #cc0099;
+    }
+    .phases {
+      .phaseTop {
+        .phaseOne {
+          .phaseOneHeading {
+            color: #cc0099;
+            .line {
+              background-color: #cc0099;
+            }
+          }
+        }
+        .phaseTwo {
+          .phaseTwoHeading {
+            color: #cc0099;
+            .line {
+              background-color: #cc0099;
+            }
+          }
+        }
+      }
+      .phaseBottom {
+        .phaseThree {
+          table {
+            th {
+              background-color: #cc0099;
+            }
+          }
+        }
+      }
+    }
+  }
+  .Execute {
+    .bodyContent {
+      border-left: 10px solid #ca001b;
+      .bodyContentHeader {
+        color: #ca001b;
+        .line {
+          border-bottom: 4px solid #ca001b;
+        }
+      }
+    }
+    .playBookScopePhases {
+      background-color: #ca001b;
+    }
+    .verticalTitle {
+      background-color: #ca001b;
+    }
+    .phases {
+      .phaseTop {
+        .phaseOne {
+          .phaseOneHeading {
+            color: #ca001b;
+            .line {
+              background-color: #ca001b;
+            }
+          }
+        }
+        .phaseTwo {
+          .phaseTwoHeading {
+            color: #ca001b;
+            .line {
+              background-color: #ca001b;
+            }
+          }
+        }
+      }
+      .phaseBottom {
+        .phaseThree {
+          table {
+            th {
+              background-color: #ca001b;
+            }
+          }
+        }
+      }
+    }
+  }
+  .Implement {
+    .bodyContent {
+      border-left: 10px solid #00a3ad;
+      .bodyContentHeader {
+        color: #00a3ad;
+        .line {
+          border-bottom: 4px solid #00a3ad;
+        }
+      }
+    }
+    .playBookScopePhases {
+      background-color: #00a3ad;
+    }
+    .verticalTitle {
+      background-color: #00a3ad;
+    }
+    .phases {
+      .phaseTop {
+        .phaseOne {
+          .phaseOneHeading {
+            color: #00a3ad;
+            .line {
+              background-color: #00a3ad;
+            }
+          }
+        }
+        .phaseTwo {
+          .phaseTwoHeading {
+            color: #00a3ad;
+            .line {
+              background-color: #00a3ad;
+            }
+          }
+        }
+      }
+      .phaseBottom {
+        .phaseThree {
+          table {
+            th {
+              background-color: #00a3ad;
+            }
+          }
+        }
+      }
+    }
+  }
+  .Optimize {
+    .bodyContent {
+      border-left: 10px solid #008578;
+      .bodyContentHeader {
+        color: #008578;
+        .line {
+          border-bottom: 4px solid #008578;
+        }
+      }
+    }
+    .playBookScopePhases {
+      background-color: #008578;
+    }
+    .verticalTitle {
+      background-color: #008578;
+    }
+    .phases {
+      .phaseTop {
+        .phaseOne {
+          .phaseOneHeading {
+            color: #008578;
+            .line {
+              background-color: #008578;
+            }
+          }
+        }
+        .phaseTwo {
+          .phaseTwoHeading {
+            color: #008578;
+            .line {
+              background-color: #008578;
+            }
+          }
+        }
+      }
+      .phaseBottom {
+        .phaseThree {
+          table {
+            th {
+              background-color: #008578;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.navArrow {
+  width: 1024px;
+  position: relative;
+  bottom: -10px;
+  display: flex;
+  .navArrowOneCover,
+  .navArrowTwoCover,
+  .navArrowThreeCover,
+  .navArrowFourCover,
+  .navArrowFiveCover {
+    width: 205px;
+    color: white;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .next {
+    text-decoration: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .navArrowOne,
+  .navArrowTwo,
+  .navArrowThree,
+  .navArrowFour,
+  .navArrowFive {
+    display: flex;
+    justify-content: center;
+  }
+}
+.navArrowHeading {
+  width: 114px;
+  // height: 49px;
+  font-size: 20px;
+  margin-top: 23px;
+  text-align: center;
+  font-weight: bold;
+  span {
+    font-style: italic;
+  }
+}
+.navArrowNumber {
+  font-size: 80px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom:-12px;
+}
+.bodyContent {
+  width: 979px;
+  border: 1px solid white;
+  margin-top: -5px;
+}
+.bodyContentHeader {
+  font-size: 32px;
+  margin: 36px 0 25px 44px;
+  .line {
+    width: 5.3125rem;
+    height: 0.25rem;
+    margin: 6px 0;
+  }
+}
+.bodyContentLists {
+  font-size: 16px;
+  margin-left: 45px;
+  li {
+    margin-bottom: 10px;
+  }
+}
+.playBookScopePhases {
+  width: 1024px;
+  // height: 781.23px;
+  margin-bottom: 119.8px;
+  margin-top: -3px;
+  padding-bottom: 2rem;
+  display: flex;
+}
+.verticalTitle {
+  width: 130px;
+  // height: 781.23px;
+  grid-area: leftSidebar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > div {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+  }
+}
+.phases {
+  .phaseTop {
+    display: flex;
+    margin: 26px auto 20px;
+    .phaseOne {
+      width: 372px;
+      // height: 308px;
+      margin-right: 20px;
+      background-color: white;
+      .phaseOneHeading {
+        font-size: 20px;
+        padding-bottom: 5px;
+        margin: 35px 35px 6px;
+        .line {
+          width: 5.3125rem;
+          height: 0.25rem;
+          margin: 6px 0;
+        }
+      }
+      ul {
+        padding-left: 52px;
+        li {
+          color: #707070;
+          font-size: 16px;
+          //   margin-left: 35px;
+          //   padding-left: 35px;
+          margin-bottom: 12px;
+        }
+      }
+    }
+    .phaseTwo {
+      width: 470px;
+      // height: 308px;
+      background-color: white;
+      .phaseTwoHeading {
+        font-size: 20px;
+        padding-bottom: 5px;
+        margin: 35px 35px 6px;
+        .line {
+          width: 5.3125rem;
+          height: 0.25rem;
+          margin: 6px 0;
+        }
+      }
+      ul {
+        padding-left: 52px;
+        li {
+          color: #707070;
+          font-size: 16px;
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+  .phaseBottom {
+    width: 864px;
+    // height: 401px;
+    border: 1px solid white;
+    background-color: white;
+    .phaseThree {
+      table {
+        th {
+          color: white;
+          font-size: 16px;
+        }
+        .tableHeadingOne {
+          padding: 18px;
+        }
+        .tableHeadingTwo {
+          padding: 18px;
+        }
+        .tableHeadingThree {
+          padding: 18px;
+        }
+      }
+      td {
+        padding: 8px 0 8px 20px;
+        font-size: 14px;
+        border-bottom: 0.2px solid #707070;
+        a {
+          color: #000099;
+        }
+      }
+    }
+  }
+}
+
+// .footer {
+//   background-color: #ca001b;
+//   display: flex;
+//   justify-content: center;
+//   .footerContent {
+//     width: 248.14px;
+//     height: 45.02px;
+//     margin: 43px auto 36px;
+//     background-size: contain;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//   }
+// }

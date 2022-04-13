@@ -1,0 +1,455 @@
+.playbookGrid {
+  .breadCrumbSection {
+    width: 1024px;
+    margin: auto;
+    display: flex;
+    margin-top:52px;
+    .homeIcon {
+      width: 1.3125rem;
+      height: 1.3125rem;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+    .crumbMenu {
+      display: flex;
+      color: #c7c7c7;
+      .crumbArrow {
+        margin: 0 0.5rem;
+      }
+      .crumbMenuItem {
+        margin: 0 0.5rem;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+    }
+  }
+  .pageHeadingSection {
+    text-align: center;
+    color: #000099;
+    font-size: 2rem;
+    width: 36.75rem;
+    margin: auto;
+    margin-top: 2.4rem;
+    .redUnderline {
+      width: 6.6875rem;
+      height: 0.25rem;
+      margin: 1rem auto;
+      background-color: #ca001b;
+    }
+  }
+  .arrowSection {
+    padding: 5rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 3.5rem;
+    position: relative;
+
+    .arrowGrid {
+      width: 1516px;
+      margin: auto;
+      margin-bottom: 7rem;
+      height: 75.6875rem;
+      // background-color: #fff;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 86px 216.74px 200px 270px 258.53px 306.05px 86px;
+      grid-template-rows: 3rem 08rem 8rem 10rem;
+      grid-template-areas:
+        ". greyHeader lightBlueHeader lightBlueHeader PurpleHeader PurpleHeader ."
+        "leftSidebar discover design build implement optimize ."
+        "leftSidebar discover design build implement optimize ."
+        "leftSidebar discover design build implement optimize ."
+        "leftSidebar discover design build implement optimize rightSidebar"
+        ". discover design build implement optimize rightSidebar"
+        ". discover design build implement optimize rightSidebar";
+        ul{
+          li::marker{
+            color:#000099
+          }
+        }
+        .BottomSectionContent{
+          ul,ol{
+            li::marker{
+              color:#ca001b
+            }
+          }
+        }
+      .scopeTopSection {
+        height: 824px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .scopeTopListSection {
+          div{
+            overflow: auto;
+          }
+          max-height: 548px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end
+        }
+      }
+      .scopeBottomListSection {
+        height: 218px;
+        .BottomSectionContent{
+          overflow: auto;
+        }
+      }
+      .DefineTopSection {
+        height: 703px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .DefineTopListSection {
+          div{
+            overflow: auto;
+          }
+          max-height: 446px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end
+        }
+      }
+      .DefineBottomListSection {
+        height: 340px;
+        .BottomSectionContent{
+          overflow: auto;
+        }
+      }
+
+      .BuildTopSection {
+        height: 638px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .BuildTopListSection {
+          div{
+            overflow: auto;
+          }
+          max-height: 352px;
+          margin-bottom: 1.6rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end
+        }
+      }
+      .BuildBottomListSection {
+        height: 402px;
+        .BottomSectionContent{
+          overflow: auto;
+        }     
+       }
+      .ExecuteImplementTopSection {
+        height: 593px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .ExecuteImplementTopListSection {
+          div{
+            overflow: auto;
+          }
+          max-height: 340px;
+          margin-bottom: 1.6rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end
+        }
+      }
+      .ExecuteImplementBottomListSection {
+        height: 448px;
+        .BottomSectionContent{
+          overflow: auto;
+        }
+      }
+      .OptimizeTopSection {
+        height: 602px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .OptimizeTopListSection {
+          div{
+            overflow: auto;
+          }
+          max-height: 368px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end
+        }
+      }
+      .OptimizeBottomListSection {
+        height: 438px;
+        .BottomSectionContent{
+          overflow: auto;
+        }
+      }
+      .scopeTopListSection, .DefineTopListSection, .BuildTopListSection, .ExecuteImplementTopListSection, .OptimizeTopListSection{
+       > div{
+          &::-webkit-scrollbar-track
+          {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+            border-radius: 10px;
+          }
+          &::-webkit-scrollbar
+          {
+            width: 10px;
+            background-color: #F5F5F5;
+          }
+          &::-webkit-scrollbar-thumb
+          {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0.44, #aeaefa),
+                               color-stop(0.72, #5555d0),
+                               color-stop(0.86, #000099));
+          }
+        }
+       
+      }
+      .BottomSectionContent{
+        &::-webkit-scrollbar-track
+        {
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+          background-color: #F5F5F5;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar
+        {
+          width: 10px;
+          background-color: #F5F5F5;
+        }
+        &::-webkit-scrollbar-thumb
+        {
+          border-radius: 10px;
+          background-image: -webkit-gradient(linear,
+                             left bottom,
+                             left top,
+                             color-stop(0.44, #f29faa),
+                             color-stop(0.72, #e43950),
+                             color-stop(0.86, #ca001b));
+        }
+      }
+      .headerLabel {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.375rem;
+        padding: 0.5rem;
+      }
+
+      .leftSidebar {
+        background-color: #000099;
+        grid-area: leftSidebar;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > div {
+          transform: rotate(-90deg);
+          white-space: nowrap;
+        }
+      }
+      .rightSidebar {
+        background-color: #ca001b;
+        grid-area: rightSidebar;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 92%;
+        margin-top: auto;
+        > div {
+          transform: rotate(90deg);
+          white-space: nowrap;
+        }
+      }
+      .coloredHeaderGrey {
+        background-color: #888b8d;
+        grid-area: greyHeader;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .coloredHeaderLightBlue {
+        background-color: #c8d7ff;
+        grid-area: lightBlueHeader;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .coloredHeaderPurple {
+        background-color: #753bbd;
+        grid-area: PurpleHeader;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ScopeDiscover {
+        grid-area: discover;
+        display: flex;
+        flex-direction: column;
+        // justify-content: flex-end;
+      }
+      .DefineDesign {
+        grid-area: design;
+        display: flex;
+        flex-direction: column;
+        // justify-content: flex-end;
+      }
+      .ExecuteBuild {
+        grid-area: build;
+      }
+      .ExecuteImplement {
+        grid-area: implement;
+      }
+      .RealizeOptimize {
+        grid-area: optimize;
+      }
+      .imageSection {
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 3rem;
+        :hover {
+          transform: scale(1.05);
+          transition: transform 200ms;
+        }
+        img {
+          height: inherit;
+          width: 100%;
+          position: relative;
+          z-index: 1;
+        }
+      }
+      ul,
+      ol {
+        padding-left: 1.375rem;
+        li {
+          color: #888b8d;
+          font-size: 1.125rem;
+          padding: 0 0.5rem;
+        }
+      }
+      .coloredHeaderBlue {
+        color: #000099;
+        font-size: 1.375rem;
+        font-weight: 600;
+      }
+      .coloredHeaderRed {
+        color: #ca001b;
+        font-size: 1.375rem;
+        font-weight: 600;
+      }
+      .plusIcon {
+        position: absolute;
+        right: 0;
+        font-size: 3rem;
+        color: #fff;
+        font-weight: 200;
+        z-index: 100;
+      }
+      .arrowTitleSection {
+        position: absolute;
+        z-index: 100;
+        text-align: center;
+        .arrowTitle {
+          font-weight: 800;
+          color: #fff;
+          font-size: 1.25rem;
+        }
+        .arrowSubTitle {
+          font-style: italic;
+          font-size: 1.25rem;
+          color: #fff;
+        }
+      }
+    }
+    .arrowSecLegend {
+      width: 1516px;
+      margin: auto;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 3rem;
+      position: relative;
+      bottom: 10rem;
+      .clickAdvice {
+        color: #ca001b;
+        height: 160px;
+        width: 268px;
+        padding: 1.5rem 2rem;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        -webkit-box-shadow: 0px 3px 34px -10px #0000000F;
+        -moz-box-shadow: 0px 3px 34px -10px #0000000F;
+        box-shadow: 0px 3px 34px -10px #0000000F;
+        margin-right: 7rem;
+        font-weight: 600;
+      }
+      .clickProgress {
+        -webkit-box-shadow: 0px 3px 34px -10px #0000000F;
+        -moz-box-shadow: 0px 3px 34px -10px #0000000F;
+        box-shadow: 0px 3px 34px -10px #0000000F;
+        background-color: #fff;
+        color: #ca001b;
+        width: 310px;
+        margin-right: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.25rem;
+        height: 160px;
+        padding: 1.5rem 2rem;
+      }
+      .legendStatus {
+        position: relative;
+        margin-top: 1rem;
+        .legendLabels {
+          .buAndgs:after {
+            color: red;
+          }
+        }
+        > div {
+          display: flex;
+          justify-content: space-between;
+          > div {
+            width: 100px;
+            text-align: center;
+          }
+        }
+        .buAndgs,
+        .ct {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .buDotIcon {
+            height: 28px;
+            width: 2px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+          color: #212121;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+      }
+    }
+    .centerImg {
+      position: absolute !important;
+      z-index: 10 !important;
+      width: 260px !important;
+      height: 280px !important;
+      right: -136px !important;
+      top: -56px !important;
+      &:hover {
+        transform: scale(1) !important;
+      }
+    }
+  }
+}
