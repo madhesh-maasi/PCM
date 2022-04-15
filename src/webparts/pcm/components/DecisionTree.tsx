@@ -1,6 +1,6 @@
 import * as React from "react";
 import Carousel, { PagingDots } from "nuka-carousel";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import styles from "./DecisionTree.module.scss";
 import "../../../ExternalRef/css/style.css";
 import "@material-ui/core";
@@ -12,26 +12,25 @@ import {
   NativeSelect,
   Select,
 } from "@material-ui/core";
+import { forEach } from "lodash";
 const prevbtnBlue = require("../../../ExternalRef/img/DecisionTree/prevbtnBlue.png");
 const nextbtnBlue = require("../../../ExternalRef/img/DecisionTree/nextbtnBlue.png");
 const PrevButtonDisabled = require("../../../ExternalRef/img/DecisionTree/PrevButtonDisabled.png");
 const NextButtonDisabled = require("../../../ExternalRef/img/DecisionTree/NextButtonDisabled.png");
 const bgi = require("../../../ExternalRef/img/DecisionTree/background.png");
 const homeIcon = require("../../../ExternalRef/img/DecisionTree/homeBlue.png");
-const quesbg = require("../../../ExternalRef/img/DecisionTree/quesBG.png");
-const quesOne = require("../../../ExternalRef/img/DecisionTree/Question1.png");
-const quesOneNum = require("../../../ExternalRef/img/DecisionTree/1.png");
-const quesTwo = require("../../../ExternalRef/img/DecisionTree/Question2.png");
 const cardBg = require("../../../ExternalRef/img/DecisionTree/cardbg.png");
-const quesTwoNum = require("../../../ExternalRef/img/DecisionTree/2.png");
-const l1 = require("../../../ExternalRef/img/DecisionTree/l1.png");
-const l2 = require("../../../ExternalRef/img/DecisionTree/l2.png");
-const l3 = require("../../../ExternalRef/img/DecisionTree/l3.png");
-const l4 = require("../../../ExternalRef/img/DecisionTree/l4.png");
-const r1 = require("../../../ExternalRef/img/DecisionTree/r1.png");
-const r2 = require("../../../ExternalRef/img/DecisionTree/r2.png");
-const r3 = require("../../../ExternalRef/img/DecisionTree/r3.png");
-const r4 = require("../../../ExternalRef/img/DecisionTree/r4.png");
+const leftArrows = require("../../../ExternalRef/img/DecisionTree/Group 359.png");
+const rigthArrows = require("../../../ExternalRef/img/DecisionTree/Group 358.png");
+let questionsArr = [];
+let answersArr = [];
+let Q1Ans = [];
+let Q2Ans = [];
+let Q1 = "";
+let Q2 = "";
+let selectedAnsOne = 0;
+let selectedAnsTwo = 0;
+let currentUserName = "";
 
 const DecisionTree = (props) => {
   const [animation, setAnimation] = useState(undefined);
@@ -43,55 +42,130 @@ const DecisionTree = (props) => {
   const [transitionMode, setTransitionMode] = useState("scroll");
   const [underlineHeader, setUnderlineHeader] = useState(false);
 
-  const handleImageClick = useCallback(() => {
-    setUnderlineHeader((prevUnderlineHeader) => !prevUnderlineHeader);
+  const [questions, setQuestions] = useState(questionsArr);
+  const [answers, setAnswers] = useState(answersArr);
+  const [answersOne, setAnswersOne] = useState([]);
+  const [answersTwo, setAnswersTwo] = useState([]);
+  const [q1val, setq1Val] = useState(0);
+  const [q2val, setq2Val] = useState(0);
+
+  // useEffect
+  useEffect(() => {
+    props.sp.web.currentUser.get().then((data) => {
+      currentUserName = data.Title;
+    });
+
+    props.sp.web.lists
+      .getByTitle("Answers")
+      .items.select("*,PCMQuest/Title")
+      .expand("PCMQuest")
+      .get()
+      .then((data) => {
+        answersArr = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    props.sp.web.lists
+      .getByTitle("Questions")
+      .items.get()
+      .then((data) => {
+        questionsArr = data;
+        Q1 = questionsArr.filter((item) => item.PCMOrder == 1)[0].Title;
+        Q2 = questionsArr.filter((item) => item.PCMOrder == 2)[0].Title;
+        setQuestions(questionsArr);
+      })
+      .then(() => {
+        props.sp.web.lists
+          .getByTitle("Answers")
+          .items.select("*,PCMQuest/Title")
+          .expand("PCMQuest")
+          .get()
+          .then((data) => {
+            answersArr = data;
+            Q1Ans = answersArr.filter((item) => item.PCMQuest.Title == Q1);
+            Q2Ans = answersArr.filter((item) => item.PCMQuest.Title == Q2);
+            setAnswersOne(Q1Ans);
+            setAnswersTwo(Q2Ans);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    props.sp.web.lists
+      .getByTitle("Reports")
+      .items.select("*,PCMFirstAnswer/Title,PCMSecAnswer/Title")
+      .expand("PCMFirstAnswer,PCMSecAnswer")
+      .get()
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  const addList = () => {
+    props.sp.web.lists
+      .getByTitle("Reports")
+      .items.add({
+        Title: currentUserName,
+        PCMFirstAnswerId: selectedAnsOne,
+        PCMSecAnswerId: selectedAnsTwo,
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const slideData = [
     <div className={styles.quesWrap} style={{ backgroundImage: `url(${bgi})` }}>
       <div className={styles.ques}>
-        <div
-          className={styles.quesImg}
-          style={{ backgroundImage: `url(${quesbg})` }}
-        >
-          <img
-            src={`${quesOne}`}
-            alt="Question one image"
-            style={{ width: "120px", marginLeft: "-20px" }}
-          />
-          <img
-            className={styles.numImg}
-            src={`${quesOneNum}`}
-            alt="Question one image"
-            style={{ width: "40px" }}
-          />
+        <div className={styles.quesText}>
+          <p>Question</p>
+          <h1>1</h1>
         </div>
 
-        <p>What phase is your project in ?</p>
+        <p>
+          {questions.length > 0
+            ? questions.filter((item) => item.PCMOrder == 1)[0].Title
+            : ""}
+        </p>
       </div>
 
-      <div className="select" style={{ position: "relative" }}>
+      {/* s1 */}
+
+      <div className="select">
         <Box>
           <FormControl>
             <NativeSelect
-              defaultValue={30}
+              value={selectedAnsOne}
+              onChange={(e) => {
+                selectedAnsOne = +e.target.value;
+                setq1Val(selectedAnsOne);
+                console.log(q1val);
+              }}
               inputProps={{
-                name: "age",
-                id: "uncontrolled-native",
+                name: "ques1",
+                id: "ques1",
               }}
             >
-              <option value="Select your option">Select your option</option>
-              <option value="initiation & Discovery">
-                initiation & Discovery
-              </option>
-              <option value="Define & Design">Define & Design</option>
-              <option value="Develop & Build">Develop & Build</option>
-              <option value="Deployment & Implementation">
-                Deployment & Implementation
-              </option>
-              <option value="Pst Deployment / Optimization">
-                Pst Deployment / Optimization
-              </option>
+              <option value={0}>Select your option</option>
+              {answersOne.map((ans, i) => {
+                return (
+                  <option value={ans.ID} key={ans.id}>
+                    {ans.Title}
+                  </option>
+                );
+              })}
             </NativeSelect>
           </FormControl>
         </Box>
@@ -99,57 +173,41 @@ const DecisionTree = (props) => {
     </div>,
     <div className={styles.quesWrap} style={{ backgroundImage: `url(${bgi})` }}>
       <div className={styles.ques}>
-        <div
-          className={styles.quesImg}
-          style={{ backgroundImage: `url(${quesbg})` }}
-        >
-          <img
-            src={`${quesTwo}`}
-            alt="Question one image"
-            style={{ width: "120px", marginLeft: "-20px" }}
-          />
-          <img
-            className={styles.numImg}
-            src={`${quesTwoNum}`}
-            alt="Question one image"
-            style={{ width: "40px" }}
-          />
+        <div className={styles.quesText}>
+          <p>Question</p>
+          <h1>2</h1>
         </div>
-
-        <p>
-          What are you deploying or changing <br /> (select all that apply)?
+        <p style={{ marginRight: "130px" }}>
+          {questions.length > 0
+            ? questions.filter((item) => item.PCMOrder == 2)[0].Title
+            : ""}
         </p>
       </div>
 
+      {/* s2 */}
       <div className="selectBox">
-        {/* <select>
-          <option value="Select your option">Select your option</option>
-          <option value="initiation & Discovery">initiation & Discovery</option>
-          <option value="Define & Design">Define & Design</option>
-          <option value="Develop & Build">Develop & Build</option>
-          <option value="Deployment & Implementation">
-            Deployment & Implementation
-          </option>
-          <option value="Pst Deployment / Optimization">
-            Pst Deployment / Optimization
-          </option> 
-        </select> */}
         <Box>
           <FormControl>
             <NativeSelect
-              defaultValue={30}
+              value={selectedAnsTwo}
+              onChange={(e) => {
+                selectedAnsTwo = +e.target.value;
+                setq2Val(selectedAnsTwo);
+                console.log(q2val);
+              }}
               inputProps={{
-                name: "age",
-                id: "uncontrolled-native",
+                name: "ques2",
+                id: "ques2",
               }}
             >
               <option value="Select your option">Select your option</option>
-              <option value="Technology">Technology</option>
-              <option value="Process">Process</option>
-              <option value="Policies">Policies</option>
-              <option value="Org Structure and/or Op Model">
-                Org Structure and/or Op Model
-              </option>
+              {answersTwo.map((ans, i) => {
+                return (
+                  <option value={ans.ID} key={ans.id}>
+                    {ans.Title}
+                  </option>
+                );
+              })}
             </NativeSelect>
           </FormControl>
         </Box>
@@ -166,17 +224,11 @@ const DecisionTree = (props) => {
         </div>
         <div className={styles.btnSection}>
           <div className={styles.lArrows}>
-            <img src={`${l1}`} alt="arrow" />
-            <img src={`${l2}`} alt="arrow" />
-            <img src={`${l3}`} alt="arrow" />
-            <img src={`${l4}`} alt="arrow" />
+            <img src={`${leftArrows}`} alt="arrow" />
           </div>
-          <button>YOUR REPORT</button>
+          <button onClick={addList}>YOUR REPORT</button>
           <div className={styles.rArrows}>
-            <img src={`${r1}`} alt="arrow" />
-            <img src={`${r2}`} alt="arrow" />
-            <img src={`${r3}`} alt="arrow" />
-            <img src={`${r4}`} alt="arrow" />
+            <img src={`${rigthArrows}`} alt="arrow" />
           </div>
         </div>
         <p>Please click the button to download your report</p>
@@ -191,7 +243,7 @@ const DecisionTree = (props) => {
     <>
       {/* top nav bar */}
       <div className={styles.topNav}>
-        <div className={styles.nav} onClick={() => props.navHandler("ToHome")}>
+        <div className={styles.nav}>
           <img src={`${homeIcon}`} alt="home image" /> <p>{`>`}</p>{" "}
           <p>Decision Tree</p>
         </div>

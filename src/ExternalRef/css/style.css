@@ -150,3 +150,30 @@
 .slider-control-bottomcenter{
   display: none !important;
 }
+/* select box */
+.MuiNativeSelect-root {
+  width: 288px !important;
+  background-color: #fff !important;
+  padding: 10px !important;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.MuiFormControl-root {
+  margin-top: 40px !important;
+}
+
+.MuiNativeSelect-icon {
+  background-color: #000099 !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  margin-right: 10px !important;
+}
+
+.MuiInput-underline:before {
+  bottom: -6% !important;
+  border-bottom: 2px solid #000099 !important;
+}
+
+.MuiInput-underline:after {
+  display: none;
+}
