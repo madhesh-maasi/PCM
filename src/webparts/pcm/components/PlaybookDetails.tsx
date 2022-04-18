@@ -4,6 +4,7 @@ import { escape } from "@microsoft/sp-lodash-subset";
 import "../../../ExternalRef/css/style.css";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
+import Banner from "./Banner";
 const FirstArrowUnselected = require("../../../ExternalRef/img/PlayBookPhases/FirstArrowUnselected.png");
 const ArrowUnselected = require("../../../ExternalRef/img/PlayBookPhases/ArrowUnselected.png");
 const ScopeArrowSelected = require("../../../ExternalRef/img/PlayBookPhases/ScopeArrowselected.png");
@@ -16,6 +17,7 @@ const DefineNav = require("../../../ExternalRef/img/PlayBookPhases/DefineNav.png
 const ExecuteNav = require("../../../ExternalRef/img/PlayBookPhases/ExecuteNav.png");
 const ImplementNav = require("../../../ExternalRef/img/PlayBookPhases/ImplementNav.png");
 const OptimizeNav = require("../../../ExternalRef/img/PlayBookPhases/OptimizeNav.png");
+const ContentBannerImg = require("../../../ExternalRef/img/BannerImages/ContentsBannerImg.png");
 let HomeIcon = require("../../../ExternalRef/img/homeIcon.png");
 let arrLifecycleList = [];
 let arrLifeycleDescr = [];
@@ -91,6 +93,7 @@ const PlaybookDetails = (props) => {
 
   return (
     <>
+      <Banner src={ContentBannerImg} />
       <input autoFocus={true} style={{ height: 0, width: 0, opacity: 0 }} />
       <div className={`${styles.container}`}>
         <div
@@ -385,19 +388,27 @@ const PlaybookDetails = (props) => {
           </div>
           <div className={styles.playBookScopePhases}>
             <div className={styles.verticalTitle}>
-              <div>{`${
-                selectedItem == "Scope"
-                  ? "Scope (Discovery) Phase"
-                  : selectedItem == "Define"
-                  ? "Define (Design) Phase"
-                  : selectedItem == "Execute"
-                  ? "Execute (Build) Phase"
-                  : selectedItem == "Implement"
-                  ? "Implement phase"
-                  : selectedItem == "Optimize"
-                  ? "Optimize phase"
-                  : ""
-              }`}</div>
+              <div>
+                {selectedItem == "Scope" ? (
+                  <div>
+                    Scope (<em>Discovery</em>) Phase
+                  </div>
+                ) : selectedItem == "Define" ? (
+                  <div>
+                    Define (<em>Design</em>) Phase
+                  </div>
+                ) : selectedItem == "Execute" ? (
+                  <div>
+                    Execute (<em>Build</em>) Phase
+                  </div>
+                ) : selectedItem == "Implement" ? (
+                  "Implement phase"
+                ) : selectedItem == "Optimize" ? (
+                  "Optimize phase"
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
             <div className={styles.phases}>
               <div className={styles.phaseTop}>
@@ -474,9 +485,17 @@ const PlaybookDetails = (props) => {
                         className={styles.tableHeadingOne}
                         style={{ width: "70%" }}
                       >
-                        {selectedItem == "Scope"
-                          ? `How do I do it: Change Management Process Steps & Tools`
-                          : `Change Management Process Steps & Tools (follow these steps in order)`}
+                        {selectedItem == "Scope" ? (
+                          <div>
+                            How do I do it: Change Management Process Steps &
+                            Tools
+                          </div>
+                        ) : (
+                          <div>
+                            Change Management Process Steps & Tools{" "}
+                            <i>(follow these steps in order)</i>
+                          </div>
+                        )}
                       </th>
                       <th
                         className={styles.tableHeadingTwo}

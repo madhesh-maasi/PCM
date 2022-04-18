@@ -3,6 +3,7 @@ import styles from "./PlaybookGrid.module.scss";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import PlaybookDetails from "./PlaybookDetails";
+import Banner from "./Banner";
 let homeIcon = require("../../../ExternalRef/img/homeIcon.png");
 const greyPattern = require("../../../ExternalRef/img/greyPatternBackground.png");
 const DiscoverArrow = require("../../../ExternalRef/img/DiscoverArrow.png");
@@ -19,40 +20,68 @@ const LegendProgress = require("../../../ExternalRef/img/LegendProgress.png");
 const BuDotImg = require("../../../ExternalRef/img/BuDotImg.png");
 const CtDotImg = require("../../../ExternalRef/img/CtDotImg.png");
 const CenterImg = require("../../../ExternalRef/img/CenterImg.png");
+const ContentBannerImg = require("../../../ExternalRef/img/BannerImages/ContentsBannerImg.png");
 let arrDescriptions = [];
 let arrCMDescr = [];
 let arrCmDescrOptions = [];
+let arrBottomDescrOptions = [];
 const PlaybookGrid = (props) => {
   const [isArrowPage, setIsArrowPage] = useState(true);
   const [descriptions, setDescriptions] = useState(arrDescriptions);
   const [cmDescr, setCmDescr] = useState(arrCMDescr);
+  const [descrOptions, setDescrOptions] = useState([]);
+  const [bottomDescrOptions, setbottomDescrOptions] = useState([]);
+  const [bottomDescr, setBottomDescr] = useState([]);
   useEffect(() => {
-    props.spcontext.web.lists
-      .getByTitle("Lifecycle description")
-      .fields.filter("EntityPropertyName eq 'PCMDescrType'")
-      .get()
-      .then((data) => {
-        console.log(data);
-      });
     props.sp.web.lists
       .getByTitle("Lifecycle description")
-      .items.select("*,PCMOrderNo/PCMOrder,PCMOrderNo/Title")
-      .expand("PCMOrderNo")
+      .fields.filter("EntityPropertyName eq 'PCMDescrLabel'")
       .get()
-      .then((data) => {
-        console.log(data);
-        arrDescriptions = data;
-        setDescriptions(arrDescriptions);
-        arrCMDescr = arrDescriptions.filter(
-          (li) => li.PCMDescrType == "Change management Description"
-        );
-        console.log(arrCMDescr);
-        setCmDescr(arrCMDescr);
+      .then((types) => {
+        arrCmDescrOptions = types[0].Choices;
+        console.log(arrCmDescrOptions);
+        setDescrOptions(arrCmDescrOptions);
       })
-      .catch((error) => console.log(error));
+      .then(async () => {
+        await props.sp.web.lists
+          .getByTitle("ArrowBottom")
+          .fields.filter("EntityPropertyName eq 'PCMDescrLabel'")
+          .get()
+          .then((types) => {
+            arrBottomDescrOptions = types[0].Choices;
+            setbottomDescrOptions(arrBottomDescrOptions);
+          });
+        await props.sp.web.lists
+          .getByTitle("Lifecycle description")
+          .items.select("*,PCMOrderNo/PCMOrder,PCMOrderNo/Title")
+          .expand("PCMOrderNo")
+          .get()
+          .then((data) => {
+            arrDescriptions = data;
+            setDescriptions(arrDescriptions);
+            arrCMDescr = arrDescriptions.filter(
+              (li) => li.PCMDescrType == "Change management Description"
+            );
+            console.log(arrCMDescr);
+            setCmDescr(arrCMDescr);
+          })
+          .then(async () => {
+            await props.sp.web.lists
+              .getByTitle("ArrowBottom")
+              .items.select("*,PCMOrderNo/PCMOrder,PCMOrderNo/Title")
+              .expand("PCMOrderNo")
+              .get()
+              .then((liItem) => {
+                console.log(liItem);
+                setBottomDescr(liItem);
+              });
+          })
+          .catch((error) => console.log(error));
+      });
   }, []);
   return (
     <>
+      <Banner src={ContentBannerImg} />
       {isArrowPage ? (
         <div className={styles.playbookGrid}>
           {/* BreadCrumb Section */}
@@ -115,17 +144,46 @@ const PlaybookGrid = (props) => {
                     <div
                       className={`${styles.scopeTopListSection} scopeTopListSection`}
                     >
-                      <div>
-                        <div className={styles.coloredHeaderBlue}>Co-Led</div>
+                      {/* <div>
                         <ul>
                           {cmDescr.length > 0
                             ? cmDescr
                                 .filter((li) => li.PCMOrderNo.PCMOrder == 1)
                                 .map((li) => {
-                                  return <li>{li.Descr}</li>;
+                                  return <li>{li.PCMDescr}</li>;
                                 })
                             : ""}
                         </ul>
+                      </div> */}
+                      <div>
+                        {descrOptions.length && cmDescr.length > 0
+                          ? descrOptions.map((option) => {
+                              return cmDescr.filter(
+                                (desc) =>
+                                  desc.PCMDescrLabel == option &&
+                                  desc.PCMOrderNo.PCMOrder == 1
+                              ).length > 0 ? (
+                                <div>
+                                  <div className={styles.coloredHeaderBlue}>
+                                    {option}
+                                  </div>
+                                  <ul>
+                                    {cmDescr
+                                      .filter(
+                                        (li) =>
+                                          li.PCMOrderNo.PCMOrder == 1 &&
+                                          li.PCMDescrLabel == option
+                                      )
+                                      .map((li) => {
+                                        return <li>{li.PCMDescr}</li>;
+                                      })}
+                                  </ul>
+                                </div>
+                              ) : (
+                                ""
+                              );
+                            })
+                          : ""}
                       </div>
                     </div>
                     <div
@@ -174,12 +232,40 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    <div className={styles.coloredHeaderRed}>Co-Led</div>
+                    {/* <div className={styles.coloredHeaderRed}>Co-Led</div>
                     <ol>
                       <li>Phase 0 business case</li>
                       <li>Key Questions</li>
                       <li>Charter definition</li>
-                    </ol>
+                    </ol> */}
+                    {bottomDescrOptions.length > 0 && bottomDescr.length > 0
+                      ? bottomDescrOptions.map((option) => {
+                          return bottomDescr.filter(
+                            (desc) =>
+                              desc.PCMOrderNo.PCMOrder == 1 &&
+                              desc.PCMDescrLabel == option
+                          ).length > 0 ? (
+                            <div>
+                              <div className={styles.coloredHeaderRed}>
+                                {option}
+                              </div>
+                              <ol>
+                                {bottomDescr
+                                  .filter(
+                                    (li) =>
+                                      li.PCMOrderNo.PCMOrder == 1 &&
+                                      li.PCMDescrLabel == option
+                                  )
+                                  .map((li) => {
+                                    return <li>{li.PCMDescr}</li>;
+                                  })}
+                              </ol>
+                            </div>
+                          ) : (
+                            ""
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>
@@ -192,16 +278,34 @@ const PlaybookGrid = (props) => {
                       className={`${styles.DefineTopListSection} DefineTopListSection`}
                     >
                       <div>
-                        <div className={styles.coloredHeaderBlue}>CT-Led</div>
-                        <ul>
-                          {cmDescr.length > 0
-                            ? cmDescr
-                                .filter((li) => li.PCMOrderNo.PCMOrder == 2)
-                                .map((li) => {
-                                  return <li>{li.Descr}</li>;
-                                })
-                            : ""}
-                        </ul>
+                        {descrOptions.length && cmDescr.length > 0
+                          ? descrOptions.map((option) => {
+                              return cmDescr.filter(
+                                (desc) =>
+                                  desc.PCMDescrLabel == option &&
+                                  desc.PCMOrderNo.PCMOrder == 2
+                              ).length > 0 ? (
+                                <div>
+                                  <div className={styles.coloredHeaderBlue}>
+                                    {option}
+                                  </div>
+                                  <ul>
+                                    {cmDescr
+                                      .filter(
+                                        (li) =>
+                                          li.PCMOrderNo.PCMOrder == 2 &&
+                                          li.PCMDescrLabel == option
+                                      )
+                                      .map((li) => {
+                                        return <li>{li.PCMDescr}</li>;
+                                      })}
+                                  </ul>
+                                </div>
+                              ) : (
+                                ""
+                              );
+                            })
+                          : ""}
                       </div>
                     </div>
                     <div
@@ -250,13 +354,41 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    <div className={styles.coloredHeaderRed}>CT-Led</div>
+                    {/* <div className={styles.coloredHeaderRed}>CT-Led</div>
                     <ul>
                       <li>Develop project governance</li>
                       <li>Develop project plan & schedule</li>
                       <li>Determine scope & budget</li>
                       <li>Establish project team</li>
-                    </ul>
+                    </ul> */}
+                    {bottomDescrOptions.length > 0 && bottomDescr.length > 0
+                      ? bottomDescrOptions.map((option) => {
+                          return bottomDescr.filter(
+                            (desc) =>
+                              desc.PCMOrderNo.PCMOrder == 2 &&
+                              desc.PCMDescrLabel == option
+                          ).length > 0 ? (
+                            <div>
+                              <div className={styles.coloredHeaderRed}>
+                                {option}
+                              </div>
+                              <ol>
+                                {bottomDescr
+                                  .filter(
+                                    (li) =>
+                                      li.PCMOrderNo.PCMOrder == 2 &&
+                                      li.PCMDescrLabel == option
+                                  )
+                                  .map((li) => {
+                                    return <li>{li.PCMDescr}</li>;
+                                  })}
+                              </ol>
+                            </div>
+                          ) : (
+                            ""
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>
@@ -266,30 +398,59 @@ const PlaybookGrid = (props) => {
                     <div
                       className={`${styles.BuildTopListSection} BuildTopListSection`}
                     >
-                      <div>
-                        <div className={styles.coloredHeaderBlue}>CT-Led</div>
+                      {/* <div>
                         <ul>
                           {cmDescr.length > 0
                             ? cmDescr
                                 .filter((li) => li.PCMOrderNo.PCMOrder == 3)
                                 .map((li) => {
-                                  return <li>{li.Descr}</li>;
+                                  return <li>{li.PCMDescr}</li>;
                                 })
                             : ""}
                         </ul>
+                      </div> */}
+                      <div>
+                        {descrOptions.length && cmDescr.length > 0
+                          ? descrOptions.map((option) => {
+                              return cmDescr.filter(
+                                (desc) =>
+                                  desc.PCMDescrLabel == option &&
+                                  desc.PCMOrderNo.PCMOrder == 3
+                              ).length > 0 ? (
+                                <div>
+                                  <div className={styles.coloredHeaderBlue}>
+                                    {option}
+                                  </div>
+                                  <ul>
+                                    {cmDescr
+                                      .filter(
+                                        (li) =>
+                                          li.PCMOrderNo.PCMOrder == 3 &&
+                                          li.PCMDescrLabel == option
+                                      )
+                                      .map((li) => {
+                                        return <li>{li.PCMDescr}</li>;
+                                      })}
+                                  </ul>
+                                </div>
+                              ) : (
+                                ""
+                              );
+                            })
+                          : ""}
                       </div>
                     </div>
                     <div
                       className={`${styles.imageSection} imageSection`}
                       style={{ height: "13.6rem" }}
-                      onClick={() => {
-                        props.navHandler("ToPlayBookDetails");
-                        props.selectPhase("Execute");
-                      }}
                     >
                       <div
                         style={{ right: "6rem" }}
                         className={styles.plusIcon}
+                        onClick={() => {
+                          props.navHandler("ToPlayBookDetails");
+                          props.selectPhase("Execute");
+                        }}
                       >
                         +
                       </div>
@@ -300,11 +461,21 @@ const PlaybookGrid = (props) => {
                           left: "25%",
                           transform: "rotate(351deg)",
                         }}
+                        onClick={() => {
+                          props.navHandler("ToPlayBookDetails");
+                          props.selectPhase("Execute");
+                        }}
                       >
                         <div className={styles.arrowTitle}>Execute</div>
                         <div className={styles.arrowSubTitle}>Build</div>
                       </div>
-                      <img src={`${BuildArrow}`} />
+                      <img
+                        src={`${BuildArrow}`}
+                        onClick={() => {
+                          props.navHandler("ToPlayBookDetails");
+                          props.selectPhase("Execute");
+                        }}
+                      />
                       <img
                         src={`${BuildProgress}`}
                         style={{
@@ -314,6 +485,10 @@ const PlaybookGrid = (props) => {
                           bottom: -39,
                           transform: "rotateX(26deg)",
                           zIndex: 0,
+                        }}
+                        onClick={() => {
+                          props.navHandler("ToPlayBookDetails");
+                          props.selectPhase("Execute");
                         }}
                       />
                       <img src={`${CenterImg}`} className={styles.centerImg} />
@@ -326,7 +501,7 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    <div className={styles.coloredHeaderRed}>CT-Led</div>
+                    {/* <div className={styles.coloredHeaderRed}>CT-Led</div>
                     <ul>
                       <li>Develop & manage project team</li>
                       <li>Manage execution</li>
@@ -339,7 +514,35 @@ const PlaybookGrid = (props) => {
                         Dedicate project resources & initiate awareness and
                         understanding with the business or employees
                       </li>
-                    </ul>
+                    </ul> */}
+                    {bottomDescrOptions.length > 0 && bottomDescr.length > 0
+                      ? bottomDescrOptions.map((option) => {
+                          return bottomDescr.filter(
+                            (desc) =>
+                              desc.PCMOrderNo.PCMOrder == 3 &&
+                              desc.PCMDescrLabel == option
+                          ).length > 0 ? (
+                            <div>
+                              <div className={styles.coloredHeaderRed}>
+                                {option}
+                              </div>
+                              <ol>
+                                {bottomDescr
+                                  .filter(
+                                    (li) =>
+                                      li.PCMOrderNo.PCMOrder == 3 &&
+                                      li.PCMDescrLabel == option
+                                  )
+                                  .map((li) => {
+                                    return <li>{li.PCMDescr}</li>;
+                                  })}
+                              </ol>
+                            </div>
+                          ) : (
+                            ""
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>
@@ -350,17 +553,46 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.ExecuteImplementTopListSection} ExecuteImplementTopListSection`}
                   >
-                    <div>
-                      <div className={styles.coloredHeaderBlue}>CT-Led</div>
+                    {/* <div>
                       <ul>
                         {cmDescr.length > 0
                           ? cmDescr
                               .filter((li) => li.PCMOrderNo.PCMOrder == 4)
                               .map((li) => {
-                                return <li>{li.Descr}</li>;
+                                return <li>{li.PCMDescr}</li>;
                               })
                           : ""}
                       </ul>
+                    </div> */}
+                    <div>
+                      {descrOptions.length && cmDescr.length > 0
+                        ? descrOptions.map((option) => {
+                            return cmDescr.filter(
+                              (desc) =>
+                                desc.PCMDescrLabel == option &&
+                                desc.PCMOrderNo.PCMOrder == 4
+                            ).length > 0 ? (
+                              <div>
+                                <div className={styles.coloredHeaderBlue}>
+                                  {option}
+                                </div>
+                                <ul>
+                                  {cmDescr
+                                    .filter(
+                                      (li) =>
+                                        li.PCMOrderNo.PCMOrder == 4 &&
+                                        li.PCMDescrLabel == option
+                                    )
+                                    .map((li) => {
+                                      return <li>{li.PCMDescr}</li>;
+                                    })}
+                                </ul>
+                              </div>
+                            ) : (
+                              ""
+                            );
+                          })
+                        : ""}
                     </div>
                   </div>
                   <div
@@ -408,7 +640,7 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    <div className={styles.coloredHeaderRed}>CT-Led</div>
+                    {/* <div className={styles.coloredHeaderRed}>CT-Led</div>
                     <ul>
                       <li>Develop & manage project team</li>
                       <li>Manage execution</li>
@@ -419,7 +651,35 @@ const PlaybookGrid = (props) => {
                     <ul>
                       <li>Execute go-live comms plans</li>
                       <li>Execute hypercare comms plan</li>
-                    </ul>
+                    </ul> */}
+                    {bottomDescrOptions.length > 0 && bottomDescr.length > 0
+                      ? bottomDescrOptions.map((option) => {
+                          return bottomDescr.filter(
+                            (desc) =>
+                              desc.PCMOrderNo.PCMOrder == 4 &&
+                              desc.PCMDescrLabel == option
+                          ).length > 0 ? (
+                            <div>
+                              <div className={styles.coloredHeaderRed}>
+                                {option}
+                              </div>
+                              <ol>
+                                {bottomDescr
+                                  .filter(
+                                    (li) =>
+                                      li.PCMOrderNo.PCMOrder == 4 &&
+                                      li.PCMDescrLabel == option
+                                  )
+                                  .map((li) => {
+                                    return <li>{li.PCMDescr}</li>;
+                                  })}
+                              </ol>
+                            </div>
+                          ) : (
+                            ""
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>
@@ -430,17 +690,46 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.OptimizeTopListSection} OptimizeTopListSection`}
                   >
-                    <div>
-                      <div className={styles.coloredHeaderBlue}>BU/GS-Led</div>
+                    {/* <div>
                       <ul>
                         {cmDescr.length > 0
                           ? cmDescr
                               .filter((li) => li.PCMOrderNo.PCMOrder == 5)
                               .map((li) => {
-                                return <li>{li.Descr}</li>;
+                                return <li>{li.PCMDescr}</li>;
                               })
                           : ""}
                       </ul>
+                    </div> */}
+                    <div>
+                      {descrOptions.length && cmDescr.length > 0
+                        ? descrOptions.map((option) => {
+                            return cmDescr.filter(
+                              (desc) =>
+                                desc.PCMDescrLabel == option &&
+                                desc.PCMOrderNo.PCMOrder == 5
+                            ).length > 0 ? (
+                              <div>
+                                <div className={styles.coloredHeaderBlue}>
+                                  {option}
+                                </div>
+                                <ul>
+                                  {cmDescr
+                                    .filter(
+                                      (li) =>
+                                        li.PCMOrderNo.PCMOrder == 5 &&
+                                        li.PCMDescrLabel == option
+                                    )
+                                    .map((li) => {
+                                      return <li>{li.PCMDescr}</li>;
+                                    })}
+                                </ul>
+                              </div>
+                            ) : (
+                              ""
+                            );
+                          })
+                        : ""}
                     </div>
                   </div>
                   <div
@@ -488,7 +777,7 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    <div className={styles.coloredHeaderRed}>BU/GS-Led</div>
+                    {/* <div className={styles.coloredHeaderRed}>BU/GS-Led</div>
                     <ul>
                       <li>
                         Advancing buy-in / adoption / ownership with business
@@ -501,7 +790,35 @@ const PlaybookGrid = (props) => {
                         Anchor and sustain change by implementing permanent
                         supporting structures and business processes
                       </li>
-                    </ul>
+                    </ul> */}
+                    {bottomDescrOptions.length > 0 && bottomDescr.length > 0
+                      ? bottomDescrOptions.map((option) => {
+                          return bottomDescr.filter(
+                            (desc) =>
+                              desc.PCMOrderNo.PCMOrder == 5 &&
+                              desc.PCMDescrLabel == option
+                          ).length > 0 ? (
+                            <div>
+                              <div className={styles.coloredHeaderRed}>
+                                {option}
+                              </div>
+                              <ol>
+                                {bottomDescr
+                                  .filter(
+                                    (li) =>
+                                      li.PCMOrderNo.PCMOrder == 5 &&
+                                      li.PCMDescrLabel == option
+                                  )
+                                  .map((li) => {
+                                    return <li>{li.PCMDescr}</li>;
+                                  })}
+                              </ol>
+                            </div>
+                          ) : (
+                            ""
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>

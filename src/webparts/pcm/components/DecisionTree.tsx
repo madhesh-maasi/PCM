@@ -13,6 +13,8 @@ import {
   Select,
 } from "@material-ui/core";
 import { forEach } from "lodash";
+import Footer from "./Footer";
+import Banner from "./Banner";
 const prevbtnBlue = require("../../../ExternalRef/img/DecisionTree/prevbtnBlue.png");
 const nextbtnBlue = require("../../../ExternalRef/img/DecisionTree/nextbtnBlue.png");
 const PrevButtonDisabled = require("../../../ExternalRef/img/DecisionTree/PrevButtonDisabled.png");
@@ -22,6 +24,7 @@ const homeIcon = require("../../../ExternalRef/img/DecisionTree/homeBlue.png");
 const cardBg = require("../../../ExternalRef/img/DecisionTree/cardbg.png");
 const leftArrows = require("../../../ExternalRef/img/DecisionTree/Group359.png");
 const rigthArrows = require("../../../ExternalRef/img/DecisionTree/Group358.png");
+const DecisionTreeBannerImg = require("../../../ExternalRef/img/BannerImages/DecisionTreeBannerImg.png");
 let questionsArr = [];
 let answersArr = [];
 let Q1Ans = [];
@@ -245,6 +248,7 @@ const DecisionTree = (props) => {
   return (
     <>
       {/* top nav bar */}
+      <Banner src={DecisionTreeBannerImg} />
       <div className={styles.topNav}>
         <div className={styles.nav}>
           <img
@@ -329,6 +333,7 @@ const DecisionTree = (props) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

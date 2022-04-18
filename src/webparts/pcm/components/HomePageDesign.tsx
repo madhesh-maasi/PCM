@@ -3,6 +3,7 @@ import styles from "./HomePageDesign.module.scss";
 import "../../../ExternalRef/css/style.css";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
+import Banner from "./Banner";
 const playBookBG = require("../../../ExternalRef/img/playBookBg.png");
 const playBookIcon = require("../../../ExternalRef/img/playBookIcon.png");
 const playBookArrow = require("../../../ExternalRef/img/playBookArrow.png");
@@ -20,6 +21,8 @@ const card2Icon = require("../../../ExternalRef/img/card2Icon.png");
 const card3Icon = require("../../../ExternalRef/img/card3Icon.png");
 const card4Icon = require("../../../ExternalRef/img/card4Icon.png");
 const card5Icon = require("../../../ExternalRef/img/card5Icon.png");
+const HomeBannerImg = require("../../../ExternalRef/img/BannerImages/homeBannerImg.png");
+
 let arrHomeLinks = [];
 const HomePage = (props) => {
   const [homeLinks, setHomeLinks] = useState(arrHomeLinks);
@@ -36,6 +39,7 @@ const HomePage = (props) => {
             <div
               className={styles.homeLinkCard}
               style={{ backgroundColor: li.PCMColor }}
+              onClick={() => window.open(li.PCMLink)}
             >
               <div
                 className={styles.cardSectionIcon}
@@ -44,10 +48,9 @@ const HomePage = (props) => {
                     JSON.parse(li.PCMIcon).serverRelativeUrl
                   })`,
                 }}
-                onClick={() => window.open(li.PCMLink)}
               ></div>
               <div className={styles.cardSectionHeading}>
-                <p onClick={() => window.open(li.PCMLink)}>{li.Title}</p>
+                <p>{li.Title}</p>
               </div>
             </div>
           );
@@ -67,6 +70,7 @@ const HomePage = (props) => {
   }, []);
   return (
     <div>
+      <Banner src={HomeBannerImg} />
       <div className={styles.header}>
         <div className={styles.headerPara}>
           <div>Dear Colleagues, welcome to Global Organizational Change</div>

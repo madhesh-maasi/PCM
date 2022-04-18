@@ -2,10 +2,19 @@ import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 import ImageMapper from "react-image-mapper";
 import ".../../../src/ExternalRef/css/style.css";
+import { green } from "@material-ui/core/colors";
 const arrowImage = require("../../../ExternalRef/img/WhyPlayBook/PageSevenImg.png");
 
-export default function ArrowImageMapping() {
+let ImgUrl = [];
+let RedLink = "";
+let BlueLink = "";
+let PinkLink = "";
+let GreenLink = "";
+
+export default function ArrowImageMapping(props) {
   const [query, setQuery] = useState(1);
+
+  const [links, setLinks] = useState([]);
 
   const [mapAreas, setMapAreas] = useState({
     name: "my-map",
@@ -31,6 +40,37 @@ export default function ArrowImageMapping() {
     setQuery(Math.random());
   }, [mapAreas]);
 
+  useEffect(() => {
+    props.sp.web.lists
+      .getByTitle("ImageMappingUrl")
+      .items.get()
+      .then((data) => {
+        console.log(data);
+        ImgUrl = data;
+        setLinks(ImgUrl);
+
+        RedLink = ImgUrl.filter(
+          (data) => data.Title == "Global Procurement OCM Playbook - Red"
+        )[0].PCMLink;
+
+        BlueLink = ImgUrl.filter(
+          (data) => data.Title == "Global Procurement OCM Playbook - Blue"
+        )[0].PCMLink;
+
+        PinkLink = ImgUrl.filter(
+          (data) => data.Title == "Global Procurement OCM Playbook - Pink"
+        )[0].PCMLink;
+
+        GreenLink = ImgUrl.filter(
+          (data) => data.Title == "Global Procurement OCM Playbook - Green"
+        )[0].PCMLink;
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const updateMapArea = (id, coords) => {
     console.log(id, coords);
 
@@ -50,6 +90,7 @@ export default function ArrowImageMapping() {
     ) {
       console.log("Blue image");
       ArrowImageArr.push("Red Image");
+      window.location.href = RedLink;
     }
 
     //   blue image
@@ -65,6 +106,7 @@ export default function ArrowImageMapping() {
     ) {
       console.log("Blue image");
       ArrowImageArr.push("Blue Image");
+      window.location.href = BlueLink;
     }
 
     //   rose image
@@ -80,6 +122,7 @@ export default function ArrowImageMapping() {
     ) {
       console.log("Rose image");
       ArrowImageArr.push("Rose Image");
+      window.location.href = PinkLink;
     }
 
     //   Teal image
@@ -115,6 +158,7 @@ export default function ArrowImageMapping() {
     ) {
       console.log("Teal image");
       ArrowImageArr.push("Teal Image");
+      window.location.href = GreenLink;
     }
 
     console.log(ArrowImageArr);

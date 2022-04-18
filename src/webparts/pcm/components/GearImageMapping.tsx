@@ -5,8 +5,16 @@ import ".../../../src/ExternalRef/css/style.css";
 const bgimg = require("../../../ExternalRef/img/WhyPlayBook/PageOneBG.png");
 const MapImage = require("../../../ExternalRef/img/WhyPlayBook/GearImage.png");
 
-export default function GearImageMapping() {
+let ImgUrl = [];
+let LeadershipLink = "";
+let StackholderLink = "";
+let TrainingLink = "";
+let StackholderEngagementlink = "";
+
+export default function GearImageMapping(props) {
   const [query, setQuery] = useState(1);
+
+  const [links, setLinks] = useState([]);
 
   const [mapAreas, setMapAreas] = useState({
     name: "my-map",
@@ -31,6 +39,38 @@ export default function GearImageMapping() {
   useEffect(() => {
     setQuery(Math.random());
   }, [mapAreas]);
+
+  useEffect(() => {
+    props.sp.web.lists
+      .getByTitle("ImageMappingUrl")
+      .items.get()
+      .then((data) => {
+        console.log(data);
+        ImgUrl = data;
+        setLinks(ImgUrl);
+        LeadershipLink = ImgUrl.filter(
+          (data) => data.Title == "Leadership Alignment & Engagement"
+        )[0].PCMLink;
+
+        StackholderLink = ImgUrl.filter(
+          (data) =>
+            data.Title ==
+            "Stakeholder & Change Impact Identification & Analysis"
+        )[0].PCMLink;
+
+        TrainingLink = ImgUrl.filter(
+          (data) => data.Title == "Training & Capability Development"
+        )[0].PCMLink;
+
+        StackholderEngagementlink = ImgUrl.filter(
+          (data) => data.Title == "Stakeholder Engagement & Communications"
+        )[0].PCMLink;
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const updateMapArea = (id, coords) => {
     console.log(id, coords);
@@ -103,7 +143,7 @@ export default function GearImageMapping() {
     ) {
       console.log("green");
       colorArr.push("Green");
-      // window.location.href = "https://www.google.com";
+      window.location.href = LeadershipLink;
     }
     // rose
     if (
@@ -170,6 +210,7 @@ export default function GearImageMapping() {
     ) {
       console.log("Rose");
       colorArr.push("Rose");
+      window.location.href = StackholderLink;
     }
 
     // blue
@@ -245,6 +286,7 @@ export default function GearImageMapping() {
     ) {
       console.log("Blue");
       colorArr.push("Blue");
+      window.location.href = StackholderEngagementlink;
     }
 
     // red
@@ -316,6 +358,7 @@ export default function GearImageMapping() {
     ) {
       console.log("Red");
       colorArr.push("Red");
+      window.location.href = TrainingLink;
     }
 
     console.log(colorArr);

@@ -6,6 +6,7 @@ import "../../../ExternalRef/css/style.css";
 import Footer from "./Footer";
 import GearImageMapping from "./GearImageMapping";
 import ArrowImageMapping from "./ArrowImageMapping";
+import Banner from "./Banner";
 const PageOneNav = require("../../../ExternalRef/img/WhyPlayBook/ContentOneNav.png");
 const PrevButton = require("../../../ExternalRef/img/WhyPlayBook/PrevButton.png");
 const PrevButtonDisabled = require("../../../ExternalRef/img/WhyPlayBook/PrevButtonDisabled.png");
@@ -23,7 +24,7 @@ const PageSixImg = require("../../../ExternalRef/img/WhyPlayBook/PageSixImg.png"
 const PageSevenImg = require("../../../ExternalRef/img/WhyPlayBook/PageSevenImg.png");
 const PageEightImg = require("../../../ExternalRef/img/WhyPlayBook/PageEightImg.png");
 const homeIcon = require("../../../ExternalRef/img/WhyPlayBook/homeicon.png");
-
+const ContentBannerImg = require("../../../ExternalRef/img/BannerImages/ContentsBannerImg.png");
 const HeadingsArr = [
   <div className={styles.header}>
     <h1>Table of Contents</h1>
@@ -32,15 +33,17 @@ const HeadingsArr = [
     <h1>What is Change Management? </h1>
     <p>
       Change Management is the process of getting individuals and groups Ready,
-      Willing and Able to implement and sustain new ways of working.
+      <br />
+      Willing and Able to implement and sustain new ways of <br />
+      working.
     </p>
   </div>,
   <div className={styles.header}>
     <h1>Change Curve – Emotional Journey</h1>
     <p>
       The Commitment Curve can be used to identify the current level of
-      commitment for each audience, and the desired level of commitment to
-      reach.
+      commitment for each audience, and the desired level of <br />
+      commitment to reach.
     </p>
   </div>,
   <div className={styles.header}>
@@ -287,8 +290,8 @@ const WhyPlayBook = (props) => {
         <img src={`${PageSixImg}`} alt="image" />
       </div>
     </div>,
-    <ArrowImageMapping />,
-    <GearImageMapping />,
+    <ArrowImageMapping sp={props.sp} />,
+    <GearImageMapping sp={props.sp} />,
   ];
 
   const [length, setLength] = useState(slideData.length);
@@ -296,6 +299,7 @@ const WhyPlayBook = (props) => {
 
   return (
     <>
+      <Banner src={ContentBannerImg} />
       {/* top nav bar */}
       <div className={styles.topNav}>
         <div className={styles.nav}>

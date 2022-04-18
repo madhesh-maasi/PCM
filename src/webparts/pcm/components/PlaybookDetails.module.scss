@@ -360,7 +360,7 @@
     margin: 26px auto 20px;
     .phaseOne {
       width: 372px;
-      // height: 308px;
+      height: 308px;
       margin-right: 20px;
       background-color: white;
       .phaseOneHeading {
@@ -375,18 +375,35 @@
       }
       ul {
         padding-left: 52px;
+        height: 164px;
+        overflow-y: scroll;
+        margin-right: 15px;
         li {
           color: #707070;
           font-size: 16px;
           //   margin-left: 35px;
           //   padding-left: 35px;
           margin-bottom: 12px;
+            padding-right: 20px;
         }
+      }
+      ul::-webkit-scrollbar {
+        width: 9px;
+        height: 181px;
+        border-radius: 50px;
+        background-color: #C1C1C180;
+      }
+      
+      ul::-webkit-scrollbar-thumb {
+        width: 18px;
+        height: 46px;
+        border-radius: 50px;
+        background-color: #70707080;
       }
     }
     .phaseTwo {
       width: 470px;
-      // height: 308px;
+      height: 308px;
       background-color: white;
       .phaseTwoHeading {
         font-size: 20px;
@@ -400,11 +417,29 @@
       }
       ul {
         padding-left: 52px;
+        margin-top: 31px;
+        height: 164px;
+        overflow-y: scroll;
+        margin-right: 15px;
+        
         li {
           color: #707070;
           font-size: 16px;
           margin-bottom: 12px;
+            padding-right: 20px;
         }
+      }
+      ul::-webkit-scrollbar {
+        width: 9px;
+        height: 181px;
+        border-radius: 50px;
+        background-color: #C1C1C180;
+      }
+      ul::-webkit-scrollbar-thumb{
+        width: 18px;
+        height: 46px;
+        border-radius: 50px;
+        background-color: #70707080;
       }
     }
   }
