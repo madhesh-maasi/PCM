@@ -20,8 +20,8 @@ const NextButtonDisabled = require("../../../ExternalRef/img/DecisionTree/NextBu
 const bgi = require("../../../ExternalRef/img/DecisionTree/background.png");
 const homeIcon = require("../../../ExternalRef/img/DecisionTree/homeBlue.png");
 const cardBg = require("../../../ExternalRef/img/DecisionTree/cardbg.png");
-const leftArrows = require("../../../ExternalRef/img/DecisionTree/Group 359.png");
-const rigthArrows = require("../../../ExternalRef/img/DecisionTree/Group 358.png");
+const leftArrows = require("../../../ExternalRef/img/DecisionTree/Group359.png");
+const rigthArrows = require("../../../ExternalRef/img/DecisionTree/Group358.png");
 let questionsArr = [];
 let answersArr = [];
 let Q1Ans = [];
@@ -31,24 +31,16 @@ let Q2 = "";
 let selectedAnsOne = 0;
 let selectedAnsTwo = 0;
 let currentUserName = "";
-
+let arrReport = [];
+let selectedAnswer;
 const DecisionTree = (props) => {
-  const [animation, setAnimation] = useState(undefined);
-  const [heightMode, setHeightMode] = useState("max");
-  const [scrollMode, setScrollMode] = useState("remainder");
   const [slideIndex, setSlideIndex] = useState(0);
-  const [slidesToScroll, setSlidesToScroll] = useState(1);
-  const [slidesToShow, setSlidesToShow] = useState(1);
-  const [transitionMode, setTransitionMode] = useState("scroll");
-  const [underlineHeader, setUnderlineHeader] = useState(false);
-
   const [questions, setQuestions] = useState(questionsArr);
-  const [answers, setAnswers] = useState(answersArr);
   const [answersOne, setAnswersOne] = useState([]);
   const [answersTwo, setAnswersTwo] = useState([]);
   const [q1val, setq1Val] = useState(0);
   const [q2val, setq2Val] = useState(0);
-
+  const [SelectedCombination, setSelectedCombination] = useState();
   // useEffect
   useEffect(() => {
     props.sp.web.currentUser.get().then((data) => {
@@ -96,27 +88,34 @@ const DecisionTree = (props) => {
       .catch((error) => {
         console.log(error);
       });
-
     props.sp.web.lists
       .getByTitle("Reports")
-      .items.select("*,PCMFirstAnswer/Title,PCMSecAnswer/Title")
+      .items.select(
+        "*,PCMFirstAnswer/Title,PCMFirstAnswer/ID,PCMSecAnswer/Title,PCMSecAnswer/ID"
+      )
       .expand("PCMFirstAnswer,PCMSecAnswer")
       .get()
       .then((data) => {
-        console.log(data);
+        arrReport = data;
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const addList = () => {
+  const SubmitReportHandler = () => {
+    selectedAnswer = arrReport.filter(
+      (item) =>
+        item.PCMFirstAnswer.ID == selectedAnsOne &&
+        item.PCMSecAnswer.ID == selectedAnsTwo
+    )[0];
+    console.log(selectedAnswer);
+
     props.sp.web.lists
-      .getByTitle("Reports")
+      .getByTitle("UserResults")
       .items.add({
         Title: currentUserName,
-        PCMFirstAnswerId: selectedAnsOne,
-        PCMSecAnswerId: selectedAnsTwo,
+        PCMReportId: selectedAnswer.ID,
       })
       .then((data) => {
         console.log(data);
@@ -151,7 +150,6 @@ const DecisionTree = (props) => {
               onChange={(e) => {
                 selectedAnsOne = +e.target.value;
                 setq1Val(selectedAnsOne);
-                console.log(q1val);
               }}
               inputProps={{
                 name: "ques1",
@@ -193,7 +191,6 @@ const DecisionTree = (props) => {
               onChange={(e) => {
                 selectedAnsTwo = +e.target.value;
                 setq2Val(selectedAnsTwo);
-                console.log(q2val);
               }}
               inputProps={{
                 name: "ques2",
@@ -226,7 +223,13 @@ const DecisionTree = (props) => {
           <div className={styles.lArrows}>
             <img src={`${leftArrows}`} alt="arrow" />
           </div>
-          <button onClick={addList}>YOUR REPORT</button>
+          <button
+            onClick={() => {
+              window.open(`${selectedAnswer.PCMLink}&download=1`);
+            }}
+          >
+            YOUR REPORT
+          </button>
           <div className={styles.rArrows}>
             <img src={`${rigthArrows}`} alt="arrow" />
           </div>
@@ -244,8 +247,12 @@ const DecisionTree = (props) => {
       {/* top nav bar */}
       <div className={styles.topNav}>
         <div className={styles.nav}>
-          <img src={`${homeIcon}`} alt="home image" /> <p>{`>`}</p>{" "}
-          <p>Decision Tree</p>
+          <img
+            src={`${homeIcon}`}
+            alt="home image"
+            onClick={() => props.navHandler("ToHome")}
+          />{" "}
+          <p>{`>`}</p> <p>Decision Tree</p>
         </div>
       </div>
       {/* heading */}
@@ -259,13 +266,22 @@ const DecisionTree = (props) => {
         <div
           className={styles.prevBtn}
           onClick={() => {
-            setSlideIndex(slideIndex == 0 ? 0 : slideIndex - 1);
-            console.log(slideIndex);
+            if (slideIndex != 2) {
+              setSlideIndex(slideIndex == 0 ? 0 : slideIndex - 1);
+            }
           }}
         >
           {" "}
           {slideIndex == 0 ? (
-            <img src={`${PrevButtonDisabled}`} />
+            <img
+              style={{ cursor: "not-allowed" }}
+              src={`${PrevButtonDisabled}`}
+            />
+          ) : slideIndex == 2 ? (
+            <img
+              style={{ cursor: "not-allowed" }}
+              src={`${PrevButtonDisabled}`}
+            />
           ) : (
             <img src={`${prevbtnBlue}`} />
           )}
@@ -273,16 +289,21 @@ const DecisionTree = (props) => {
         <div
           className={styles.nxtBtn}
           onClick={() => {
+            if (slideIndex == 1) {
+              SubmitReportHandler();
+            }
             setSlideIndex(
               slideIndex == slideData.length - 1
                 ? slideData.length - 1
                 : slideIndex + 1
             );
-            console.log(slideIndex);
           }}
         >
           {slideIndex == slideData.length - 1 ? (
-            <img src={`${NextButtonDisabled}`} />
+            <img
+              style={{ cursor: "not-allowed" }}
+              src={`${NextButtonDisabled}`}
+            />
           ) : (
             <img src={`${nextbtnBlue}`} />
           )}

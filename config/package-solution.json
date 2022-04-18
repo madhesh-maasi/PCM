@@ -10,17 +10,29 @@
       "title": "asset-deployment-webpart-client-side-solution",
       "description": "asset-deployment-webpart-client-side-solution",
       "id": "9d99332e-1a08-427c-9824-5d41839810b6",     // <-- Update new GUID
-      "version": "1.0.0.0",
-      "assets": {
+      "version": "3.0.0.0",
+      "assets": { 
         "elementManifests": [  
-          "lists.xml"  
+          "lists.xml",
+          "lists-v2.xml"
         ],  
-
         "elementFiles":[  
+          "HomeLinkSchema.xml",
+          "HomeMainSectionsSchema.xml",
           "lifecycleSchema.xml",
-          "lifecycleDocSchema.xml"
+          "lifecycleDocSchema.xml",
+          "lifecycleDescrSchema.xml",
+          "QuestionSchema.xml",
+          "AnswerSchema.xml",
+          "ReportSchema.xml",
+          "UserResultSchema.xml"
+          
+        ],
+        "upgradeActions":[
+          "upgrade-actions.xml"
         ]
-      }
+
+  }
     }],
     "developer": {
       "name": "",

@@ -39,14 +39,14 @@ const PlaybookDetails = (props) => {
       .catch((error) => console.log(error));
     props.sp.web.lists
       .getByTitle("Lifecycle description")
-      .items.select("*,PCMOrder/PCMOrder")
-      .expand("PCMOrder")
+      .items.select("*,PCMOrderNo/PCMOrder")
+      .expand("PCMOrderNo")
       .get()
       .then((data) => {
         arrLifeycleDescr = data;
         arrFilteredDescr = arrLifeycleDescr.filter(
           (li) =>
-            li.PCMOrder.PCMOrder ==
+            li.PCMOrderNo.PCMOrder ==
             (selectedItem == "Scope"
               ? 1
               : selectedItem == "Define"
@@ -160,7 +160,7 @@ const PlaybookDetails = (props) => {
                   );
                   setFilteredTableContent(arrFilteredtable);
                   arrFilteredDescr = arrLifeycleDescr.filter(
-                    (li) => li.PCMOrder.PCMOrder == 1
+                    (li) => li.PCMOrderNo.PCMOrder == 1
                   );
                   console.log(arrFilteredDescr);
                   setDescriptions(arrFilteredDescr);
@@ -201,7 +201,7 @@ const PlaybookDetails = (props) => {
                   );
                   setFilteredTableContent(arrFilteredtable);
                   arrFilteredDescr = arrLifeycleDescr.filter(
-                    (li) => li.PCMOrder.PCMOrder == 2
+                    (li) => li.PCMOrderNo.PCMOrder == 2
                   );
                   console.log(arrFilteredDescr);
                   setDescriptions(arrFilteredDescr);
@@ -241,7 +241,7 @@ const PlaybookDetails = (props) => {
                   );
                   setFilteredTableContent(arrFilteredtable);
                   arrFilteredDescr = arrLifeycleDescr.filter(
-                    (li) => li.PCMOrder.PCMOrder == 3
+                    (li) => li.PCMOrderNo.PCMOrder == 3
                   );
                   console.log(arrFilteredDescr);
                   setDescriptions(arrFilteredDescr);
@@ -282,7 +282,7 @@ const PlaybookDetails = (props) => {
                   );
                   setFilteredTableContent(arrFilteredtable);
                   arrFilteredDescr = arrLifeycleDescr.filter(
-                    (li) => li.PCMOrder.PCMOrder == 4
+                    (li) => li.PCMOrderNo.PCMOrder == 4
                   );
                   console.log(arrFilteredDescr);
                   setDescriptions(arrFilteredDescr);
@@ -324,7 +324,7 @@ const PlaybookDetails = (props) => {
                   );
                   setFilteredTableContent(arrFilteredtable);
                   arrFilteredDescr = arrLifeycleDescr.filter(
-                    (li) => li.PCMOrder.PCMOrder == 5
+                    (li) => li.PCMOrderNo.PCMOrder == 5
                   );
                   console.log(arrFilteredDescr);
                   setDescriptions(arrFilteredDescr);
@@ -373,9 +373,11 @@ const PlaybookDetails = (props) => {
               <ul>
                 {descriptions.length > 0
                   ? descriptions
-                      .filter((des) => des.DescrType == "Paragraph Description")
+                      .filter(
+                        (des) => des.PCMDescrType == "Paragraph Description"
+                      )
                       .map((filteredItem) => {
-                        return <li>{filteredItem.Descr}</li>;
+                        return <li>{filteredItem.PCMDescr}</li>;
                       })
                   : ""}
               </ul>
@@ -427,20 +429,16 @@ const PlaybookDetails = (props) => {
                           ? descriptions
                               .filter(
                                 (des) =>
-                                  des.DescrType ==
+                                  des.PCMDescrType ==
                                   "Project Management Description"
                               )
                               .map((filteredItem) => {
-                                return <li>{filteredItem.Descr}</li>;
+                                return <li>{filteredItem.PCMDescr}</li>;
                               })
                           : ""}
                       </ul>
                     }
                   </div>
-                  {/* <ul>
-                    <li>Develop Project Charter</li>
-                    <li>Identify Stakeholders</li>
-                  </ul> */}
                 </div>
                 <div className={styles.phaseTwo}>
                   <div className={styles.phaseTwoHeading}>
@@ -457,10 +455,11 @@ const PlaybookDetails = (props) => {
                         ? descriptions
                             .filter(
                               (des) =>
-                                des.DescrType == "Change management Description"
+                                des.PCMDescrType ==
+                                "Change management Description"
                             )
                             .map((filteredItem) => {
-                              return <li>{filteredItem.Descr}</li>;
+                              return <li>{filteredItem.PCMDescr}</li>;
                             })
                         : ""}
                     </ul>

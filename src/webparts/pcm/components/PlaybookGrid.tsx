@@ -21,22 +21,30 @@ const CtDotImg = require("../../../ExternalRef/img/CtDotImg.png");
 const CenterImg = require("../../../ExternalRef/img/CenterImg.png");
 let arrDescriptions = [];
 let arrCMDescr = [];
+let arrCmDescrOptions = [];
 const PlaybookGrid = (props) => {
   const [isArrowPage, setIsArrowPage] = useState(true);
   const [descriptions, setDescriptions] = useState(arrDescriptions);
   const [cmDescr, setCmDescr] = useState(arrCMDescr);
   useEffect(() => {
+    props.spcontext.web.lists
+      .getByTitle("Lifecycle description")
+      .fields.filter("EntityPropertyName eq 'PCMDescrType'")
+      .get()
+      .then((data) => {
+        console.log(data);
+      });
     props.sp.web.lists
       .getByTitle("Lifecycle description")
-      .items.select("*,PCMOrder/PCMOrder,PCMOrder/Title")
-      .expand("PCMOrder")
+      .items.select("*,PCMOrderNo/PCMOrder,PCMOrderNo/Title")
+      .expand("PCMOrderNo")
       .get()
       .then((data) => {
         console.log(data);
         arrDescriptions = data;
         setDescriptions(arrDescriptions);
         arrCMDescr = arrDescriptions.filter(
-          (li) => li.DescrType == "Change management Description"
+          (li) => li.PCMDescrType == "Change management Description"
         );
         console.log(arrCMDescr);
         setCmDescr(arrCMDescr);
@@ -112,7 +120,7 @@ const PlaybookGrid = (props) => {
                         <ul>
                           {cmDescr.length > 0
                             ? cmDescr
-                                .filter((li) => li.PCMOrder.PCMOrder == 1)
+                                .filter((li) => li.PCMOrderNo.PCMOrder == 1)
                                 .map((li) => {
                                   return <li>{li.Descr}</li>;
                                 })
@@ -188,7 +196,7 @@ const PlaybookGrid = (props) => {
                         <ul>
                           {cmDescr.length > 0
                             ? cmDescr
-                                .filter((li) => li.PCMOrder.PCMOrder == 2)
+                                .filter((li) => li.PCMOrderNo.PCMOrder == 2)
                                 .map((li) => {
                                   return <li>{li.Descr}</li>;
                                 })
@@ -263,7 +271,7 @@ const PlaybookGrid = (props) => {
                         <ul>
                           {cmDescr.length > 0
                             ? cmDescr
-                                .filter((li) => li.PCMOrder.PCMOrder == 3)
+                                .filter((li) => li.PCMOrderNo.PCMOrder == 3)
                                 .map((li) => {
                                   return <li>{li.Descr}</li>;
                                 })
@@ -347,7 +355,7 @@ const PlaybookGrid = (props) => {
                       <ul>
                         {cmDescr.length > 0
                           ? cmDescr
-                              .filter((li) => li.PCMOrder.PCMOrder == 4)
+                              .filter((li) => li.PCMOrderNo.PCMOrder == 4)
                               .map((li) => {
                                 return <li>{li.Descr}</li>;
                               })
@@ -427,7 +435,7 @@ const PlaybookGrid = (props) => {
                       <ul>
                         {cmDescr.length > 0
                           ? cmDescr
-                              .filter((li) => li.PCMOrder.PCMOrder == 5)
+                              .filter((li) => li.PCMOrderNo.PCMOrder == 5)
                               .map((li) => {
                                 return <li>{li.Descr}</li>;
                               })

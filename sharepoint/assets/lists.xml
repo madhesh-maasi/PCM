@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Field ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" Name="PCMDescr" DisplayName="PCMDescr" Description="Paragraph text" StaticName="PCMParTitle" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="FALSE" RichTextMode="FullHtml" />
+    <Field ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" Name="PCMLink" DisplayName="PCMLink" Description="PCMLink" StaticName="PCMLink" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
+
     <!-- Lifecycle List -->
     <Field Type="Text" DisplayName="PCMSubtitle" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="_PCM" ID="{aad2e5e7-90c5-4047-af1b-e09de49f2471}" StaticName="PCMSubtitle" Name="PCMSubtitle" Version="1" />
 
@@ -8,63 +11,37 @@
     <Field ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" Type="Number" Name="PCMOrder" DisplayName="PCMOrder" StaticName="PCMOrder" Group="_PCM" Description="" ShowInNewForm="FALSE" ShowInEditForm="FALSE" Required="TRUE" Decimals="0">
         <Default>1</Default>
     </Field>
-
     <Field ID="{90b6b385-ab18-41c5-befe-7aa82208f1b1}" Name="PCMParTitle" DisplayName="Paragraph title" Description="Paragraph title" StaticName="PCMParTitle" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
-
-
-    <Field ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" Name="PCMDescr" DisplayName="Paragraph text" Description="Paragraph text" StaticName="PCMParTitle" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="TRUE" RichTextMode="FullHtml" />
-
     <Field ID="{e67a48a3-6b4d-4c30-879f-4ba33fc773c0}" Name="PCMPMTitle" DisplayName="Project Management title" Description="Project Management title" StaticName="PCMPMTitle" Group="_PCM" Type="Text" Required="TRUE" />
-
-
-    <Field ID="{5143d12e-a42b-4803-98b6-994c4d1f8251}" Name="PCMPMDescr" DisplayName="Project Management descr" Description="Project Management descr" StaticName="PCMPMDescr" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="TRUE" RichTextMode="FullHtml" />
-
     <Field ID="{7447f764-f584-47e8-950d-261c6ec26175}" Name="PCMCMTitle" DisplayName="Change Management title" Description="Change Management title" StaticName="PCMCMTitle" Group="_PCM" Type="Text" Required="TRUE" />
-
-    <Field ID="{8a6f7bcd-5d4b-409c-9163-d2865e4a4fe3}" Name="PCMCMDescr" DisplayName="Change Management descr" Description="Change Management descr" StaticName="PCMCMDescr" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="TRUE" RichTextMode="FullHtml" />
-
-
     <!-- Lifecycle List -->
-
-
     <!-- lifecycleDoc List -->
-    <Field ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" Name="PCMLink" DisplayName="Tools and more link" Description="Tools and more link" StaticName="PCMLink" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
-
     <Field ID="{c4b69aec-4175-4290-8554-455899741825}" Name="PCMLeverLink" DisplayName="Change Lever link" Description="Change Lever link" StaticName="PCMLeverLink" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
-
     <Field ID="{9d964343-157b-4fc9-9b46-ce6d0cdda99d}" Name="PCMOwner" DisplayName="PCMOwner" Description="PCMOwner" StaticName="PCMOwner" Group="_PCM" Type="Text" Required="TRUE" />
-
-
     <!-- lifecycleDoc List -->
     <!-- Lifecycle Content -->
     <ContentType ID="0x010042D0C1C200A14B6887742B8344645C8B" Name="PCMLifecycle" Group="_PCM" Description="">
         <FieldRefs>
-            <FieldRef ID="{aad2e5e7-90c5-4047-af1b-e09de49f2471}" />
-            <FieldRef ID="{90b6b385-ab18-41c5-befe-7aa82208f1b1}" />
-            <FieldRef ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
-
-            <FieldRef ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
-
-            <FieldRef ID="{e67a48a3-6b4d-4c30-879f-4ba33fc773c0}" />
-
-            <FieldRef ID="{5143d12e-a42b-4803-98b6-994c4d1f8251}" />
-
-            <FieldRef ID="{7447f764-f584-47e8-950d-261c6ec26175}" />
-
-            <FieldRef ID="{8a6f7bcd-5d4b-409c-9163-d2865e4a4fe3}" />
+            <FieldRef DisplayName="PCMSubtitle" Name="PCMSubtitle" ID="{aad2e5e7-90c5-4047-af1b-e09de49f2471}" />
+            <FieldRef Name="PCMParTitle" DisplayName="Paragraph title" Description="Paragraph title" ID="{90b6b385-ab18-41c5-befe-7aa82208f1b1}" />
+            <FieldRef Name="PCMOrder" DisplayName="PCMOrder" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
+            <FieldRef Name="PCMDescr" DisplayName="PCMDescr" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMPMTitle" DisplayName="Project Management title" ID="{e67a48a3-6b4d-4c30-879f-4ba33fc773c0}" />
+            <FieldRef Name="PCMCMTitle" DisplayName="Change Management title" ID="{7447f764-f584-47e8-950d-261c6ec26175}" />
         </FieldRefs>
     </ContentType>
     <!-- LifecycleDoce Content -->
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645C9C" Name="PCMLifecycleDoc" Group="_PCM" Description="">
         <FieldRefs>
-            <FieldRef ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
-            <FieldRef ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
-            <FieldRef ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
-            <FieldRef ID="{aad2e5e7-90c5-4047-af1b-e09de49f2471}" />
-            <FieldRef ID="{c4b69aec-4175-4290-8554-455899741825}" />
-            <FieldRef ID="{9d964343-157b-4fc9-9b46-ce6d0cdda99d}" />
+            <FieldRef Name="PCMLink" DisplayName="PCMLink" Description="PCMLink" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
+            <FieldRef Name="PCMOrder" DisplayName="PCMOrder" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
+            <FieldRef DisplayName="PCMSubtitle" Name="PCMSubtitle" ID="{aad2e5e7-90c5-4047-af1b-e09de49f2471}" />
+            <FieldRef Name="PCMLeverLink" DisplayName="Change Lever link" Description="Change Lever link" ID="{c4b69aec-4175-4290-8554-455899741825}" />
+            <FieldRef Name="PCMOwner" DisplayName="PCMOwner" Description="PCMOwner" ID="{9d964343-157b-4fc9-9b46-ce6d0cdda99d}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="lifecycleSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Lifecycles" Description="Lifecycles" TemplateType="100" Url="Lists/Lifecycles"></ListInstance>
     <ListInstance CustomSchema="lifecycleDocSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Lifecycle documents" Description="Lifecycle Document" TemplateType="100" Url="Lists/LifecycleDocument"></ListInstance>
+
+
 </Elements>  
