@@ -495,6 +495,7 @@ const PlaybookGrid = (props) => {
                     </div>
                   </div>
                 </div>
+                {/* <img src={`${CenterImg}`} className={styles.centerImg} /> */}
                 <div
                   className={`${styles.BuildBottomListSection} BuildBottomListSection`}
                 >

@@ -6,148 +6,154 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
-.scopeTopListSection {
-  visibility: hidden;
-  animation: 1200ms fadeInSmooth ease-out;
-  animation-fill-mode: forwards;
-}
+
 .scopeTopSection .imageSection {
-  visibility: hidden;
-  animation: 1000ms fadeIn ease-out;
+  opacity: 0;
+  animation: 600ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.scopeBottomListSection .BottomSectionContent{
-  visibility: hidden;
-  animation: 1600ms fadeInSmooth ease-out;
+.scopeTopListSection {
+  opacity: 0;
+  animation: 900ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
-.DefineTopListSection{
-  visibility: hidden;
-  animation: 1800ms fadeInSmooth ease-out;
+.scopeBottomListSection .BottomSectionContent {
+  opacity: 0;
+  animation: 1100ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
+
 .DefineTopSection .imageSection {
-  visibility: hidden;
-  animation: 1600ms fadeIn ease-out;
+  opacity: 0;
+  animation: 1400ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.DefineBottomListSection .BottomSectionContent{
-  visibility: hidden;
-  animation: 2000ms fadeInSmooth ease-out;
+.DefineTopListSection {
+  opacity: 0;
+  animation: 1700ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
-.BuildTopListSection{
-  visibility: hidden;
-  animation: 2400ms fadeInSmooth ease-out;
+.DefineBottomListSection .BottomSectionContent {
+  opacity: 0;
+  animation: 1900ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
+
 .BuildTopSection .imageSection {
-  visibility: hidden;
-  animation: 2200ms fadeIn ease-out;
+  opacity: 0;
+  animation: 2200ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.BuildBottomListSection .BottomSectionContent{
-  visibility: hidden;
-  animation: 2600ms fadeInSmooth  ease-out;
+.BuildTopListSection {
+  opacity: 0;
+  animation: 2500ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
+.BuildBottomListSection .BottomSectionContent {
+  opacity: 0;
+  animation: 2700ms fadeInSmooth ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+/* .centerImg {
+  opacity: 0 !important;
+  animation: 3000ms fadeInSmooth ease-in-out !important;
+  animation-fill-mode: forwards !important;
+} */
+
 .ExecuteImplementTopSection .imageSection {
-  visibility: hidden;
-  animation: 2800ms fadeIn ease-out;
+  opacity: 0;
+  animation: 3300ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.ExecuteImplementTopListSection{
-  visibility: hidden;
-  animation: 3000ms fadeInSmooth ease-out;
+.ExecuteImplementTopListSection {
+  opacity: 0;
+  animation: 3600ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
-.ExecuteImplementBottomListSection 
-.BottomSectionContent {
-  visibility: hidden;
-  animation: 3200ms fadeInSmooth ease-out;
+.ExecuteImplementBottomListSection .BottomSectionContent {
+  opacity: 0;
+  animation: 3800ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
 .OptimizeTopSection .imageSection {
-  visibility: hidden;
-  animation: 3400ms fadeIn ease-out;
+  opacity: 0;
+  animation: 4100ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.OptimizeTopListSection{
-  visibility: hidden;
-  animation: 3600ms fadeInSmooth ease-out;
+.OptimizeTopListSection {
+  opacity: 0;
+  animation: 4400ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
-.OptimizeBottomListSection .BottomSectionContent{
-  visibility: hidden;
-  animation: 3800ms fadeInSmooth ease-out;
+.OptimizeBottomListSection .BottomSectionContent {
+  opacity: 0;
+  animation: 4600ms fadeInSmooth ease-in-out;
   animation-fill-mode: forwards;
 }
-.leftSidebar{
-  visibility: hidden;
-  animation: 4000ms fadeIn ease-out;
+.leftSidebar {
+  opacity: 0;
+  animation: 4800ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.coloredHeaderGrey{
-  visibility: hidden;
-  animation: 4200ms fadeIn ease-out;
+.rightSidebar {
+  opacity: 0;
+  animation: 5000ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.coloredHeaderLightBlue{
-  visibility: hidden;
-  animation: 4400ms fadeIn ease-out;
+.coloredHeaderGrey {
+  opacity: 0;
+  animation: 5200ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.coloredHeaderPurple{
-  visibility: hidden;
-  animation: 4600ms fadeIn ease-out;
+.coloredHeaderLightBlue {
+  opacity: 0;
+  animation: 5400ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.rightSidebar{
-  visibility: hidden;
-  animation: 4800ms fadeIn ease-out;
+.coloredHeaderPurple {
+  opacity: 0;
+  animation: 5600ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.clickProgress{
-  visibility: hidden;
-  animation: 5000ms fadeIn ease-out;
+
+.clickProgress {
+  opacity: 0;
+  animation: 5800ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
-.clickAdvice{
-  visibility: hidden;
-  animation: 5200ms fadeIn ease-out;
+.clickAdvice {
+  opacity: 0;
+  animation: 6000ms fadeIn ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes fadeIn {
   90% {
-    visibility: hidden;
+    opacity: 0;
   }
   100% {
-    visibility: visible;
+    opacity: 1;
   }
 }
 @keyframes fadeInSmooth {
-  0%{
-    visibility: hidden;
-    height:0%;
+  0% {
+    opacity: 0;
+    height: 0%;
   }
-  80%{
-    visibility: hidden;
-    height:20%;
-  }
-  90%{
-    visibility: hidden;
-    height:20%;
+  80% {
+    opacity: 0;
+    height: 20%;
   }
   100% {
-    visibility: visible;
-    height:100%;
+    opacity: 1;
+    height: 100%;
   }
 }
 /* .App {
   font-family: sans-serif;
   text-align: center;
 } */
-.slider-control-bottomcenter{
+.slider-control-bottomcenter {
   display: none !important;
 }
 /* select box */

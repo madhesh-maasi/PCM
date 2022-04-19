@@ -4,15 +4,15 @@
   display: flex;
   justify-content: center;
   .Nav {
-    .navCrumbArrow{
-      margin:0.5rem;
-      color: #C7C7C7;
+    .navCrumbArrow {
+      margin: 0.5rem;
+      color: #c7c7c7;
     }
     margin-bottom: 42px;
     margin-top: 27px;
     display: flex;
     align-items: center;
-    .homeIcon{
+    .homeIcon {
       width: 21px;
       height: 21px;
       background-size: contain;
@@ -21,13 +21,12 @@
       margin-right: 0.5rem;
       cursor: pointer;
     }
-    .navContent{
+    .navContent {
       font-size: 16px;
       margin: 0 0.5rem;
-      color: #C7C7C7;
+      color: #c7c7c7;
       cursor: pointer;
     }
-  
   }
   .Scope {
     .bodyContent {
@@ -54,12 +53,20 @@
               background-color: #000099;
             }
           }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #000099;
+          }
         }
         .phaseTwo {
           .phaseTwoHeading {
             color: #000099;
             .line {
-              background-color: #000099;
+              background-color: #000099 !important;
+            }
+          }
+          ul {
+            &::-webkit-scrollbar-thumb {
+              background-color: #000099 !important;
             }
           }
         }
@@ -100,6 +107,9 @@
               background-color: #cc0099;
             }
           }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #cc0099;
+          }
         }
         .phaseTwo {
           .phaseTwoHeading {
@@ -107,6 +117,9 @@
             .line {
               background-color: #cc0099;
             }
+          }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #cc0099;
           }
         }
       }
@@ -146,6 +159,9 @@
               background-color: #ca001b;
             }
           }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #ca001b;
+          }
         }
         .phaseTwo {
           .phaseTwoHeading {
@@ -153,6 +169,9 @@
             .line {
               background-color: #ca001b;
             }
+          }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #ca001b;
           }
         }
       }
@@ -192,6 +211,9 @@
               background-color: #00a3ad;
             }
           }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #00a3ad;
+          }
         }
         .phaseTwo {
           .phaseTwoHeading {
@@ -199,6 +221,9 @@
             .line {
               background-color: #00a3ad;
             }
+          }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #00a3ad;
           }
         }
       }
@@ -238,6 +263,9 @@
               background-color: #008578;
             }
           }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #008578;
+          }
         }
         .phaseTwo {
           .phaseTwoHeading {
@@ -245,6 +273,9 @@
             .line {
               background-color: #008578;
             }
+          }
+          ul::-webkit-scrollbar-thumb {
+            background-color: #008578;
           }
         }
       }
@@ -308,7 +339,7 @@
   font-size: 80px;
   text-align: center;
   font-weight: bold;
-  margin-bottom:-12px;
+  margin-bottom: -12px;
 }
 .bodyContent {
   width: 979px;
@@ -384,21 +415,23 @@
           //   margin-left: 35px;
           //   padding-left: 35px;
           margin-bottom: 12px;
-            padding-right: 20px;
+          padding-right: 20px;
         }
       }
       ul::-webkit-scrollbar {
-        width: 9px;
-        height: 181px;
-        border-radius: 50px;
-        background-color: #C1C1C180;
+        width: 16px;
       }
       
+      ul::-webkit-scrollbar-track {
+        background: #c1c1c190;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+        border-radius: 10px;
+      }
+
       ul::-webkit-scrollbar-thumb {
-        width: 18px;
         height: 46px;
         border-radius: 50px;
-        background-color: #70707080;
       }
     }
     .phaseTwo {
@@ -421,25 +454,28 @@
         height: 164px;
         overflow-y: scroll;
         margin-right: 15px;
-        
+
         li {
           color: #707070;
           font-size: 16px;
           margin-bottom: 12px;
-            padding-right: 20px;
+          padding-right: 20px;
         }
       }
       ul::-webkit-scrollbar {
-        width: 9px;
-        height: 181px;
-        border-radius: 50px;
-        background-color: #C1C1C180;
+        width: 16px;
       }
-      ul::-webkit-scrollbar-thumb{
-        width: 18px;
+      
+      ul::-webkit-scrollbar-track {
+        background: #c1c1c190;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+        border-radius: 10px;
+      }
+      
+      ul::-webkit-scrollbar-thumb {
         height: 46px;
         border-radius: 50px;
-        background-color: #70707080;
       }
     }
   }

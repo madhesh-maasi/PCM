@@ -36,6 +36,7 @@ let selectedAnsTwo = 0;
 let currentUserName = "";
 let arrReport = [];
 let selectedAnswer;
+let userID;
 const DecisionTree = (props) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState(questionsArr);
@@ -122,6 +123,8 @@ const DecisionTree = (props) => {
       })
       .then((data) => {
         console.log(data);
+        userID = data.data.ID;
+        console.log(userID);
       })
       .catch((error) => {
         console.log(error);
@@ -283,8 +286,10 @@ const DecisionTree = (props) => {
             />
           ) : slideIndex == 2 ? (
             <img
-              style={{ cursor: "not-allowed" }}
-              src={`${PrevButtonDisabled}`}
+              src={`${prevbtnBlue}`}
+              onClick={() => {
+                setSlideIndex(slideIndex == 2 ? 1 : slideIndex - 1);
+              }}
             />
           ) : (
             <img src={`${prevbtnBlue}`} />
