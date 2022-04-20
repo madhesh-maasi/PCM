@@ -9,122 +9,122 @@
 
 .scopeTopSection .imageSection {
   opacity: 0;
-  animation: 600ms fadeIn ease-in-out;
+  animation: 600ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .scopeTopListSection {
   opacity: 0;
-  animation: 900ms fadeInSmooth ease-in-out;
+  animation: 900ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .scopeBottomListSection .BottomSectionContent {
   opacity: 0;
-  animation: 1100ms fadeInSmooth ease-in-out;
+  animation: 1100ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 
 .DefineTopSection .imageSection {
   opacity: 0;
-  animation: 1400ms fadeIn ease-in-out;
+  animation: 1400ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .DefineTopListSection {
   opacity: 0;
-  animation: 1700ms fadeInSmooth ease-in-out;
+  animation: 1700ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .DefineBottomListSection .BottomSectionContent {
   opacity: 0;
-  animation: 1900ms fadeInSmooth ease-in-out;
+  animation: 1900ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 
 .BuildTopSection .imageSection {
   opacity: 0;
-  animation: 2200ms fadeIn ease-in-out;
+  animation: 2200ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .BuildTopListSection {
   opacity: 0;
-  animation: 2500ms fadeInSmooth ease-in-out;
+  animation: 2500ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .BuildBottomListSection .BottomSectionContent {
   opacity: 0;
-  animation: 2700ms fadeInSmooth ease-in-out;
+  animation: 2700ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 
 /* .centerImg {
   opacity: 0 !important;
-  animation: 3000ms fadeInSmooth ease-in-out !important;
+  animation: 3000ms fadeInSmooth ease-in !important;
   animation-fill-mode: forwards !important;
 } */
 
 .ExecuteImplementTopSection .imageSection {
   opacity: 0;
-  animation: 3300ms fadeIn ease-in-out;
+  animation: 3000ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .ExecuteImplementTopListSection {
   opacity: 0;
-  animation: 3600ms fadeInSmooth ease-in-out;
+  animation: 3300ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .ExecuteImplementBottomListSection .BottomSectionContent {
   opacity: 0;
-  animation: 3800ms fadeInSmooth ease-in-out;
+  animation: 3500ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .OptimizeTopSection .imageSection {
   opacity: 0;
-  animation: 4100ms fadeIn ease-in-out;
+  animation: 3800ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .OptimizeTopListSection {
   opacity: 0;
-  animation: 4400ms fadeInSmooth ease-in-out;
+  animation: 4100ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .OptimizeBottomListSection .BottomSectionContent {
   opacity: 0;
-  animation: 4600ms fadeInSmooth ease-in-out;
+  animation: 4300ms fadeInSmooth ease-in;
   animation-fill-mode: forwards;
 }
 .leftSidebar {
   opacity: 0;
-  animation: 4800ms fadeIn ease-in-out;
+  animation: 4500ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .rightSidebar {
   opacity: 0;
-  animation: 5000ms fadeIn ease-in-out;
+  animation: 4700ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .coloredHeaderGrey {
   opacity: 0;
-  animation: 5200ms fadeIn ease-in-out;
+  animation: 4900ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .coloredHeaderLightBlue {
   opacity: 0;
-  animation: 5400ms fadeIn ease-in-out;
+  animation: 5100ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .coloredHeaderPurple {
   opacity: 0;
-  animation: 5600ms fadeIn ease-in-out;
+  animation: 5300ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 
 .clickProgress {
   opacity: 0;
-  animation: 5800ms fadeIn ease-in-out;
+  animation: 5500ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 .clickAdvice {
   opacity: 0;
-  animation: 6000ms fadeIn ease-in-out;
+  animation: 5700ms fadeIn ease-in;
   animation-fill-mode: forwards;
 }
 @keyframes fadeIn {

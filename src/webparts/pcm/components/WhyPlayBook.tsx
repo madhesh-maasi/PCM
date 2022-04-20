@@ -326,7 +326,7 @@ const WhyPlayBook = (props) => {
           <button
             //  onClick={() => props.navHandler("ToPlayBook")}
             onClick={() =>
-              (window.location.href = `${props.siteUrl}?topage=${props.playbookLink}`)
+              (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
             }
           >
             Go to Playbook

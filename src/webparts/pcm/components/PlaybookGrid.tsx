@@ -488,7 +488,7 @@ const PlaybookGrid = (props) => {
                           props.selectPhase("Execute");
                         }}
                       />
-                      <img src={`${CenterImg}`} className={styles.centerImg} />
+                      {/* <img src={`${CenterImg}`} className={styles.centerImg} /> */}
                     </div>
                   </div>
                 </div>
@@ -601,6 +601,8 @@ const PlaybookGrid = (props) => {
                       props.selectPhase("Implement");
                     }}
                   >
+                    <img src={`${CenterImg}`} className={styles.centerImg} />
+
                     <div
                       style={{ right: "0.2rem", top: "-1rem " }}
                       className={styles.plusIcon}

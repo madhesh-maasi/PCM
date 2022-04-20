@@ -53,9 +53,9 @@ const App = (props) => {
           ? (startPage = "ToHome")
           : searchParams.get("topage").toLocaleLowerCase() == `${PBLink}`
           ? (startPage = "ToPlayBook")
-          : searchParams.get("topage").toLocaleLowerCase() == `${WPBLink}`
-          ? (startPage = "ToDecisionTree")
           : searchParams.get("topage").toLocaleLowerCase() == `${DTLink}`
+          ? (startPage = "ToDecisionTree")
+          : searchParams.get("topage").toLocaleLowerCase() == `${WPBLink}`
           ? (startPage = "ToWhyPlayBook")
           : ""
         : (startPage = "ToHome");
@@ -66,6 +66,7 @@ const App = (props) => {
       setNavState(startPage);
     }
   }, [homeLinks]);
+
   // console.log(PlayBookLink);
   // console.log(WhyPlayBooklink);
   // console.log(DecisionTreeLink);
@@ -106,12 +107,18 @@ const App = (props) => {
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          PlayBookLink={PBLink}
+          WhyPlayBooklink={WPBLink}
+          DecisionTreeLink={DTLink}
         />
       ) : navState == "ToDecisionTree" ? (
         <DecisionTree
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          PlayBookLink={PBLink}
+          WhyPlayBooklink={WPBLink}
+          DecisionTreeLink={DTLink}
         />
       ) : (
         ""

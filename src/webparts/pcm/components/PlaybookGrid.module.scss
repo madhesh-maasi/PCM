@@ -337,11 +337,13 @@
         color: #000099;
         font-size: 1.375rem;
         font-weight: 600;
+        padding: 15px;
       }
       .coloredHeaderRed {
         color: #ca001b;
         font-size: 1.375rem;
         font-weight: 600;
+        padding: 15px;
       }
       .plusIcon {
         position: absolute;
@@ -440,18 +442,7 @@
         }
       }
     }
-    .centerImg {
-      position: absolute !important;
-      z-index: 10 !important;
-      width: 260px !important;
-      height: 280px !important;
-      right: -136px !important;
-      top: -56px !important;
-      cursor: default !important;
-      &:hover {
-        transform: scale(1) !important;
-      }
-    }
+   
   }
 }
 // .centerImg {
@@ -474,3 +465,16 @@
 //     opacity: 1;
 //   }
 // }
+.centerImg {
+  position: absolute !important;
+  z-index: 10 !important;
+  width: 260px !important;
+  height: 280px !important;
+  left: -136px !important;
+  top: -30px !important;
+  cursor: default !important;
+
+  &:hover {
+    transform: scale(1) !important;
+  }
+}
