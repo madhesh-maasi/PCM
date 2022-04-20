@@ -4,6 +4,7 @@ import "../../../ExternalRef/css/style.css";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Banner from "./Banner";
+import PlaybookDetails from "./PlaybookDetails";
 const playBookBG = require("../../../ExternalRef/img/playBookBg.png");
 const playBookIcon = require("../../../ExternalRef/img/playBookIcon.png");
 const playBookArrow = require("../../../ExternalRef/img/playBookArrow.png");
@@ -111,7 +112,7 @@ const HomePage = (props) => {
                 style={{ cursor: "pointer" }}
                 // onClick={() => props.switchPlayBook("ToPlayBook")}
                 onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=playbook`)
+                  (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
                 }
               >
                 {homeMain.length > 0
@@ -128,7 +129,7 @@ const HomePage = (props) => {
               <div
                 // onClick={() => props.switchPlayBook("ToPlayBook")}
                 onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=playbook`)
+                  (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
                 }
                 className={styles.bodyContentRight}
                 style={{ backgroundImage: `url(${playBookArrow})` }}
@@ -145,7 +146,7 @@ const HomePage = (props) => {
                     className={styles.playBookButton}
                     // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
                     onClick={() =>
-                      (window.location.href = `${props.siteUrl}?topage=whyplaybook`)
+                      (window.location.href = `${props.siteUrl}?topage=${props.WhyPlayBooklink}`)
                     }
                   >
                     {homeMain.length > 0
@@ -208,7 +209,7 @@ const HomePage = (props) => {
                 style={{ cursor: "pointer" }}
                 // onClick={() => props.switchPlayBook("ToDecisionTree")}
                 onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=decisiontree`)
+                  (window.location.href = `${props.siteUrl}?topage=${props.DecisionTreeLink}`)
                 }
               >
                 {homeMain.length > 0
@@ -228,7 +229,7 @@ const HomePage = (props) => {
                   style={{ backgroundImage: `url(${decisionTreeArrow})` }}
                   // onClick={() => props.switchPlayBook("ToDecisionTree")}
                   onClick={() =>
-                    (window.location.href = `${props.siteUrl}?topage=decisiontree`)
+                    (window.location.href = `${props.siteUrl}?topage=${props.DecisionTreeLink}`)
                   }
                 ></div>
               </p>
