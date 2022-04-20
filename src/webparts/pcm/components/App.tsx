@@ -15,10 +15,11 @@ let WPBLink;
 let DTLink;
 const App = (props) => {
   const [navState, setNavState] = useState(startPage);
+  const [homeLinks, setHomeLinks] = useState(siteLinks);
   const [selectedPhase, setSelectedPhase] = useState("");
-  const [PlayBookLink, setPlayBookLink] = useState();
-  const [WhyPlayBooklink, setWhyPlayBooklink] = useState();
-  const [DecisionTreeLink, setDecisionTreeLink] = useState();
+  const [PlayBookLink, setPlayBookLink] = useState("");
+  const [WhyPlayBooklink, setWhyPlayBooklink] = useState("");
+  const [DecisionTreeLink, setDecisionTreeLink] = useState("");
 
   useEffect(() => {
     props.sp.web.lists
@@ -27,16 +28,13 @@ const App = (props) => {
       .then((data) => {
         console.log(data);
         siteLinks = data;
-
+        setHomeLinks(siteLinks);
         PBLink = siteLinks.filter((item) => item.Title == "Playbook")[0]
           .PCMLink;
-
         WPBLink = siteLinks.filter((item) => item.Title == "Playbook")[0]
           .PCMBtnLink;
-
         DTLink = siteLinks.filter((item) => item.Title == "Decision Tree")[0]
           .PCMLink;
-
         setPlayBookLink(PBLink);
         setWhyPlayBooklink(WPBLink);
         setDecisionTreeLink(DTLink);
@@ -44,8 +42,9 @@ const App = (props) => {
       .catch((error) => {
         console.log(error);
       });
-
-    if (url.indexOf("?") != -1) {
+  }, []);
+  useEffect(() => {
+    if (url.indexOf("?") != -1 && homeLinks.length > 0) {
       const paramsString = window.location.href.split("?")[1].toLowerCase();
       const searchParams = new URLSearchParams(paramsString);
       console.log(searchParams.has("topage"));
@@ -54,9 +53,9 @@ const App = (props) => {
           ? (startPage = "ToHome")
           : searchParams.get("topage").toLocaleLowerCase() == `${PBLink}`
           ? (startPage = "ToPlayBook")
-          : searchParams.get("topage").toLocaleLowerCase() == `${DTLink}`
-          ? (startPage = "ToDecisionTree")
           : searchParams.get("topage").toLocaleLowerCase() == `${WPBLink}`
+          ? (startPage = "ToDecisionTree")
+          : searchParams.get("topage").toLocaleLowerCase() == `${DTLink}`
           ? (startPage = "ToWhyPlayBook")
           : ""
         : (startPage = "ToHome");
@@ -66,8 +65,7 @@ const App = (props) => {
       startPage = "ToHome";
       setNavState(startPage);
     }
-  }, []);
-
+  }, [homeLinks]);
   // console.log(PlayBookLink);
   // console.log(WhyPlayBooklink);
   // console.log(DecisionTreeLink);

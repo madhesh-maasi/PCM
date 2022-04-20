@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ContentType ID="0x010042D0C1C200A14B6887742B9344645C1D" Name="PCMLifecycleDescr" Group="_PCM" Description="">
+        <FieldRefs>
+            <FieldRef Name="PCMOrderNo" DisplayName="Order" ID="{6e9dd7e3-b8f9-4072-a787-7a39a52b9d74}" />
+            <FieldRef Name="PCMDescrType" DisplayName="DescrType" ID="{ed780701-4adf-4ab5-a493-6859dd921104}" />
+            <FieldRef Name="PCMDescr" DisplayName="PCMDescr" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMDisplayOrder" DisplayName="Display Order" ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" />
+        </FieldRefs>
+    </ContentType>
+
+</Elements>  
