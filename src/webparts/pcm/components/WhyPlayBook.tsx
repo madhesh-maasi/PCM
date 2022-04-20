@@ -304,7 +304,10 @@ const WhyPlayBook = (props) => {
       <div className={styles.topNav}>
         <div className={styles.nav}>
           <img
-            onClick={() => props.navHandler("ToHome")}
+            // onClick={() => props.navHandler("ToHome")}
+            onClick={() =>
+              (window.location.href = `${props.siteUrl}?topage=home`)
+            }
             src={`${homeIcon}`}
             alt="home image"
           />{" "}
@@ -320,7 +323,12 @@ const WhyPlayBook = (props) => {
           {navHeadingsArr[slideIndex]}
         </div>
         <div className={styles.actionBtns}>
-          <button onClick={() => props.navHandler("ToPlayBook")}>
+          <button
+            //  onClick={() => props.navHandler("ToPlayBook")}
+            onClick={() =>
+              (window.location.href = `${props.siteUrl}?topage=${props.playbookLink}`)
+            }
+          >
             Go to Playbook
           </button>
         </div>

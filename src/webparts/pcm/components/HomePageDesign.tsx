@@ -109,7 +109,10 @@ const HomePage = (props) => {
             <h1 className={styles.bodyContentHeading}>
               <div
                 style={{ cursor: "pointer" }}
-                onClick={() => props.switchPlayBook("ToPlayBook")}
+                // onClick={() => props.switchPlayBook("ToPlayBook")}
+                onClick={() =>
+                  (window.location.href = `${props.siteUrl}?topage=playbook`)
+                }
               >
                 {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Playbook")[0].Title
@@ -118,21 +121,15 @@ const HomePage = (props) => {
             </h1>
             <p className={styles.bodyCardContent}>
               <div className={styles.bodyContentLeft}>
-                {/* Internally developed Project Leadership Methodology uniquely
-                suited to J&J and applicable for all project types.
-                <div
-                  className={styles.line}
-                  style={{ backgroundImage: `url(${line})` }}
-                ></div>
-                Set of proven principles, tools, guides, and best practices
-                enabling cross-functional teams to deliver flawless execution
-                and attainment of bussiness objectives. */}
                 {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Playbook")[0].PCMDescr
                   : ""}
               </div>
               <div
-                onClick={() => props.switchPlayBook("ToPlayBook")}
+                // onClick={() => props.switchPlayBook("ToPlayBook")}
+                onClick={() =>
+                  (window.location.href = `${props.siteUrl}?topage=playbook`)
+                }
                 className={styles.bodyContentRight}
                 style={{ backgroundImage: `url(${playBookArrow})` }}
               ></div>
@@ -146,7 +143,10 @@ const HomePage = (props) => {
                 <a href="#" className={styles.buttonContainer}>
                   <button
                     className={styles.playBookButton}
-                    onClick={() => props.switchPlayBook("ToWhyPlayBook")}
+                    // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
+                    onClick={() =>
+                      (window.location.href = `${props.siteUrl}?topage=whyplaybook`)
+                    }
                   >
                     {homeMain.length > 0
                       ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
@@ -206,7 +206,10 @@ const HomePage = (props) => {
               <h1
                 className={styles.bodyContentHeading}
                 style={{ cursor: "pointer" }}
-                onClick={() => props.switchPlayBook("ToDecisionTree")}
+                // onClick={() => props.switchPlayBook("ToDecisionTree")}
+                onClick={() =>
+                  (window.location.href = `${props.siteUrl}?topage=decisiontree`)
+                }
               >
                 {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
@@ -223,7 +226,10 @@ const HomePage = (props) => {
                 <div
                   className={styles.bodyContentRight}
                   style={{ backgroundImage: `url(${decisionTreeArrow})` }}
-                  onClick={() => props.switchPlayBook("ToDecisionTree")}
+                  // onClick={() => props.switchPlayBook("ToDecisionTree")}
+                  onClick={() =>
+                    (window.location.href = `${props.siteUrl}?topage=decisiontree`)
+                  }
                 ></div>
               </p>
               <div className={styles.bottomCornerArrowCover}>

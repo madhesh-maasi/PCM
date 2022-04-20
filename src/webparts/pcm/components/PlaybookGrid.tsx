@@ -44,7 +44,7 @@ const PlaybookGrid = (props) => {
       })
       .then(async () => {
         await props.sp.web.lists
-          .getByTitle("ArrowBottom")
+          .getByTitle("Lifecycle red description")
           .fields.filter("EntityPropertyName eq 'PCMDescrLabel'")
           .get()
           .then((types) => {
@@ -67,7 +67,7 @@ const PlaybookGrid = (props) => {
           })
           .then(async () => {
             await props.sp.web.lists
-              .getByTitle("ArrowBottom")
+              .getByTitle("Lifecycle red description")
               .items.select("*,PCMOrderNo/PCMOrder,PCMOrderNo/Title")
               .expand("PCMOrderNo")
               .get()
@@ -87,7 +87,10 @@ const PlaybookGrid = (props) => {
           {/* BreadCrumb Section */}
           <div className={styles.breadCrumbSection}>
             <div
-              onClick={() => props.navHandler("ToHome")}
+              // onClick={() => props.navHandler("ToHome")}
+              onClick={() =>
+                (window.location.href = `${props.siteUrl}?topage=home`)
+              }
               className={styles.homeIcon}
               style={{ backgroundImage: `url(${homeIcon})` }}
             ></div>
@@ -232,12 +235,6 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.BottomSectionContent} BottomSectionContent`}
                   >
-                    {/* <div className={styles.coloredHeaderRed}>Co-Led</div>
-                    <ol>
-                      <li>Phase 0 business case</li>
-                      <li>Key Questions</li>
-                      <li>Charter definition</li>
-                    </ol> */}
                     {bottomDescrOptions.length > 0 && bottomDescr.length > 0
                       ? bottomDescrOptions.map((option) => {
                           return bottomDescr.filter(

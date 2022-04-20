@@ -36,7 +36,7 @@ let selectedAnsTwo = 0;
 let currentUserName = "";
 let arrReport = [];
 let selectedAnswer;
-let userID;
+let submitedID = 0;
 const DecisionTree = (props) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState(questionsArr);
@@ -47,6 +47,11 @@ const DecisionTree = (props) => {
   const [SelectedCombination, setSelectedCombination] = useState();
   // useEffect
   useEffect(() => {
+    let selectedAnsOne = 0;
+    let selectedAnsTwo = 0;
+    setq1Val(selectedAnsOne);
+    setq2Val(selectedAnsTwo);
+    submitedID = 0;
     props.sp.web.currentUser.get().then((data) => {
       currentUserName = data.Title;
     });
@@ -115,20 +120,33 @@ const DecisionTree = (props) => {
     )[0];
     console.log(selectedAnswer);
 
-    props.sp.web.lists
-      .getByTitle("UserResults")
-      .items.add({
-        Title: currentUserName,
-        PCMReportId: selectedAnswer.ID,
-      })
-      .then((data) => {
-        console.log(data);
-        userID = data.data.ID;
-        console.log(userID);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (submitedID == 0) {
+      props.sp.web.lists
+        .getByTitle("UserResults")
+        .items.add({
+          Title: currentUserName,
+          PCMReportId: selectedAnswer.ID,
+        })
+        .then((data) => {
+          console.log(data);
+          submitedID = data.data.ID;
+          console.log(submitedID);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      props.sp.web.lists
+        .getByTitle("UserResults")
+        .items.getById(submitedID)
+        .update({
+          Title: currentUserName,
+          PCMReportId: selectedAnswer.ID,
+        })
+        .then((data) => {
+          console.log(data);
+        });
+    }
   };
 
   const slideData = [
@@ -152,7 +170,7 @@ const DecisionTree = (props) => {
         <Box>
           <FormControl>
             <NativeSelect
-              value={selectedAnsOne}
+              value={q1val}
               onChange={(e) => {
                 selectedAnsOne = +e.target.value;
                 setq1Val(selectedAnsOne);
@@ -193,7 +211,7 @@ const DecisionTree = (props) => {
         <Box>
           <FormControl>
             <NativeSelect
-              value={selectedAnsTwo}
+              value={q2val}
               onChange={(e) => {
                 selectedAnsTwo = +e.target.value;
                 setq2Val(selectedAnsTwo);
@@ -203,7 +221,7 @@ const DecisionTree = (props) => {
                 id: "ques2",
               }}
             >
-              <option value="Select your option">Select your option</option>
+              <option value={0}>Select your option</option>
               {answersTwo.map((ans, i) => {
                 return (
                   <option value={ans.ID} key={ans.id}>
@@ -257,7 +275,10 @@ const DecisionTree = (props) => {
           <img
             src={`${homeIcon}`}
             alt="home image"
-            onClick={() => props.navHandler("ToHome")}
+            // onClick={() => props.navHandler("ToHome")}
+            onClick={() =>
+              (window.location.href = `${props.siteUrl}?topage=home`)
+            }
           />{" "}
           <p>{`>`}</p> <p>Decision Tree</p>
         </div>
@@ -288,6 +309,7 @@ const DecisionTree = (props) => {
             <img
               src={`${prevbtnBlue}`}
               onClick={() => {
+                console.log(slideIndex);
                 setSlideIndex(slideIndex == 2 ? 1 : slideIndex - 1);
               }}
             />
@@ -295,26 +317,36 @@ const DecisionTree = (props) => {
             <img src={`${prevbtnBlue}`} />
           )}
         </div>
-        <div
-          className={styles.nxtBtn}
-          onClick={() => {
-            if (slideIndex == 1) {
-              SubmitReportHandler();
-            }
-            setSlideIndex(
-              slideIndex == slideData.length - 1
-                ? slideData.length - 1
-                : slideIndex + 1
-            );
-          }}
-        >
-          {slideIndex == slideData.length - 1 ? (
+        <div className={styles.nxtBtn}>
+          {slideIndex == slideData.length - 1 ||
+          (slideIndex == 0 && q1val == 0) ||
+          ((slideIndex == 1 || slideIndex == 2) && q2val == 0) ? (
             <img
               style={{ cursor: "not-allowed" }}
               src={`${NextButtonDisabled}`}
             />
           ) : (
-            <img src={`${nextbtnBlue}`} />
+            <img
+              src={`${nextbtnBlue}`}
+              onClick={() => {
+                console.log(q1val);
+                console.log(slideIndex);
+                if (slideIndex == 0 && q1val == 0) {
+                  alert("Please select the Anser for question One");
+                } else if (slideIndex == 1 && q2val == 0) {
+                  alert("Please select the Anser for question Two");
+                } else {
+                  setSlideIndex(
+                    slideIndex == slideData.length - 1
+                      ? slideData.length - 1
+                      : slideIndex + 1
+                  );
+                }
+                if (slideIndex == 1 && q2val != 0) {
+                  SubmitReportHandler();
+                }
+              }}
+            />
           )}
         </div>
         {slides[slideIndex]}

@@ -143,7 +143,7 @@ export default function GearImageMapping(props) {
     ) {
       console.log("green");
       colorArr.push("Green");
-      window.location.href = LeadershipLink;
+      window.open(LeadershipLink);
     }
     // rose
     if (
@@ -210,7 +210,7 @@ export default function GearImageMapping(props) {
     ) {
       console.log("Rose");
       colorArr.push("Rose");
-      window.location.href = StackholderLink;
+      window.open(StackholderLink);
     }
 
     // blue
@@ -286,7 +286,7 @@ export default function GearImageMapping(props) {
     ) {
       console.log("Blue");
       colorArr.push("Blue");
-      window.location.href = StackholderEngagementlink;
+      window.open(StackholderEngagementlink);
     }
 
     // red
@@ -358,7 +358,7 @@ export default function GearImageMapping(props) {
     ) {
       console.log("Red");
       colorArr.push("Red");
-      window.location.href = TrainingLink;
+      window.open(TrainingLink);
     }
 
     console.log(colorArr);
@@ -368,24 +368,28 @@ export default function GearImageMapping(props) {
       (colorArr[0] == "Green" && colorArr[1] == "Red")
     ) {
       console.log("The color is Green");
+      window.open(LeadershipLink);
     }
     if (
       (colorArr[0] == "Rose" && colorArr[1] == "Blue") ||
       (colorArr[0] == "Rose" && colorArr[1] == "Green")
     ) {
       console.log("The color is Rose");
+      window.open(StackholderLink);
     }
     if (
       (colorArr[0] == "Blue" && colorArr[1] == "Rose") ||
       (colorArr[0] == "Blue" && colorArr[1] == "Red")
     ) {
       console.log("The color is Blue");
+      window.open(StackholderEngagementlink);
     }
     if (
       (colorArr[0] == "Red" && colorArr[1] == "Green") ||
       (colorArr[0] == "Red" && colorArr[1] == "Blue")
     ) {
       console.log("The color is Red");
+      window.open(TrainingLink);
     }
 
     const areas = mapAreas.areas.map((item) =>

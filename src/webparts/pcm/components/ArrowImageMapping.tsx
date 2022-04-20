@@ -90,7 +90,7 @@ export default function ArrowImageMapping(props) {
     ) {
       console.log("Blue image");
       ArrowImageArr.push("Red Image");
-      window.location.href = RedLink;
+      window.open(RedLink);
     }
 
     //   blue image
@@ -106,7 +106,7 @@ export default function ArrowImageMapping(props) {
     ) {
       console.log("Blue image");
       ArrowImageArr.push("Blue Image");
-      window.location.href = BlueLink;
+      window.open(BlueLink);
     }
 
     //   rose image
@@ -122,7 +122,7 @@ export default function ArrowImageMapping(props) {
     ) {
       console.log("Rose image");
       ArrowImageArr.push("Rose Image");
-      window.location.href = PinkLink;
+      window.open(PinkLink);
     }
 
     //   Teal image
@@ -158,7 +158,7 @@ export default function ArrowImageMapping(props) {
     ) {
       console.log("Teal image");
       ArrowImageArr.push("Teal Image");
-      window.location.href = GreenLink;
+      window.open(GreenLink);
     }
 
     console.log(ArrowImageArr);

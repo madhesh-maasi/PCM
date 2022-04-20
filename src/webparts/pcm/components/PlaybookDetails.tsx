@@ -113,7 +113,10 @@ const PlaybookDetails = (props) => {
         >
           <div className={styles.Nav}>
             <div
-              onClick={() => props.navHandler("ToHome")}
+              // onClick={() => props.navHandler("ToHome")}
+              onClick={() =>
+                (window.location.href = `${props.siteUrl}?topage=home`)
+              }
               className={styles.homeIcon}
               style={{ backgroundImage: `url(${HomeIcon})` }}
             ></div>
