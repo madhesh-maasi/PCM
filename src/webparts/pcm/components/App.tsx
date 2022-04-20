@@ -5,26 +5,33 @@ import PlaybookDetails from "./PlaybookDetails";
 import { useState } from "react";
 import WhyPlayBook from "./WhyPlayBook";
 import DecisionTree from "./DecisionTree";
-let startPage = "";
+let startPage = "ToHome";
 let siteUrl = window.location.href.split("?")[0];
-const paramsString = window.location.href.split("?")[1].toLowerCase();
-const searchParams = new URLSearchParams(paramsString);
+
+let url = window.location.href;
+console.log(url.indexOf("?"));
 
 const App = (props) => {
-  searchParams.has("topage")
-    ? searchParams.get("topage").toLocaleLowerCase() == "home"
-      ? (startPage = "ToHome")
-      : searchParams.get("topage").toLocaleLowerCase() == `playbook`
-      ? (startPage = "ToPlayBook")
-      : searchParams.get("topage").toLocaleLowerCase() == "decisiontree"
-      ? (startPage = "ToDecisionTree")
-      : searchParams.get("topage").toLocaleLowerCase() == "whyplaybook"
-      ? (startPage = "ToWhyPlayBook")
-      : ""
-    : (startPage = "ToHome");
-  console.log(searchParams.get("topage"));
   const [navState, setNavState] = useState(startPage);
   const [selectedPhase, setSelectedPhase] = useState("");
+  if (url.indexOf("?") != -1) {
+    const paramsString = window.location.href.split("?")[1].toLowerCase();
+    const searchParams = new URLSearchParams(paramsString);
+    console.log(searchParams.has("topage"));
+    searchParams.has("topage")
+      ? searchParams.get("topage").toLocaleLowerCase() == "home"
+        ? (startPage = "ToHome")
+        : searchParams.get("topage").toLocaleLowerCase() == `playbook`
+        ? (startPage = "ToPlayBook")
+        : searchParams.get("topage").toLocaleLowerCase() == "decisiontree"
+        ? (startPage = "ToDecisionTree")
+        : searchParams.get("topage").toLocaleLowerCase() == "whyplaybook"
+        ? (startPage = "ToWhyPlayBook")
+        : ""
+      : (startPage = "ToHome");
+
+    console.log(searchParams.get("topage"));
+  }
   const switchHomeScreenHandler = (str) => {
     setNavState(str);
   };
