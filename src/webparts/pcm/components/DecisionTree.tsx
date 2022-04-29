@@ -122,7 +122,7 @@ const DecisionTree = (props) => {
 
     if (submitedID == 0) {
       props.sp.web.lists
-        .getByTitle("UserResults")
+        .getByTitle("User results")
         .items.add({
           Title: currentUserName,
           PCMReportId: selectedAnswer.ID,
@@ -137,7 +137,7 @@ const DecisionTree = (props) => {
         });
     } else {
       props.sp.web.lists
-        .getByTitle("UserResults")
+        .getByTitle("User results")
         .items.getById(submitedID)
         .update({
           Title: currentUserName,

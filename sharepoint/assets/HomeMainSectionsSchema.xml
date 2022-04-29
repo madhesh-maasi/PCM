@@ -15,8 +15,9 @@
                     <FieldRef Name="PCMIcon"></FieldRef>
                     <FieldRef Name="PCMImage"></FieldRef>
                     <FieldRef Name="PCMDescr"></FieldRef>
+                    <FieldRef Name="PCMLink"></FieldRef>
                     <FieldRef Name="PCMLabel"></FieldRef>
-
+                    <FieldRef Name="PCMBtnLink"></FieldRef>
                 </ViewFields>
                 <Query>
                     <OrderBy>

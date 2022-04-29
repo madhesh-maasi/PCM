@@ -62,7 +62,9 @@ const PlaybookGrid = (props) => {
             arrCMDescr = arrDescriptions.filter(
               (li) => li.PCMDescrType == "Change management Description"
             );
-            console.log(arrCMDescr);
+            arrCMDescr = arrCMDescr.sort(
+              (a, b) => a.PCMDisplayOrder - b.PCMDisplayOrder
+            );
             setCmDescr(arrCMDescr);
           })
           .then(async () => {
@@ -72,7 +74,7 @@ const PlaybookGrid = (props) => {
               .expand("PCMOrderNo")
               .get()
               .then((liItem) => {
-                console.log(liItem);
+                liItem.sort((a, b) => a.PCMDisplayOrder - b.PCMDisplayOrder);
                 setBottomDescr(liItem);
               });
           })
@@ -147,17 +149,6 @@ const PlaybookGrid = (props) => {
                     <div
                       className={`${styles.scopeTopListSection} scopeTopListSection`}
                     >
-                      {/* <div>
-                        <ul>
-                          {cmDescr.length > 0
-                            ? cmDescr
-                                .filter((li) => li.PCMOrderNo.PCMOrder == 1)
-                                .map((li) => {
-                                  return <li>{li.PCMDescr}</li>;
-                                })
-                            : ""}
-                        </ul>
-                      </div> */}
                       <div>
                         {descrOptions.length && cmDescr.length > 0
                           ? descrOptions.map((option) => {
@@ -369,7 +360,7 @@ const PlaybookGrid = (props) => {
                               <div className={styles.coloredHeaderRed}>
                                 {option}
                               </div>
-                              <ol>
+                              <ul>
                                 {bottomDescr
                                   .filter(
                                     (li) =>
@@ -379,7 +370,7 @@ const PlaybookGrid = (props) => {
                                   .map((li) => {
                                     return <li>{li.PCMDescr}</li>;
                                   })}
-                              </ol>
+                              </ul>
                             </div>
                           ) : (
                             ""
@@ -524,7 +515,7 @@ const PlaybookGrid = (props) => {
                               <div className={styles.coloredHeaderRed}>
                                 {option}
                               </div>
-                              <ol>
+                              <ul>
                                 {bottomDescr
                                   .filter(
                                     (li) =>
@@ -534,7 +525,7 @@ const PlaybookGrid = (props) => {
                                   .map((li) => {
                                     return <li>{li.PCMDescr}</li>;
                                   })}
-                              </ol>
+                              </ul>
                             </div>
                           ) : (
                             ""
@@ -663,7 +654,7 @@ const PlaybookGrid = (props) => {
                               <div className={styles.coloredHeaderRed}>
                                 {option}
                               </div>
-                              <ol>
+                              <ul>
                                 {bottomDescr
                                   .filter(
                                     (li) =>
@@ -673,7 +664,7 @@ const PlaybookGrid = (props) => {
                                   .map((li) => {
                                     return <li>{li.PCMDescr}</li>;
                                   })}
-                              </ol>
+                              </ul>
                             </div>
                           ) : (
                             ""
@@ -802,7 +793,7 @@ const PlaybookGrid = (props) => {
                               <div className={styles.coloredHeaderRed}>
                                 {option}
                               </div>
-                              <ol>
+                              <ul>
                                 {bottomDescr
                                   .filter(
                                     (li) =>
@@ -812,7 +803,7 @@ const PlaybookGrid = (props) => {
                                   .map((li) => {
                                     return <li>{li.PCMDescr}</li>;
                                   })}
-                              </ol>
+                              </ul>
                             </div>
                           ) : (
                             ""

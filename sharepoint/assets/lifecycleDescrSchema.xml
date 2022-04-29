@@ -16,6 +16,7 @@
                     <FieldRef Name="PCMDescrType"></FieldRef>
                     <FieldRef Name="PCMDescr"></FieldRef>
                     <FieldRef Name="PCMDisplayOrder"></FieldRef>
+                    <FieldRef Name="PCMDescrLabel"></FieldRef>
 
                 </ViewFields>
                 <Query>

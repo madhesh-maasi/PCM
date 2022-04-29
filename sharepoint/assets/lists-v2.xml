@@ -2,13 +2,15 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 
     <!-- Home List -->
+    <Field ID="{0b736bff-2afe-4b9a-be70-191933534ee1}" Name="PCMBtnLink" DisplayName="Button Link" Description="Button Link" StaticName="Button Link" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
+
     <Field ID="{7d9c9d0c-f742-4e3c-86ec-e81fabb7c3a6}" Type="Thumbnail" Name="PCMIcon" DisplayName="Icon" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_PCM" StaticName="PCMIcon" />
     <Field Type="Text" Name="PCMColor" DisplayName="Color" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="_PCM" ID="{d05512fd-e05f-41c7-9050-8f85e7b0b8a3}" StaticName="PCMColor" />
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645D1A" Name="PCMHomeLink" Group="_PCM" Description="">
         <FieldRefs>
             <FieldRef Name="PCMIcon" DisplayName="Icon" ID="{7d9c9d0c-f742-4e3c-86ec-e81fabb7c3a6}" />
             <FieldRef Name="PCMColor" DisplayName="Color" ID="{d05512fd-e05f-41c7-9050-8f85e7b0b8a3}" />
-            <FieldRef Name="PCMLink" DisplayName="PCMLink" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
+            <FieldRef Name="PCMLink" DisplayName="Link" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="HomeLinkSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Home links" Description="Home links" TemplateType="100" Url="Lists/Homelinks"></ListInstance>
@@ -21,14 +23,14 @@
         <FieldRefs>
             <FieldRef Name="PCMIcon" DisplayName="Icon" ID="{7d9c9d0c-f742-4e3c-86ec-e81fabb7c3a6}" />
             <FieldRef Name="PCMImage" DisplayName="Background Image" ID="{f7c5f44d-d4ce-4303-b92d-3a8710b878d6}" />
-            <FieldRef Name="PCMDescr" DisplayName="PCMDescr" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMDescr" DisplayName="Description" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
             <FieldRef Name="PCMLabel" DisplayName="Button label" ID="{27fbc811-eaa8-4276-9bac-3c1838f19eef}" />
+            <FieldRef Name="PCMLink" DisplayName="Link" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
+            <FieldRef Name="PCMBtnLink" DisplayName="Button Link" ID="{0b736bff-2afe-4b9a-be70-191933534ee1}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="HomeMainSectionsSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Home main sections" Description="Home main sections" TemplateType="100" Url="Lists/HomeMainSections"></ListInstance>
     <!-- Home main  Section -->
-
-
     <!-- Lifecycle Description -->
     <Field Name="PCMOrderNo" ID="{6e9dd7e3-b8f9-4072-a787-7a39a52b9d74}" DisplayName="Order" Type="Lookup" List="Lists/Lifecycles" ShowField="PCMOrder" Required="TRUE" Group="_PCM" />
     <Field ID="{ed780701-4adf-4ab5-a493-6859dd921104}" Name="PCMDescrType" DisplayName="DescrType" Type="Choice" Required="FALSE" Group="_PCM">
@@ -45,15 +47,16 @@
             <CHOICE>BU/GS-Led</CHOICE>
         </CHOICES>
     </Field>
-    <Field ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" Type="Number" Name="PCMDisplayOrder" DisplayName="Display Order" StaticName="Display Order" Group="_PCM" Description="" ShowInNewForm="FALSE" ShowInEditForm="FALSE" Required="TRUE" Decimals="0">
+    <Field ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" Type="Number" Name="PCMDisplayOrder" DisplayName="Display Order" StaticName="Display Order" Group="_PCM" Description="" ShowInNewForm="TRUE" ShowInEditForm="TRUE" Required="TRUE" Decimals="0">
         <Default>1</Default>
     </Field>
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645B9C" Name="PCMLifecycleDescr" Group="_PCM" Description="">
         <FieldRefs>
             <FieldRef Name="PCMOrderNo" DisplayName="Order" ID="{6e9dd7e3-b8f9-4072-a787-7a39a52b9d74}" />
             <FieldRef Name="PCMDescrType" DisplayName="DescrType" ID="{ed780701-4adf-4ab5-a493-6859dd921104}" />
-            <FieldRef Name="PCMDescr" DisplayName="PCMDescr" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMDescr" DisplayName="Description" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
             <FieldRef Name="PCMDisplayOrder" DisplayName="Display Order" ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" />
+            <FieldRef Name="PCMDescrLabel" DisplayName="Descr label" ID="{49dcf622-937d-4fa6-b4f9-a307d91ae38e}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="lifecycleDescrSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Lifecycle description" Description="Lifecycles" TemplateType="100" Url="Lists/Lifecycledescriptions"></ListInstance>
@@ -65,16 +68,16 @@
     <!-- Question List -->
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645C1A" Name="PCMQuestion" Group="_PCM" Description="">
         <FieldRefs>
-            <FieldRef Name="PCMOrder" DisplayName="PCMOrder" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
+            <FieldRef Name="PCMOrder" DisplayName="Order" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="QuestionSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Questions" Description="Question" TemplateType="100" Url="Lists/Questions"></ListInstance>
     <!-- Question List -->
     <!-- Answers List -->
-    <Field Name="PCMQuest" DisplayName="Question" ID="{81d36c3f-4093-4025-96aa-ecc1b2fd4ff7}" Type="Lookup" List="Lists/Question" ShowField="Title" Required="TRUE" Group="_PCM" />
+    <Field Name="PCMQuest" DisplayName="Question" ID="{81d36c3f-4093-4025-96aa-ecc1b2fd4ff7}" Type="Lookup" List="Lists/Questions" ShowField="Title" Required="TRUE" Group="_PCM" />
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645C2B" Name="PCMAnswer" Group="_PCM" Description="">
         <FieldRefs>
-            <FieldRef Name="PCMOrder" DisplayName="PCMOrder" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
+            <FieldRef Name="PCMOrder" DisplayName="Order" ID="{1acb0710-8f01-45e2-8c9b-1dbe9a3b4045}" />
             <FieldRef Name="PCMQuest" DisplayName="Question" ID="{81d36c3f-4093-4025-96aa-ecc1b2fd4ff7}" />
         </FieldRefs>
     </ContentType>
@@ -87,7 +90,7 @@
         <FieldRefs>
             <FieldRef Name="PCMFirstAnswer" DisplayName="First answer" ID="{ed295afb-884a-4ce9-af8f-7307babc7b74}" />
             <FieldRef Name="PCMSecAnswer" DisplayName="Second answer" ID="{b5a94964-409c-4b2f-9613-793709f9e711}" />
-            <FieldRef Name="PCMLink" DisplayName="PCMLink" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
+            <FieldRef Name="PCMLink" DisplayName="Report link" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="ReportSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Reports" Description="Reports" TemplateType="100" Url="Lists/Reports"></ListInstance>
@@ -103,4 +106,21 @@
     <ListInstance CustomSchema="UserResultSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="User results" Description="UserResult" TemplateType="100" Url="Lists/userresults"></ListInstance>
 
     <!-- UserResults -->
+    <ContentType ID="0x010042D0C1C200A14B6887742B9344645C1D" Name="PCMLifecycleRedDescr" Group="_PCM" Description="">
+        <FieldRefs>
+            <FieldRef Name="PCMDescrLabel" DisplayName="Descr label" ID="{49dcf622-937d-4fa6-b4f9-a307d91ae38e}" />
+            <FieldRef Name="PCMDescr" DisplayName="Description" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMOrderNo" DisplayName="Order" ID="{6e9dd7e3-b8f9-4072-a787-7a39a52b9d74}" />
+            <FieldRef Name="PCMDisplayOrder" DisplayName="Display Order" ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" />
+        </FieldRefs>
+    </ContentType>
+    <ListInstance CustomSchema="lifecycleRedDescrSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Lifecycle red description" Description="Lifecycle red description" TemplateType="100" Url="Lists/Lifecyclereddescriptions"></ListInstance>
+    <!--  ImageMappingURL -->
+    <ContentType ID="0x010042D0C1C200A14B6887742B9344646C1D" Name="PCMImageMappingLinks" Group="_PCM" Description="">
+        <FieldRefs>
+            <FieldRef Name="PCMLink" DisplayName="Link" ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" />
+        </FieldRefs>
+    </ContentType>
+    <ListInstance CustomSchema="ImageMappingSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="ImageMappingUrl" Description="Lifecycle red description" TemplateType="100" Url="Lists/ImageMappingUrl"></ListInstance>
+
 </Elements>  
