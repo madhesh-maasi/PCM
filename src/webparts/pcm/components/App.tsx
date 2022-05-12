@@ -69,16 +69,16 @@ const App = (props) => {
     let url = window.location.href.split("/");
     let page = url[url.length - 1].split(".")[0];
     console.log(page);
-    // if (page.toLocaleLowerCase() == "playbook") {
-    //   startPage = "ToPlayBook";
-    // } else if (page.toLocaleLowerCase() == "whyplaybook") {
-    //   startPage = "ToWhyPlayBook";
-    // } else if (page.toLocaleLowerCase() == "decisiontree") {
-    //   startPage = "ToDecisionTree";
-    // } else {
-    //   startPage = "ToHome";
-    // }
-    startPage = "ToPlayBook";
+    if (page.toLocaleLowerCase() == "playbook") {
+      startPage = "ToPlayBook";
+    } else if (page.toLocaleLowerCase() == "whyplaybook") {
+      startPage = "ToWhyPlayBook";
+    } else if (page.toLocaleLowerCase() == "decisiontree") {
+      startPage = "ToDecisionTree";
+    } else {
+      startPage = "ToHome";
+    }
+    // startPage = "ToPlayBook";
     setNavState(startPage);
   }, []);
 

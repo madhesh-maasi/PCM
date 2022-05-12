@@ -73,7 +73,6 @@ const PlaybookDetails = (props) => {
         // [...Array.from(new Set(para))]
         para = Array["from"](new Set(para));
         setListPara(para);
-        console.log("Testing");
         setDescriptions(arrFilteredDescr);
       })
       .catch((error) => console.log(error));
@@ -429,7 +428,7 @@ const PlaybookDetails = (props) => {
                           {selectedSub.length > 0 ? (
                             <ul style={{ marginLeft: "2rem" }}>
                               {selectedSub.map((item) => {
-                                return item.SubDescr != "" ? (
+                                return item.SubDescr ? (
                                   <li>{item.SubDescr}</li>
                                 ) : (
                                   ""
