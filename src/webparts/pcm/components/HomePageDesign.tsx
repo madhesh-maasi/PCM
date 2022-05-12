@@ -111,8 +111,11 @@ const HomePage = (props) => {
               <div
                 style={{ cursor: "pointer" }}
                 // onClick={() => props.switchPlayBook("ToPlayBook")}
+                // onClick={() =>
+                //   (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
+                // }
                 onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
+                  (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
                 }
               >
                 {homeMain.length > 0
@@ -128,8 +131,11 @@ const HomePage = (props) => {
               </div>
               <div
                 // onClick={() => props.switchPlayBook("ToPlayBook")}
+                // onClick={() =>
+                //   (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
+                // }
                 onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
+                  (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
                 }
                 className={styles.bodyContentRight}
                 style={{ backgroundImage: `url(${playBookArrow})` }}
@@ -146,8 +152,11 @@ const HomePage = (props) => {
                     className={styles.playBookButton}
                     // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
                     onClick={() =>
-                      (window.location.href = `${props.siteUrl}?topage=${props.WhyPlayBooklink}`)
+                      (window.location.href = props.WhyPlayBooklink)
                     }
+                    // onClick={() =>
+                    //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
+                    // }
                   >
                     {homeMain.length > 0
                       ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
@@ -208,9 +217,10 @@ const HomePage = (props) => {
                 className={styles.bodyContentHeading}
                 style={{ cursor: "pointer" }}
                 // onClick={() => props.switchPlayBook("ToDecisionTree")}
-                onClick={() =>
-                  (window.location.href = `${props.siteUrl}?topage=${props.DecisionTreeLink}`)
-                }
+                onClick={() => (window.location.href = props.DecisionTreeLink)}
+                // onClick={() =>
+                //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
+                // }
               >
                 {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
@@ -229,8 +239,11 @@ const HomePage = (props) => {
                   style={{ backgroundImage: `url(${decisionTreeArrow})` }}
                   // onClick={() => props.switchPlayBook("ToDecisionTree")}
                   onClick={() =>
-                    (window.location.href = `${props.siteUrl}?topage=${props.DecisionTreeLink}`)
+                    (window.location.href = props.DecisionTreeLink)
                   }
+                  // onClick={() =>
+                  //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
+                  // }
                 ></div>
               </p>
               <div className={styles.bottomCornerArrowCover}>

@@ -90,8 +90,11 @@ const PlaybookGrid = (props) => {
           <div className={styles.breadCrumbSection}>
             <div
               // onClick={() => props.navHandler("ToHome")}
+              // onClick={() =>
+              //   (window.location.href = `${props.siteUrl}?topage=home`)
+              // }
               onClick={() =>
-                (window.location.href = `${props.siteUrl}?topage=home`)
+                (window.location.href = `${props.absoluteUrl}/SitePages/Home.aspx`)
               }
               className={styles.homeIcon}
               style={{ backgroundImage: `url(${homeIcon})` }}
@@ -205,7 +208,10 @@ const PlaybookGrid = (props) => {
                         <div className={styles.arrowTitle}>Scope</div>
                         <div className={styles.arrowSubTitle}>Discover</div>
                       </div>
-                      <img src={`${DiscoverArrow}`} />
+                      <img
+                        src={`${DiscoverArrow}`}
+                        className={styles.DarkBlueArrow}
+                      />
                       <img
                         src={`${DiscoverProgress}`}
                         style={{
@@ -216,6 +222,7 @@ const PlaybookGrid = (props) => {
                           transform: "rotateX(26deg)",
                           zIndex: 0,
                         }}
+                        className={styles.DarkBlueArrowProgress}
                       />
                     </div>
                   </div>
@@ -321,7 +328,10 @@ const PlaybookGrid = (props) => {
                         <div className={styles.arrowTitle}>Define</div>
                         <div className={styles.arrowSubTitle}>Design</div>
                       </div>
-                      <img src={`${DesignArrow}`} />
+                      <img
+                        src={`${DesignArrow}`}
+                        className={styles.RoseArrow}
+                      />
                       <img
                         src={`${DesignProgress}`}
                         style={{
@@ -332,6 +342,7 @@ const PlaybookGrid = (props) => {
                           transform: "rotateX(26deg)",
                           zIndex: 0,
                         }}
+                        className={styles.RoseArrowProgress}
                       />
                     </div>
                   </div>
@@ -463,6 +474,7 @@ const PlaybookGrid = (props) => {
                           props.navHandler("ToPlayBookDetails");
                           props.selectPhase("Execute");
                         }}
+                        className={styles.RedArrow}
                       />
                       <img
                         src={`${BuildProgress}`}
@@ -478,6 +490,7 @@ const PlaybookGrid = (props) => {
                           props.navHandler("ToPlayBookDetails");
                           props.selectPhase("Execute");
                         }}
+                        className={styles.RedArrowProgress}
                       />
                       {/* <img src={`${CenterImg}`} className={styles.centerImg} /> */}
                     </div>
@@ -587,16 +600,18 @@ const PlaybookGrid = (props) => {
                   <div
                     className={`${styles.imageSection} imageSection`}
                     style={{ height: "11.7rem" }}
-                    onClick={() => {
-                      props.navHandler("ToPlayBookDetails");
-                      props.selectPhase("Implement");
-                    }}
+                    // onClick={() => {
+                    //   props.navHandler("ToPlayBookDetails");
+                    //   props.selectPhase("Implement");
+                    // }}
                   >
-                    <img src={`${CenterImg}`} className={styles.centerImg} />
-
                     <div
                       style={{ right: "0.2rem", top: "-1rem " }}
                       className={styles.plusIcon}
+                      onClick={() => {
+                        props.navHandler("ToPlayBookDetails");
+                        props.selectPhase("Implement");
+                      }}
                     >
                       +
                     </div>
@@ -607,11 +622,23 @@ const PlaybookGrid = (props) => {
                         left: "44%",
                         transform: "rotate(360deg)",
                       }}
+                      onClick={() => {
+                        props.navHandler("ToPlayBookDetails");
+                        props.selectPhase("Implement");
+                      }}
                     >
                       <div className={styles.arrowTitle}>Execute</div>
                       <div className={styles.arrowSubTitle}>Implement</div>
                     </div>
-                    <img src={`${ImplementArrow}`} />
+                    <img
+                      src={`${ImplementArrow}`}
+                      className={styles.BlueArrow}
+                      onClick={() => {
+                        props.navHandler("ToPlayBookDetails");
+                        props.selectPhase("Implement");
+                      }}
+                    />
+                    <img src={`${CenterImg}`} className={styles.centerImg} />
                     <img
                       src={`${ImplementProgress}`}
                       style={{
@@ -621,6 +648,11 @@ const PlaybookGrid = (props) => {
                         bottom: -37,
                         transform: "rotateX(26deg)",
                         zIndex: 0,
+                      }}
+                      className={styles.BlueArrowProgress}
+                      onClick={() => {
+                        props.navHandler("ToPlayBookDetails");
+                        props.selectPhase("Implement");
                       }}
                     />
                   </div>
@@ -748,7 +780,10 @@ const PlaybookGrid = (props) => {
                       <div className={styles.arrowTitle}>Realize</div>
                       <div className={styles.arrowSubTitle}>Optimize</div>
                     </div>
-                    <img src={`${OptimizeArrow}`} />
+                    <img
+                      src={`${OptimizeArrow}`}
+                      className={styles.TealArrow}
+                    />
                     <img
                       src={`${OptimizeProgress}`}
                       style={{
@@ -759,6 +794,7 @@ const PlaybookGrid = (props) => {
                         transform: "rotateX(26deg)",
                         zIndex: 0,
                       }}
+                      className={styles.TealArrowProgress}
                     />
                   </div>
                 </div>

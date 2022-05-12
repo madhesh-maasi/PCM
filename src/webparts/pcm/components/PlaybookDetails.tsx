@@ -30,6 +30,7 @@ const PlaybookDetails = (props) => {
   const [lifecycleDoc, setLifecycleDoc] = useState(arrLifecycleDoc);
   const [filteredTableContent, setFilteredTableContent] = useState([]);
   const [descriptions, setDescriptions] = useState([]);
+  const [listPara, setListPara] = useState([]);
   useEffect(() => {
     props.sp.web.lists
       .getByTitle("Lifecycles")
@@ -62,6 +63,17 @@ const PlaybookDetails = (props) => {
               : "")
         );
         console.log(arrFilteredDescr);
+        let para = arrFilteredDescr
+          .map((li) => {
+            if (li.PCMDescrType == "Paragraph Description" && li.PCMDescr != "")
+              return li.PCMDescr;
+          })
+          .filter((li) => li != undefined);
+        console.log(para);
+        // [...Array.from(new Set(para))]
+        para = Array["from"](new Set(para));
+        setListPara(para);
+        console.log("Testing");
         setDescriptions(arrFilteredDescr);
       })
       .catch((error) => console.log(error));
@@ -89,7 +101,7 @@ const PlaybookDetails = (props) => {
         setFilteredTableContent(arrFilteredtable);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [selectedItem]);
 
   return (
     <>
@@ -114,8 +126,11 @@ const PlaybookDetails = (props) => {
           <div className={styles.Nav}>
             <div
               // onClick={() => props.navHandler("ToHome")}
+              // onClick={() =>
+              //   (window.location.href = `${props.siteUrl}?topage=home`)
+              // }
               onClick={() =>
-                (window.location.href = `${props.siteUrl}?topage=home`)
+                (window.location.href = `${props.absoluteUrl}/SitePages/Home.aspx`)
               }
               className={styles.homeIcon}
               style={{ backgroundImage: `url(${HomeIcon})` }}
@@ -377,14 +392,56 @@ const PlaybookDetails = (props) => {
 
             <div className={styles.bodyContentLists}>
               <ul>
-                {descriptions.length > 0
+                {/* {descriptions.length > 0
                   ? descriptions
                       .filter(
                         (des) => des.PCMDescrType == "Paragraph Description"
                       )
                       .map((filteredItem) => {
-                        return <li>{filteredItem.PCMDescr}</li>;
+                        let subParas = descriptions.filter(
+                          (curItem) => curItem.PCMDescr == filteredItem.PCMDescr
+                        );
+                        return (
+                          <li>
+                            {filteredItem.PCMDescr}
+                            <ul>
+                              {subParas.map((subPara) => {
+                                return <li>{subPara.SubDescr}</li>;
+                              })}
+                            </ul>
+                          </li>
+                        );
                       })
+                  : ""} */}
+                {listPara.length > 0
+                  ? listPara.map((paragraph) => {
+                      let selectedSub = [];
+                      selectedSub = descriptions.filter(
+                        (data) =>
+                          data.PCMDescr == paragraph &&
+                          data.PCMDescrType == "Paragraph Description" &&
+                          data.SubDescr != ""
+                      );
+                      console.log(selectedSub);
+                      return (
+                        <li>
+                          {paragraph}
+                          {selectedSub.length > 0 ? (
+                            <ul style={{ marginLeft: "2rem" }}>
+                              {selectedSub.map((item) => {
+                                return item.SubDescr != "" ? (
+                                  <li>{item.SubDescr}</li>
+                                ) : (
+                                  ""
+                                );
+                              })}
+                            </ul>
+                          ) : (
+                            ""
+                          )}
+                        </li>
+                      );
+                    })
                   : ""}
               </ul>
             </div>

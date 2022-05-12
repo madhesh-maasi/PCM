@@ -3,14 +3,14 @@
   "solution": {
     "name": "jnj-apps-as-pcm",
     "id": "4b4e03b0-ef2c-4d36-a8e4-0898e308545e",
-    "version": "5.0.0.0",
+    "version": "5.0.0.1",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "features": [{
       "title": "asset-deployment-webpart-client-side-solution",
       "description": "asset-deployment-webpart-client-side-solution",
       "id": "9d99332e-1a08-427c-9824-5d41839810b6",     // <-- Update new GUID
-      "version": "5.0.0.0",
+      "version": "5.0.0.1",
       "assets": { 
         "elementManifests": [  
           "lists.xml",

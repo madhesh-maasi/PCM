@@ -44,32 +44,43 @@ const App = (props) => {
       });
   }, []);
   useEffect(() => {
-    if (url.indexOf("?") != -1 && homeLinks.length > 0) {
-      const paramsString = window.location.href.split("?")[1].toLowerCase();
-      const searchParams = new URLSearchParams(paramsString);
-      console.log(searchParams.has("topage"));
-      searchParams.has("topage")
-        ? searchParams.get("topage").toLocaleLowerCase() == "home"
-          ? (startPage = "ToHome")
-          : searchParams.get("topage").toLocaleLowerCase() == `${PBLink}`
-          ? (startPage = "ToPlayBook")
-          : searchParams.get("topage").toLocaleLowerCase() == `${DTLink}`
-          ? (startPage = "ToDecisionTree")
-          : searchParams.get("topage").toLocaleLowerCase() == `${WPBLink}`
-          ? (startPage = "ToWhyPlayBook")
-          : ""
-        : (startPage = "ToHome");
-      setNavState(startPage);
-      console.log(searchParams.get("topage"));
-    } else {
-      startPage = "ToHome";
-      setNavState(startPage);
-    }
-  }, [homeLinks]);
+    // if (url.indexOf("?") != -1 && homeLinks.length > 0) {
+    //   const paramsString = window.location.href.split("?")[1].toLowerCase();
+    //   const searchParams = new URLSearchParams(paramsString);
+    //   console.log(searchParams.has("topage"));
+    //   searchParams.has("topage")
+    //     ? searchParams.get("topage").toLocaleLowerCase() == "home"
+    //       ? (startPage = "ToHome")
+    //       : searchParams.get("topage").toLocaleLowerCase() == `${PBLink}`
+    //       ? (startPage = "ToPlayBook")
+    //       : searchParams.get("topage").toLocaleLowerCase() == `${DTLink}`
+    //       ? (startPage = "ToDecisionTree")
+    //       : searchParams.get("topage").toLocaleLowerCase() == `${WPBLink}`
+    //       ? (startPage = "ToWhyPlayBook")
+    //       : ""
+    //     : (startPage = "ToHome");
+    //   setNavState(startPage);
+    // } else {
+    //   startPage = "ToHome";
+    //   setNavState(startPage);
+    // }
+    console.log(props.context.pageContext.web.absoluteUrl);
 
-  // console.log(PlayBookLink);
-  // console.log(WhyPlayBooklink);
-  // console.log(DecisionTreeLink);
+    let url = window.location.href.split("/");
+    let page = url[url.length - 1].split(".")[0];
+    console.log(page);
+    // if (page.toLocaleLowerCase() == "playbook") {
+    //   startPage = "ToPlayBook";
+    // } else if (page.toLocaleLowerCase() == "whyplaybook") {
+    //   startPage = "ToWhyPlayBook";
+    // } else if (page.toLocaleLowerCase() == "decisiontree") {
+    //   startPage = "ToDecisionTree";
+    // } else {
+    //   startPage = "ToHome";
+    // }
+    startPage = "ToPlayBook";
+    setNavState(startPage);
+  }, []);
 
   const switchHomeScreenHandler = (str) => {
     setNavState(str);
@@ -84,6 +95,7 @@ const App = (props) => {
           sp={props.sp}
           switchPlayBook={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
           PlayBookLink={PBLink}
           WhyPlayBooklink={WPBLink}
           DecisionTreeLink={DTLink}
@@ -94,6 +106,7 @@ const App = (props) => {
           navHandler={switchHomeScreenHandler}
           selectPhase={selectedPhaseHandler}
           siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
         />
       ) : navState == "ToPlayBookDetails" ? (
         <PlaybookDetails
@@ -101,12 +114,14 @@ const App = (props) => {
           selectedItem={selectedPhase}
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
         />
       ) : navState == "ToWhyPlayBook" ? (
         <WhyPlayBook
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
           PlayBookLink={PBLink}
           WhyPlayBooklink={WPBLink}
           DecisionTreeLink={DTLink}
@@ -116,6 +131,7 @@ const App = (props) => {
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
           PlayBookLink={PBLink}
           WhyPlayBooklink={WPBLink}
           DecisionTreeLink={DTLink}

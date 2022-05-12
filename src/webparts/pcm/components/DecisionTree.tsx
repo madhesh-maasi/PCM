@@ -276,8 +276,11 @@ const DecisionTree = (props) => {
             src={`${homeIcon}`}
             alt="home image"
             // onClick={() => props.navHandler("ToHome")}
+            // onClick={() =>
+            //   (window.location.href = `${props.siteUrl}?topage=home`)
+            // }
             onClick={() =>
-              (window.location.href = `${props.siteUrl}?topage=home`)
+              (window.location.href = `${props.absoluteUrl}/SitePages/Home.aspx`)
             }
           />{" "}
           <p>{`>`}</p> <p>Decision Tree</p>

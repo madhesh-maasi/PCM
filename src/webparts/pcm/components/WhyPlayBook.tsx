@@ -305,8 +305,11 @@ const WhyPlayBook = (props) => {
         <div className={styles.nav}>
           <img
             // onClick={() => props.navHandler("ToHome")}
+            // onClick={() =>
+            //   (window.location.href = `${props.siteUrl}?topage=home`)
+            // }
             onClick={() =>
-              (window.location.href = `${props.siteUrl}?topage=home`)
+              (window.location.href = `${props.absoluteUrl}/SitePages/Home.aspx`)
             }
             src={`${homeIcon}`}
             alt="home image"
@@ -325,9 +328,10 @@ const WhyPlayBook = (props) => {
         <div className={styles.actionBtns}>
           <button
             //  onClick={() => props.navHandler("ToPlayBook")}
-            onClick={() =>
-              (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
-            }
+            onClick={() => (window.location.href = props.PlayBookLink)}
+            // onClick={() =>
+            //   (window.location.href = `${props.absoluteUrl}/SitePages/Playbook.aspx`)
+            // }
           >
             Go to Playbook
           </button>

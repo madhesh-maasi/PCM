@@ -363,6 +363,9 @@
 .bodyContentLists {
   font-size: 16px;
   margin-left: 45px;
+  ul{
+margin: 1.5rem 0;
+  }
   li {
     margin-bottom: 10px;
   }
@@ -412,7 +415,7 @@
       ul {
         padding-left: 52px;
         height: 164px;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin-right: 15px;
         li {
           color: #707070;
@@ -455,9 +458,8 @@
       }
       ul {
         padding-left: 52px;
-        margin-top: 31px;
-        height: 164px;
-        overflow-y: scroll;
+        height: 194px;
+        overflow-y: auto;
         margin-right: 15px;
 
         li {
