@@ -3,7 +3,6 @@
 
     <!-- Home List -->
     <Field ID="{0b736bff-2afe-4b9a-be70-191933534ee1}" Name="PCMBtnLink" DisplayName="Button Link" Description="Button Link" StaticName="Button Link" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
-
     <Field ID="{7d9c9d0c-f742-4e3c-86ec-e81fabb7c3a6}" Type="Thumbnail" Name="PCMIcon" DisplayName="Icon" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_PCM" StaticName="PCMIcon" />
     <Field Type="Text" Name="PCMColor" DisplayName="Color" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="_PCM" ID="{d05512fd-e05f-41c7-9050-8f85e7b0b8a3}" StaticName="PCMColor" />
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645D1A" Name="PCMHomeLink" Group="_PCM" Description="">
@@ -14,7 +13,6 @@
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="HomeLinkSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Home links" Description="Home links" TemplateType="100" Url="Lists/Homelinks"></ListInstance>
-
     <!-- Home List -->
     <!-- Home main  Section -->
     <Field ID="{f7c5f44d-d4ce-4303-b92d-3a8710b878d6}" Type="Thumbnail" Name="PCMImage" DisplayName="Background Image" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="_PCM" StaticName="PCMImage" />
@@ -56,16 +54,13 @@
             <FieldRef Name="PCMOrderNo" DisplayName="Order" ID="{6e9dd7e3-b8f9-4072-a787-7a39a52b9d74}" />
             <FieldRef Name="PCMDescrType" DisplayName="DescrType" ID="{ed780701-4adf-4ab5-a493-6859dd921104}" />
             <FieldRef Name="PCMDescr" DisplayName="Description" ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" />
+            <FieldRef Name="PCMSubDescr" DisplayName="SubDescr" ID="{f8c14806-46d4-4930-8dcf-2dcceb2cc230}" />
             <FieldRef Name="PCMDisplayOrder" DisplayName="Display Order" ID="{e8f4d339-da23-44d7-84cb-2ef70e64b68f}" />
             <FieldRef Name="PCMDescrLabel" DisplayName="Descr label" ID="{49dcf622-937d-4fa6-b4f9-a307d91ae38e}" />
         </FieldRefs>
     </ContentType>
     <ListInstance CustomSchema="lifecycleDescrSchema.xml" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Title="Lifecycle description" Description="Lifecycles" TemplateType="100" Url="Lists/Lifecycledescriptions"></ListInstance>
-
-
     <!-- Lifecycle Description -->
-
-
     <!-- Question List -->
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645C1A" Name="PCMQuestion" Group="_PCM" Description="">
         <FieldRefs>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <Field ID="{72a0c140-8248-4de7-9a5d-1d971f6dbc16}" Name="PCMDescr" DisplayName="PCMDescr" Description="Paragraph text" StaticName="PCMParTitle" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="FALSE" RichTextMode="FullHtml" />
+    <Field ID="{f8c14806-46d4-4930-8dcf-2dcceb2cc230}" Name="PCMSubDescr" DisplayName="PCMSubDescr" Description="Sub Paragraph text" StaticName="PCMSubDescr" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" RichText="FALSE" RichTextMode="FullHtml" />
     <Field ID="{8aa48173-bad3-49d8-a6af-ef0c6d0a867c}" Name="PCMLink" DisplayName="PCMLink" Description="PCMLink" StaticName="PCMLink" Group="_PCM" Type="Note" NumLines="5" UnlimitedLengthInDocumentLibrary="TRUE" ShowInEditForm="TRUE" Required="TRUE" />
 
     <!-- Lifecycle List -->

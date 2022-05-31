@@ -29,6 +29,7 @@
     }
   }
   .Scope {
+    
     .bodyContent {
       border-left: 10px solid #000099;
       .bodyContentHeader {
@@ -362,9 +363,18 @@
 }
 .bodyContentLists {
   font-size: 16px;
-  margin-left: 45px;
+  margin-left: 46px;
+  max-height: 500px;
+  overflow-y: auto; 
+  padding-left:18px;
+
+  > ul {
+    > li{
+      margin-bottom: 1rem;
+    }
+  }
   ul{
-margin: 1.5rem 0;
+margin: 0.5rem 0;
   }
   li {
     margin-bottom: 10px;
@@ -532,3 +542,46 @@ margin: 1.5rem 0;
 //     background-repeat: no-repeat;
 //   }
 // }
+.bodyContentLists::-webkit-scrollbar {
+  width: 18px;
+}
+
+.bodyContentLists::-webkit-scrollbar-track {
+  background: #c1c1c1;
+  border-left: 5.5px solid white;
+  border-right: 5.5px solid white;
+  border-radius: 10px;
+}
+
+.bodyContentLists::-webkit-scrollbar-thumb {
+  height: 46px;
+  border-radius: 50px;
+}
+.Scope{
+  .bodyContentLists::-webkit-scrollbar-thumb {
+    background-color: #000099 !important;
+  }
+}
+.Define{
+  .bodyContentLists::-webkit-scrollbar-thumb {
+    background-color: #cc0099 !important;
+  }
+}
+
+.Execute{
+  .bodyContentLists::-webkit-scrollbar-thumb {
+    background-color: #ca001b !important;
+  }
+}
+
+.Implement{
+  .bodyContentLists::-webkit-scrollbar-thumb {
+    background-color: #00a3ad !important;
+  }
+}
+
+.Optimize{
+  .bodyContentLists::-webkit-scrollbar-thumb {
+    background-color: #008578 !important;
+  }
+}

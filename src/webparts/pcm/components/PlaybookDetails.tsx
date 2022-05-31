@@ -47,6 +47,7 @@ const PlaybookDetails = (props) => {
       .get()
       .then((data) => {
         arrLifeycleDescr = data;
+        arrLifeycleDescr.sort((a, b) => a.PCMDisplayOrder - b.PCMDisplayOrder);
         arrFilteredDescr = arrLifeycleDescr.filter(
           (li) =>
             li.PCMOrderNo.PCMOrder ==
@@ -62,15 +63,12 @@ const PlaybookDetails = (props) => {
               ? 5
               : "")
         );
-        console.log(arrFilteredDescr);
         let para = arrFilteredDescr
           .map((li) => {
             if (li.PCMDescrType == "Paragraph Description" && li.PCMDescr != "")
               return li.PCMDescr;
           })
           .filter((li) => li != undefined);
-        console.log(para);
-        // [...Array.from(new Set(para))]
         para = Array["from"](new Set(para));
         setListPara(para);
         setDescriptions(arrFilteredDescr);
@@ -419,7 +417,7 @@ const PlaybookDetails = (props) => {
                         (data) =>
                           data.PCMDescr == paragraph &&
                           data.PCMDescrType == "Paragraph Description" &&
-                          data.SubDescr != ""
+                          data.PCMSubDescr != ""
                       );
                       console.log(selectedSub);
                       return (
@@ -428,8 +426,8 @@ const PlaybookDetails = (props) => {
                           {selectedSub.length > 0 ? (
                             <ul style={{ marginLeft: "2rem" }}>
                               {selectedSub.map((item) => {
-                                return item.SubDescr ? (
-                                  <li>{item.SubDescr}</li>
+                                return item.PCMSubDescr ? (
+                                  <li>{item.PCMSubDescr}</li>
                                 ) : (
                                   ""
                                 );
