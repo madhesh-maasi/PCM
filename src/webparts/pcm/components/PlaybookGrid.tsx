@@ -20,7 +20,7 @@ const LegendProgress = require("../../../ExternalRef/img/LegendProgress.png");
 const BuDotImg = require("../../../ExternalRef/img/BuDotImg.png");
 const CtDotImg = require("../../../ExternalRef/img/CtDotImg.png");
 const CenterImg = require("../../../ExternalRef/img/CenterImg.png");
-const ContentBannerImg = require("../../../ExternalRef/img/BannerImages/ContentsBannerImg.png");
+// const ContentBannerImg = require("../../../ExternalRef/img/BannerImages/ContentsBannerImg.png");
 let arrDescriptions = [];
 let arrCMDescr = [];
 let arrCmDescrOptions = [];
@@ -83,7 +83,7 @@ const PlaybookGrid = (props) => {
   }, []);
   return (
     <>
-      <Banner src={ContentBannerImg} />
+      {/* <Banner src={ContentBannerImg} /> */}
       {isArrowPage ? (
         <div className={styles.playbookGrid}>
           {/* BreadCrumb Section */}

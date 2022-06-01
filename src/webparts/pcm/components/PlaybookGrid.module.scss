@@ -3,7 +3,7 @@
     width: 1024px;
     margin: auto;
     display: flex;
-    margin-top: 52px;
+    margin-top: 10px;
 
     .homeIcon {
       width: 21px;
@@ -369,12 +369,12 @@
 
       ul,
       ol {
-        padding-left: 22px;
+        padding-left: 20px;
 
         li {
-          color: #888b8d;
+          color: #000;
           font-size: 18px;
-          padding: 0 8px;
+          padding: 0 1px;
         }
       }
 
@@ -548,6 +548,17 @@
 
 // responsive
 @media (max-width: 1800px) {
+
+  // ul li padding
+
+  .playbookGrid .arrowSection .arrowGrid ul
+  {
+
+      padding-left: 15px;  
+      li {
+        padding: 0 1px;
+      }
+}
   .arrowGrid {
     width: 825px !important;
     height: 660px !important;

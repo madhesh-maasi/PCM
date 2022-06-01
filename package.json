@@ -14,17 +14,20 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
+    "@microsoft/generator-sharepoint": "^1.14.0",
     "@microsoft/sp-core-library": "1.11.0",
     "@microsoft/sp-lodash-subset": "1.11.0",
     "@microsoft/sp-office-ui-fabric-core": "1.11.0",
     "@microsoft/sp-property-pane": "1.11.0",
     "@microsoft/sp-webpart-base": "1.11.0",
     "@pnp/pnpjs": "^2.10.0",
+    "gulp-cli": "^2.3.0",
     "nuka-carousel": "^5.0.8",
     "office-ui-fabric-react": "6.214.0",
     "react": "16.8.5",
     "react-dom": "16.8.5",
-    "react-image-mapper": "0.0.15"
+    "react-image-mapper": "0.0.15",
+    "yo": "^4.3.0"
   },
   "devDependencies": {
     "@types/react": "16.8.8",

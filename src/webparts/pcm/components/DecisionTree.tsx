@@ -6,7 +6,10 @@ import "../../../ExternalRef/css/style.css";
 import "@material-ui/core";
 import {
   Box,
+  Checkbox,
   FormControl,
+  FormControlLabel,
+  FormLabel,
   InputLabel,
   MenuItem,
   NativeSelect,
@@ -28,7 +31,7 @@ const DecisionTreeBannerImg = require("../../../ExternalRef/img/BannerImages/Dec
 let questionsArr = [];
 let answersArr = [];
 let Q1Ans = [];
-let Q2Ans = [];
+let r = [];
 let Q1 = "";
 let Q2 = "";
 let selectedAnsOne = 0;
@@ -86,9 +89,13 @@ const DecisionTree = (props) => {
           .then((data) => {
             answersArr = data;
             Q1Ans = answersArr.filter((item) => item.PCMQuest.Title == Q1);
-            Q2Ans = answersArr.filter((item) => item.PCMQuest.Title == Q2);
+            r = answersArr.filter((item) => item.PCMQuest.Title == Q2);
             setAnswersOne(Q1Ans);
-            setAnswersTwo(Q2Ans);
+            setAnswersTwo(
+              r.map((q2A) => {
+                return { ID: q2A.ID, isSelected: false, Value: q2A.Title };
+              })
+            );
           })
           .catch((error) => {
             console.log(error);
@@ -111,6 +118,8 @@ const DecisionTree = (props) => {
         console.log(error);
       });
   }, []);
+
+  console.log(answersTwo);
 
   const SubmitReportHandler = () => {
     selectedAnswer = arrReport.filter(
@@ -207,8 +216,23 @@ const DecisionTree = (props) => {
       </div>
 
       {/* s2 */}
+
       <div className="selectBox">
-        <Box>
+        {answersTwo.map((q2A) => (
+          <FormControlLabel
+            style={{ display: "flex" }}
+            control={
+              <Checkbox
+                id={q2A.ID}
+                value={q2A.Value}
+                style={{ display: "flex", flexDirection: "row" }}
+              />
+            }
+            label={q2A.Value}
+            key={q2A.ID}
+          />
+        ))}
+        {/* <Box>
           <FormControl>
             <NativeSelect
               value={q2val}
@@ -231,7 +255,7 @@ const DecisionTree = (props) => {
               })}
             </NativeSelect>
           </FormControl>
-        </Box>
+        </Box> */}
       </div>
     </div>,
     <div
@@ -241,7 +265,10 @@ const DecisionTree = (props) => {
       <div className={styles.Tcard}>
         <div className={styles.text}>
           <h1>Thank You !</h1>
-          <h4>You've completed your survey</h4>
+          <h4>
+            You’ve completed the questionnaire. <br /> Please click below to
+            view your report​
+          </h4>
         </div>
         <div className={styles.btnSection}>
           <div className={styles.lArrows}>
@@ -335,9 +362,9 @@ const DecisionTree = (props) => {
                 console.log(q1val);
                 console.log(slideIndex);
                 if (slideIndex == 0 && q1val == 0) {
-                  alert("Please select the Anser for question One");
+                  alert("Please select the Answer for question One");
                 } else if (slideIndex == 1 && q2val == 0) {
-                  alert("Please select the Anser for question Two");
+                  alert("Please select the Answer for question Two");
                 } else {
                   setSlideIndex(
                     slideIndex == slideData.length - 1
