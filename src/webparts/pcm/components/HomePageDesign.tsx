@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Banner from "./Banner";
 import PlaybookDetails from "./PlaybookDetails";
+import { Icon } from "office-ui-fabric-react";
 const playBookBG = require("../../../ExternalRef/img/playBookBg.png");
 const playBookIcon = require("../../../ExternalRef/img/playBookIcon.png");
 const playBookArrow = require("../../../ExternalRef/img/playBookArrow.png");
@@ -118,9 +119,10 @@ const HomePage = (props) => {
                   (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
                 }
               >
-                {homeMain.length > 0
+                {/* {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Playbook")[0].Title
-                  : ""}
+                  : ""} */}
+                Native Playbook
               </div>
             </h1>
             <p className={styles.bodyCardContent}>
@@ -129,7 +131,7 @@ const HomePage = (props) => {
                   ? homeMain.filter((HM) => HM.Title == "Playbook")[0].PCMDescr
                   : ""}
               </div>
-              <div
+              {/* <div
                 // onClick={() => props.switchPlayBook("ToPlayBook")}
                 // onClick={() =>
                 //   (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
@@ -139,7 +141,7 @@ const HomePage = (props) => {
                 }
                 className={styles.bodyContentRight}
                 style={{ backgroundImage: `url(${playBookArrow})` }}
-              ></div>
+              ></div> */}
             </p>
             <div className={styles.playBookButtonSection}>
               <div
@@ -158,10 +160,11 @@ const HomePage = (props) => {
                     //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
                     // }
                   >
-                    {homeMain.length > 0
+                    {/* {homeMain.length > 0
                       ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
                           .PCMLabel
-                      : ""}
+                      : ""} */}
+                    Click Here
                   </button>
                 </a>
               </div>
@@ -201,18 +204,25 @@ const HomePage = (props) => {
               <div
                 className={styles.bodyContentIcon}
                 // style={{ backgroundImage: `url(${decisionTreeIcon})` }}
-                style={{
-                  backgroundImage: `url(${
-                    homeMain.length > 0
-                      ? JSON.parse(
-                          homeMain.filter(
-                            (HM) => HM.Title == "Decision Tree"
-                          )[0].PCMIcon
-                        ).serverRelativeUrl
-                      : ""
-                  })`,
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: `url(${
+                //     homeMain.length > 0
+                //       ? JSON.parse(
+                //           homeMain.filter(
+                //             (HM) => HM.Title == "Decision Tree"
+                //           )[0].PCMIcon
+                //         ).serverRelativeUrl
+                //       : ""
+                //   })`,
+                // }}
+              >
+                <Icon
+                  iconName="Settings"
+                  style={{
+                    fontSize: "40px",
+                  }}
+                />
+              </div>
               <h1
                 className={styles.bodyContentHeading}
                 style={{ cursor: "pointer" }}
@@ -222,10 +232,11 @@ const HomePage = (props) => {
                 //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
                 // }
               >
-                {homeMain.length > 0
+                {/* {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
                       .Title
-                  : ""}
+                  : ""} */}
+                Generate a Plan​
               </h1>
               <p className={styles.bodyCardContent}>
                 <div className={styles.bodyContentLeft}>
@@ -234,7 +245,7 @@ const HomePage = (props) => {
                         .PCMDescr
                     : ""}
                 </div>
-                <div
+                {/* <div
                   className={styles.bodyContentRight}
                   style={{ backgroundImage: `url(${decisionTreeArrow})` }}
                   // onClick={() => props.switchPlayBook("ToDecisionTree")}
@@ -244,8 +255,38 @@ const HomePage = (props) => {
                   // onClick={() =>
                   //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
                   // }
-                ></div>
+                ></div> */}
               </p>
+              <div className={styles.playBookButtonSection}>
+                <div
+                  className={styles.rightArrowIcon}
+                  style={{ backgroundImage: `url(${toRightArrow})` }}
+                ></div>
+                <div>
+                  <a href="#" className={styles.buttonContainer}>
+                    <button
+                      className={styles.DecisionTreeButton}
+                      // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
+                      onClick={() =>
+                        (window.location.href = props.WhyPlayBooklink)
+                      }
+                      // onClick={() =>
+                      //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
+                      // }
+                    >
+                      {/* {homeMain.length > 0
+                      ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
+                          .PCMLabel
+                      : ""} */}
+                      Click Here
+                    </button>
+                  </a>
+                </div>
+                <div
+                  className={styles.leftArrowIcon}
+                  style={{ backgroundImage: `url(${toLeftArrow})` }}
+                ></div>
+              </div>
               <div className={styles.bottomCornerArrowCover}>
                 <div
                   className={styles.bottomCornerArrow}

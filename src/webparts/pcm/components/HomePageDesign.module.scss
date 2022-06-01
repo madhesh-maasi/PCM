@@ -129,7 +129,7 @@
     width: 65px;
     height: 65px;
     position: relative;
-    top: -50px;
+    top: -18px;
     left: 405px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -154,7 +154,7 @@
     width: 65px;
     height: 65px;
     position: relative;
-    top: 64px;
+    top: 0px;
     left: 405px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -255,6 +255,17 @@
   text-align: center;
   background-color: white;
   color: red;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.DecisionTreeButton {
+  text-align: center;
+  background-color: white;
+  color: #00007d;
   border: none;
   border-radius: 20px;
   padding: 8px 18px;
