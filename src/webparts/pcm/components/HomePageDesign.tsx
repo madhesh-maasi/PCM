@@ -64,7 +64,6 @@ const HomePage = (props) => {
           .getByTitle("Home main sections")
           .items.get()
           .then((homemain) => {
-            console.log(homemain);
             setHomeMain(homemain);
           });
       })
@@ -122,7 +121,7 @@ const HomePage = (props) => {
                 {/* {homeMain.length > 0
                   ? homeMain.filter((HM) => HM.Title == "Playbook")[0].Title
                   : ""} */}
-                Native Playbook
+                Navigate Playbook
               </div>
             </h1>
             <p className={styles.bodyCardContent}>
@@ -153,8 +152,11 @@ const HomePage = (props) => {
                   <button
                     className={styles.playBookButton}
                     // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
+                    // onClick={() =>
+                    //   (window.location.href = props.WhyPlayBooklink)
+                    // }
                     onClick={() =>
-                      (window.location.href = props.WhyPlayBooklink)
+                      (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
                     }
                     // onClick={() =>
                     //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
@@ -268,7 +270,7 @@ const HomePage = (props) => {
                       className={styles.DecisionTreeButton}
                       // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
                       onClick={() =>
-                        (window.location.href = props.WhyPlayBooklink)
+                        (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
                       }
                       // onClick={() =>
                       //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
@@ -301,6 +303,15 @@ const HomePage = (props) => {
         className={styles.cardSection}
         style={{ backgroundImage: `url(${cardsBG})` }}
       >
+        <h2
+          style={{
+            textAlign: "center",
+            paddingTop: "2rem",
+            textDecoration: "underline",
+          }}
+        >
+          Browse Change Levers
+        </h2>
         <div className={styles.cards}>{cardSection}</div>
       </div>
       <Footer />

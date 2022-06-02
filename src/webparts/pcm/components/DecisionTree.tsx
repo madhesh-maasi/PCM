@@ -35,11 +35,11 @@ let r = [];
 let Q1 = "";
 let Q2 = "";
 let selectedAnsOne = 0;
-let selectedAnsTwo = 0;
 let currentUserName = "";
 let arrReport = [];
 let selectedAnswer;
 let submitedID = 0;
+let arrAnsTwo = [];
 const DecisionTree = (props) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState(questionsArr);
@@ -51,9 +51,7 @@ const DecisionTree = (props) => {
   // useEffect
   useEffect(() => {
     let selectedAnsOne = 0;
-    let selectedAnsTwo = 0;
     setq1Val(selectedAnsOne);
-    setq2Val(selectedAnsTwo);
     submitedID = 0;
     props.sp.web.currentUser.get().then((data) => {
       currentUserName = data.Title;
@@ -65,7 +63,10 @@ const DecisionTree = (props) => {
       .expand("PCMQuest")
       .get()
       .then((data) => {
-        answersArr = data;
+        answersArr = data.sort(
+          (a, b) => parseFloat(a.PCMOrder) - parseFloat(b.PCMOrder)
+        );
+        // answersArr = data;
       })
       .catch((error) => {
         console.log(error);
@@ -87,15 +88,16 @@ const DecisionTree = (props) => {
           .expand("PCMQuest")
           .get()
           .then((data) => {
-            answersArr = data;
+            answersArr = data.sort(
+              (a, b) => parseFloat(a.PCMOrder) - parseFloat(b.PCMOrder)
+            );
             Q1Ans = answersArr.filter((item) => item.PCMQuest.Title == Q1);
             r = answersArr.filter((item) => item.PCMQuest.Title == Q2);
             setAnswersOne(Q1Ans);
-            setAnswersTwo(
-              r.map((q2A) => {
-                return { ID: q2A.ID, isSelected: false, Value: q2A.Title };
-              })
-            );
+            arrAnsTwo = r.map((q2A) => {
+              return { ID: q2A.ID, isSelected: false, Value: q2A.Title };
+            });
+            setAnswersTwo(arrAnsTwo);
           })
           .catch((error) => {
             console.log(error);
@@ -118,15 +120,23 @@ const DecisionTree = (props) => {
         console.log(error);
       });
   }, []);
-
-  console.log(answersTwo);
-
   const SubmitReportHandler = () => {
-    selectedAnswer = arrReport.filter(
-      (item) =>
-        item.PCMFirstAnswer.ID == selectedAnsOne &&
-        item.PCMSecAnswer.ID == selectedAnsTwo
-    )[0];
+    let SelectedAnsTwo = arrAnsTwo.filter((ansTwo) => ansTwo.isSelected);
+    let getTechnologyID =
+      SelectedAnsTwo.filter((ansTwo) => ansTwo.Value == "Technology").length ==
+      1
+        ? SelectedAnsTwo.filter((ansTwo) => ansTwo.Value == "Technology")[0].ID
+        : 0;
+    console.log(SelectedAnsTwo);
+
+    selectedAnswer = arrReport
+      .filter((item) => item.PCMFirstAnswerId == selectedAnsOne)
+      .filter((item) =>
+        SelectedAnsTwo.length == 1 && SelectedAnsTwo[0].Value == "Technology"
+          ? item.PCMSecAnswerId.includes(getTechnologyID) &&
+            item.PCMSecAnswerId.length == 1
+          : item.PCMSecAnswerId.length != 1
+      )[0];
     console.log(selectedAnswer);
 
     if (submitedID == 0) {
@@ -224,8 +234,15 @@ const DecisionTree = (props) => {
             control={
               <Checkbox
                 id={q2A.ID}
+                checked={q2A.isSelected}
                 value={q2A.Value}
                 style={{ display: "flex", flexDirection: "row" }}
+                onChange={() => {
+                  arrAnsTwo.filter((ans) => ans.ID == q2A.ID)[0].isSelected =
+                    !q2A.isSelected;
+                  setAnswersTwo([...arrAnsTwo]);
+                  console.log(answersTwo);
+                }}
               />
             }
             label={q2A.Value}
@@ -350,7 +367,8 @@ const DecisionTree = (props) => {
         <div className={styles.nxtBtn}>
           {slideIndex == slideData.length - 1 ||
           (slideIndex == 0 && q1val == 0) ||
-          ((slideIndex == 1 || slideIndex == 2) && q2val == 0) ? (
+          ((slideIndex == 1 || slideIndex == 2) &&
+            answersTwo.filter((ansTwo) => ansTwo.isSelected).length == 0) ? (
             <img
               style={{ cursor: "not-allowed" }}
               src={`${NextButtonDisabled}`}
@@ -363,7 +381,10 @@ const DecisionTree = (props) => {
                 console.log(slideIndex);
                 if (slideIndex == 0 && q1val == 0) {
                   alert("Please select the Answer for question One");
-                } else if (slideIndex == 1 && q2val == 0) {
+                } else if (
+                  slideIndex == 1 &&
+                  answersTwo.filter((ansTwo) => ansTwo.isSelected).length == 0
+                ) {
                   alert("Please select the Answer for question Two");
                 } else {
                   setSlideIndex(
@@ -372,7 +393,10 @@ const DecisionTree = (props) => {
                       : slideIndex + 1
                   );
                 }
-                if (slideIndex == 1 && q2val != 0) {
+                if (
+                  slideIndex == 1 &&
+                  answersTwo.filter((ansTwo) => ansTwo.isSelected).length != 0
+                ) {
                   SubmitReportHandler();
                 }
               }}

@@ -574,9 +574,13 @@ const PlaybookDetails = (props) => {
                             {`${table.PCMOrder}.${idx + 1} ${table.Title}`}
                             {table.PCMLinkocLink != "" ? (
                               <a
-                                href={`${table.PCMLink}`}
-                                style={{ marginLeft: "0.3rem" }}
-                                target="_blank"
+                                // href={`${table.PCMLink}`}
+                                onClick={() => window.open(`${table.PCMLink}`)}
+                                style={{
+                                  marginLeft: "0.3rem",
+                                  textDecoration: "underline",
+                                  cursor: "pointer",
+                                }}
                               >
                                 [Tools & More]
                               </a>
@@ -585,7 +589,16 @@ const PlaybookDetails = (props) => {
                             )}
                           </td>
                           <td>
-                            <a href={`${table.PCMLeverLink}`} target="_blank">
+                            <a
+                              style={{
+                                textDecoration: "underline",
+                                cursor: "pointer",
+                              }}
+                              // href={`${table.PCMLeverLink}`}
+                              onClick={() =>
+                                window.open(`${table.PCMLeverLink}`)
+                              }
+                            >
                               {table.PCMSubtitle}
                             </a>
                           </td>

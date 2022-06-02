@@ -81,7 +81,7 @@
     <!-- Answers List-->
     <!-- Report List -->
     <Field Name="PCMFirstAnswer" DisplayName="First answer" ID="{ed295afb-884a-4ce9-af8f-7307babc7b74}" Type="Lookup" List="Lists/Answers" ShowField="Title" Required="TRUE" Group="_PCM" />
-    <Field Name="PCMSecAnswer" ID="{b5a94964-409c-4b2f-9613-793709f9e711}" DisplayName="Second answer" Type="Lookup" List="Lists/Answers" ShowField="Title" Required="TRUE" Group="_PCM" />
+    <Field Name="PCMSecAnswer" ID="{b5a94964-409c-4b2f-9613-793709f9e711}" DisplayName="Second answer" Type="LookupMulti" Mult="TRUE" List="Lists/Answers" ShowField="Title" Required="TRUE" Group="_PCM" />
     <ContentType ID="0x010042D0C1C200A14B6887742B9344645C3C" Name="PCMReport" Group="_PCM" Description="">
         <FieldRefs>
             <FieldRef Name="PCMFirstAnswer" DisplayName="First answer" ID="{ed295afb-884a-4ce9-af8f-7307babc7b74}" />
