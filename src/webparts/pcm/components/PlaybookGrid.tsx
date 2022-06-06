@@ -129,7 +129,7 @@ const PlaybookGrid = (props) => {
               <div
                 className={`${styles.coloredHeaderLightBlue} coloredHeaderLightBlue`}
               >
-                <div className={styles.headerLabel}>
+                <div className={styles.headerLabel} style={{ color: "#000" }}>
                   Corporate Tier (CT) - Led
                 </div>
               </div>
