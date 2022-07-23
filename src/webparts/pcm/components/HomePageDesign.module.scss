@@ -97,11 +97,39 @@
   color: #707070;
     font-weight: 500;
 }
-.bodyContent {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 160px;
-}
+// .bodyContent {
+//   display: flex;
+//   justify-content: center;
+//   margin-bottom: 160px;
+// .topCornerArrowCover {
+//   height: 0px;
+// }
+//   .topCornerArrow{
+//     width: 65px;
+//     height: 65px;
+//     position: relative;
+//     left: 20px;
+//     top: 20px;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//   }
+//   .bodyContentIcon{
+//     width: 54px;
+//     height: 49px;
+//     background-size: contain;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//   }
+//   .bottomCornerArrow{
+//     width: 65px;
+//     height: 65px;
+//     position: relative;
+//     bottom: 20px;
+//     left: 405px;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//   }
+// }
 .playBook,
 .decisionTree {
   margin: 0px 40px;
@@ -409,4 +437,82 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.breadCrumbSection {
+  width: 1024px;
+  margin: auto;
+  display: flex;
+  margin-top: 10px;
+
+  .homeIcon {
+    width: 21px;
+    height: 21px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+
+  .crumbMenu {
+    display: flex;
+    color: #c7c7c7;
+
+    .crumbArrow {
+      margin: 0 8px;
+    }
+
+    .crumbMenuItem {
+      margin: 0 8px;
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+}
+
+
+// deva design
+.cardSec{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 40px;
+  .bodyContent {
+    max-width: 498px;
+    display: flex;
+    margin-bottom: 100px;
+  
+    .topCornerArrowCover {
+      height: 0px;
+    }
+  
+    .topCornerArrow{
+      width: 65px;
+      height: 65px;
+      position: relative;
+      left: 20px;
+      top: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  
+    .bodyContentIcon{
+      width: 54px;
+      height: 49px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  
+    .bottomCornerArrow{
+      width: 65px;
+      height: 65px;
+      position: relative;
+      bottom: 20px;
+      left: 412px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
 }
