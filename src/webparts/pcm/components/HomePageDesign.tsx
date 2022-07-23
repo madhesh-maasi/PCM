@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Banner from "./Banner";
 import PlaybookDetails from "./PlaybookDetails";
 import { Icon } from "office-ui-fabric-react";
+
 const playBookBG = require("../../../ExternalRef/img/playBookBg.png");
 const playBookIcon = require("../../../ExternalRef/img/playBookIcon.png");
 const playBookArrow = require("../../../ExternalRef/img/playBookArrow.png");
@@ -25,50 +26,18 @@ const card4Icon = require("../../../ExternalRef/img/card4Icon.png");
 const card5Icon = require("../../../ExternalRef/img/card5Icon.png");
 const HomeBannerImg = require("../../../ExternalRef/img/BannerImages/homeBannerImg.png");
 
-let arrHomeLinks = [];
 const HomePage = (props) => {
-  const [homeLinks, setHomeLinks] = useState(arrHomeLinks);
   const [homeMain, setHomeMain] = useState([]);
-  const [cardSection, setCardSection] = useState([]);
+
   useEffect(() => {
     props.sp.web.lists
-      .getByTitle("Home links")
-      .items.get()
-      .then((data) => {
-        setHomeLinks(data);
-        let arrCardSection = data.map((li) => {
-          return (
-            <div
-              className={styles.homeLinkCard}
-              style={{ backgroundColor: li.PCMColor }}
-              onClick={() => window.open(li.PCMLink)}
-            >
-              <div
-                className={styles.cardSectionIcon}
-                style={{
-                  backgroundImage: `url(${
-                    JSON.parse(li.PCMIcon).serverRelativeUrl
-                  })`,
-                }}
-              ></div>
-              <div className={styles.cardSectionHeading}>
-                <p>{li.Title}</p>
-              </div>
-            </div>
-          );
-        });
-        setCardSection(arrCardSection);
-      })
-      .then(async () => {
-        await props.sp.web.lists
           .getByTitle("Home main sections")
           .items.get()
           .then((homemain) => {
             setHomeMain(homemain);
           });
-      })
-      .catch((error) => console.log(error));
   }, []);
+
   return (
     <div>
       <Banner src={HomeBannerImg} />
@@ -83,236 +52,71 @@ const HomePage = (props) => {
         </div>
       </div>
       <div>
-        <div className={styles.bodyContent}>
-          <div
-            className={styles.playBook}
-            style={{
-              backgroundImage: `url(${
-                homeMain.length > 0
-                  ? JSON.parse(
-                      homeMain.filter((HM) => HM.Title == "Playbook")[0]
-                        .PCMImage
-                    ).serverRelativeUrl
-                  : ""
-              })`,
-            }}
-          >
-            <div className={styles.topCornerArrowCover}>
+        <div className={styles.cardSec}>
+          {homeMain.map((e) => {
+            return <div className={styles.bodyContent}>
               <div
-                className={styles.topCornerArrow}
-                style={{ backgroundImage: `url(${topCornerIcon})` }}
-              ></div>
-            </div>
-            <div
-              className={styles.bodyContentIcon}
-              style={{ backgroundImage: `url(${playBookIcon})` }}
-            ></div>
-            <h1 className={styles.bodyContentHeading}>
-              <div
-                style={{ cursor: "pointer" }}
-                // onClick={() => props.switchPlayBook("ToPlayBook")}
-                // onClick={() =>
-                //   (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
-                // }
-                onClick={() =>
-                  (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
-                }
+                style={{
+                  backgroundImage: `url(${JSON.parse(e.PCMImage).serverRelativeUrl})`,
+                }}
               >
-                {/* {homeMain.length > 0
-                  ? homeMain.filter((HM) => HM.Title == "Playbook")[0].Title
-                  : ""} */}
-                Navigate Playbook
-              </div>
-            </h1>
-            <p className={styles.bodyCardContent}>
-              <div className={styles.bodyContentLeft}>
-                {homeMain.length > 0
-                  ? homeMain.filter((HM) => HM.Title == "Playbook")[0].PCMDescr
-                  : ""}
-              </div>
-              {/* <div
-                // onClick={() => props.switchPlayBook("ToPlayBook")}
-                // onClick={() =>
-                //   (window.location.href = `${props.siteUrl}?topage=${props.PlayBookLink}`)
-                // }
-                onClick={() =>
-                  (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
-                }
-                className={styles.bodyContentRight}
-                style={{ backgroundImage: `url(${playBookArrow})` }}
-              ></div> */}
-            </p>
-            <div className={styles.playBookButtonSection}>
-              <div
-                className={styles.rightArrowIcon}
-                style={{ backgroundImage: `url(${toRightArrow})` }}
-              ></div>
-              <div>
-                <a href="#" className={styles.buttonContainer}>
-                  <button
-                    className={styles.playBookButton}
-                    // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
-                    // onClick={() =>
-                    //   (window.location.href = props.WhyPlayBooklink)
-                    // }
+                <div className={styles.topCornerArrowCover}>
+                  <div
+                    className={styles.topCornerArrow}
+                    style={{ backgroundImage: `url(${topCornerIcon})`}}
+                  ></div>
+                </div>
+                <div
+                  className={styles.bodyContentIcon}
+                  style={{ backgroundImage: `url(${JSON.parse(e.PCMIcon).serverRelativeUrl})`}}
+                ></div>
+                <h1 className={styles.bodyContentHeading}>
+                  <div
+                    style={{ cursor: "pointer" }}
                     onClick={() =>
-                      (window.location.href = `${props.absoluteUrl}/SitePages/playbook.aspx`)
+                      (window.location.href = `${e.PCMLink}`)
                     }
-                    // onClick={() =>
-                    //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
-                    // }
                   >
-                    {/* {homeMain.length > 0
-                      ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
-                          .PCMLabel
-                      : ""} */}
-                    Click Here
-                  </button>
-                </a>
-              </div>
-              <div
-                className={styles.leftArrowIcon}
-                style={{ backgroundImage: `url(${toLeftArrow})` }}
-              ></div>
-            </div>
-            <div className={styles.bottomCornerArrowCover}>
-              <div
-                className={styles.bottomCornerArrow}
-                style={{ backgroundImage: `url(${bottomCornerIcon})` }}
-              ></div>
-            </div>
-          </div>
-          <div className={styles.decisionTreeA}>
-            <div
-              className={styles.decisionTree}
-              // style={{ backgroundImage: `url(${decisionTreeBG})` }}
-              style={{
-                backgroundImage: `url(${
-                  homeMain.length > 0
-                    ? JSON.parse(
-                        homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
-                          .PCMImage
-                      ).serverRelativeUrl
-                    : ""
-                })`,
-              }}
-            >
-              <div className={styles.topCornerArrowCover}>
-                <div
-                  className={styles.topCornerArrow}
-                  style={{ backgroundImage: `url(${topCornerIcon})` }}
-                ></div>
-              </div>
-              <div
-                className={styles.bodyContentIcon}
-                // style={{ backgroundImage: `url(${decisionTreeIcon})` }}
-                // style={{
-                //   backgroundImage: `url(${
-                //     homeMain.length > 0
-                //       ? JSON.parse(
-                //           homeMain.filter(
-                //             (HM) => HM.Title == "Decision Tree"
-                //           )[0].PCMIcon
-                //         ).serverRelativeUrl
-                //       : ""
-                //   })`,
-                // }}
-              >
-                <Icon
-                  iconName="Settings"
-                  style={{
-                    fontSize: "40px",
-                  }}
-                />
-              </div>
-              <h1
-                className={styles.bodyContentHeading}
-                style={{ cursor: "pointer" }}
-                // onClick={() => props.switchPlayBook("ToDecisionTree")}
-                onClick={() => (window.location.href = props.DecisionTreeLink)}
-                // onClick={() =>
-                //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
-                // }
-              >
-                {/* {homeMain.length > 0
-                  ? homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
-                      .Title
-                  : ""} */}
-                Generate a Plan​
-              </h1>
-              <p className={styles.bodyCardContent}>
-                <div className={styles.bodyContentLeft}>
-                  {homeMain.length > 0
-                    ? homeMain.filter((HM) => HM.Title == "Decision Tree")[0]
-                        .PCMDescr
-                    : ""}
+                    {e.Title}
+                  </div>
+                </h1>
+                <p className={styles.bodyCardContent}>
+                  <div className={styles.bodyContentLeft}>
+                    {e.PCMDescr}
+                  </div>
+                </p>
+                <div className={styles.playBookButtonSection}>
+                  <div
+                    className={styles.rightArrowIcon}
+                    style={{ backgroundImage: `url(${toRightArrow})` }}
+                  ></div>
+                  <div>
+                    <a href="#" className={styles.buttonContainer}>
+                      <button
+                        className={styles.playBookButton}
+                        onClick={() =>
+                          props.pageURL(window.location.href = `${e.PCMBtnLink}`)
+                        }
+                      >
+                        Click Here
+                      </button>
+                    </a>
+                  </div>
+                  <div
+                    className={styles.leftArrowIcon}
+                    style={{ backgroundImage: `url(${toLeftArrow})` }}
+                  ></div>
                 </div>
-                {/* <div
-                  className={styles.bodyContentRight}
-                  style={{ backgroundImage: `url(${decisionTreeArrow})` }}
-                  // onClick={() => props.switchPlayBook("ToDecisionTree")}
-                  onClick={() =>
-                    (window.location.href = props.DecisionTreeLink)
-                  }
-                  // onClick={() =>
-                  //   (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
-                  // }
-                ></div> */}
-              </p>
-              <div className={styles.playBookButtonSection}>
-                <div
-                  className={styles.rightArrowIcon}
-                  style={{ backgroundImage: `url(${toRightArrow})` }}
-                ></div>
-                <div>
-                  <a href="#" className={styles.buttonContainer}>
-                    <button
-                      className={styles.DecisionTreeButton}
-                      // onClick={() => props.switchPlayBook("ToWhyPlayBook")}
-                      onClick={() =>
-                        (window.location.href = `${props.absoluteUrl}/sitepages/decisiontree.aspx`)
-                      }
-                      // onClick={() =>
-                      //   (window.location.href = `${props.absoluteUrl}/SitePages/whyplaybook.aspx`)
-                      // }
-                    >
-                      {/* {homeMain.length > 0
-                      ? homeMain.filter((HM) => HM.Title == "Playbook")[0]
-                          .PCMLabel
-                      : ""} */}
-                      Click Here
-                    </button>
-                  </a>
+                <div className={styles.bottomCornerArrowCover}>
+                  <div
+                    className={styles.bottomCornerArrow}
+                    style={{ backgroundImage: `url(${bottomCornerIcon})` }}
+                  ></div>
                 </div>
-                <div
-                  className={styles.leftArrowIcon}
-                  style={{ backgroundImage: `url(${toLeftArrow})` }}
-                ></div>
-              </div>
-              <div className={styles.bottomCornerArrowCover}>
-                <div
-                  className={styles.bottomCornerArrow}
-                  style={{ backgroundImage: `url(${bottomCornerIcon})` }}
-                ></div>
               </div>
             </div>
-          </div>
+          })}
         </div>
-      </div>
-      <div
-        className={styles.cardSection}
-        style={{ backgroundImage: `url(${cardsBG})` }}
-      >
-        <h2
-          style={{
-            textAlign: "center",
-            paddingTop: "2rem",
-            textDecoration: "underline",
-          }}
-        >
-          Browse Change Levers
-        </h2>
-        <div className={styles.cards}>{cardSection}</div>
       </div>
       <Footer />
     </div>

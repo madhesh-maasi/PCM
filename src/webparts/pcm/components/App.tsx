@@ -5,6 +5,7 @@ import PlaybookDetails from "./PlaybookDetails";
 import { useState, useEffect } from "react";
 import WhyPlayBook from "./WhyPlayBook";
 import DecisionTree from "./DecisionTree";
+import BrowseLevers from "./BrowseLevers";
 let startPage;
 let siteUrl = window.location.href.split("?")[0];
 let url = window.location.href;
@@ -65,24 +66,44 @@ const App = (props) => {
     //   setNavState(startPage);
     // }
     console.log(props.context.pageContext.web.absoluteUrl);
+    // let url = window.location.href.split("/");
+    // console.log(url);
+    // let page = url[url.length - 1].split(".")[0];
+    // console.log(page);                    
+    // if (page.toLocaleLowerCase() == "playbook") {
+    //   startPage = "ToPlayBook";
+    // } else if (page.toLocaleLowerCase() == "whyplaybook") {
+    //   startPage = "ToWhyPlayBook";
+    // } else if (page.toLocaleLowerCase() == "decisiontree") {
+    //   startPage = "ToDecisionTree";
+    // }else if(page.toLocaleLowerCase() == "browselevers"){
+    //   startPage = "ToBrowseLevers";
+    // } else {
+    //   startPage = "ToHome";
+    // }
+    // setNavState(startPage);
+    pageURL(window.location.href);
+  }, []);
 
-    let url = window.location.href.split("/");
+  const pageURL = (res) => {
+    let url = res.split("/");
     let page = url[url.length - 1].split(".")[0];
-    console.log(page);
     if (page.toLocaleLowerCase() == "playbook") {
       startPage = "ToPlayBook";
     } else if (page.toLocaleLowerCase() == "whyplaybook") {
       startPage = "ToWhyPlayBook";
     } else if (page.toLocaleLowerCase() == "decisiontree") {
       startPage = "ToDecisionTree";
+    } else if (page.toLocaleLowerCase() == "browselevers") {
+      startPage = "ToBrowseLevers";
     } else {
       startPage = "ToHome";
     }
-    // startPage = "ToPlayBook";
     setNavState(startPage);
-  }, []);
+  }
 
   const switchHomeScreenHandler = (str) => {
+    console.log(str);
     setNavState(str);
   };
   const selectedPhaseHandler = (phase) => {
@@ -94,6 +115,7 @@ const App = (props) => {
         <HomePage
           sp={props.sp}
           switchPlayBook={switchHomeScreenHandler}
+          pageURL={pageURL}
           siteUrl={siteUrl}
           absoluteUrl={props.context.pageContext.web.absoluteUrl}
           PlayBookLink={PBLink}
@@ -105,6 +127,7 @@ const App = (props) => {
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
           selectPhase={selectedPhaseHandler}
+          pageURL={pageURL}
           siteUrl={siteUrl}
           absoluteUrl={props.context.pageContext.web.absoluteUrl}
         />
@@ -113,6 +136,7 @@ const App = (props) => {
           sp={props.sp}
           selectedItem={selectedPhase}
           navHandler={switchHomeScreenHandler}
+          pageURL={pageURL}
           siteUrl={siteUrl}
           absoluteUrl={props.context.pageContext.web.absoluteUrl}
         />
@@ -122,6 +146,7 @@ const App = (props) => {
           navHandler={switchHomeScreenHandler}
           siteUrl={siteUrl}
           absoluteUrl={props.context.pageContext.web.absoluteUrl}
+          pageURL={pageURL}
           PlayBookLink={PBLink}
           WhyPlayBooklink={WPBLink}
           DecisionTreeLink={DTLink}
@@ -130,6 +155,18 @@ const App = (props) => {
         <DecisionTree
           sp={props.sp}
           navHandler={switchHomeScreenHandler}
+          siteUrl={siteUrl}
+          absoluteUrl={props.context.pageContext.web.absoluteUrl}
+          pageURL={pageURL}
+          PlayBookLink={PBLink}
+          WhyPlayBooklink={WPBLink}
+          DecisionTreeLink={DTLink}
+        />
+      ) : navState == "ToBrowseLevers" ? (
+        <BrowseLevers
+          sp={props.sp}
+          switchPlayBook={switchHomeScreenHandler}
+          pageURL={pageURL}
           siteUrl={siteUrl}
           absoluteUrl={props.context.pageContext.web.absoluteUrl}
           PlayBookLink={PBLink}
